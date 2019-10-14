@@ -27,5 +27,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "## Authors - Austin Hedeen - Benjamin Clark - Bradley G. Elliott - Corey Chang - Evan BC - Hanna Alemu - Jessica Walters - Leyla Li - Lillian Gales - Joanna Arroyo - Trae Bennett",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JS-401-Final/front-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JS-401-Final/front-end/issues"
+  },
+  "homepage": "https://github.com/JS-401-Final/front-end#readme"
 }
