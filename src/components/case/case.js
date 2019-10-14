@@ -5,9 +5,9 @@ import React, { useState, useReducer } from 'react';
 function Case() {
   // const [caseId, setCaseId] = useState('');
   // const [caseTitle, setCaseTitle] = useState('');
-  // const [caseStatus, setCaseStatus] = useState('');
-  // const [referral, setReferral] = useState('');
-  // const [legalPlan, setLegalPlan] = useState('');
+  const [caseStatus, setCaseStatus] = useState('');
+  const [referral, setReferral] = useState('');
+  const [legalPlan, setLegalPlan] = useState('');
   // // const [dates, setDates] = useState([]);
   // const [notes, setNotes] = useState([]);
   // const [client, setClient] = useState({});
@@ -17,33 +17,42 @@ function Case() {
   // const [opposingParty, setOpposingParty] = useState({});
   // const [associatedContact, setAssociatedContact] = useState({});
 
-  const caseTitle = 'TESTING TITLE';
-  const caseStatus = 'in-progress';
-  const referral = 'yes';
-  const legalPlan = 'default';
+  const caseTitle = 'Arroyo v Li';
   const notes = ['note 1', 'note 2', 'note go home'];
+
+  function handleStatusChange(event) {
+    setCaseStatus(event.target.value);
+  }
+
+  function handleReferralChange(event) {
+    setReferral(event.target.value);
+  }
+
+  function handleLegalPlanChange(event) {
+    setLegalPlan(event.target.value);
+  }
 
   return (
     <>
-      <h1>{caseTitle}: Case Map</h1>
+      <h2>{caseTitle}: Case Map</h2>
 
       <form>
         <p>Case Title: {caseTitle}</p>
         <label> Current Status
-          <select value={caseStatus}>
+          <select value={caseStatus} onChange={handleStatusChange}>
             <option value='unset'>Unset</option>
             <option value='in-progress'>In Progress</option>
             <option value='closed'>Closed</option>
           </select>
         </label>
         <label> Referral
-          <select value={referral}>
+          <select value={referral} onChange={handleReferralChange}>
             <option value='no'>No</option>
             <option value='yes'>Yes</option>
           </select>
         </label>
         <label> Legal Plan
-          <select value={legalPlan}>
+          <select value={legalPlan} onChange={handleLegalPlanChange}>
             <option value='default'>Default</option>
             <option value='family'>Family</option>
             <option value='criminal'>Criminal</option>
