@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import superagent from 'superagent';
+import PropTypes from 'prop-types';
 
 import Search from './search/search';
-import updateCaseAction from '../../store/actions/case-action'; 
+import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 
 const API = process.env.API_URL;
 
-function Case({ updateCase }) {
-  // const [caseId, setCaseId] = useState('');
+function Case(props) {
+  const [caseId, setCaseId] = useState('');
   // const [caseTitle, setCaseTitle] = useState('');
   const [caseStatus, setCaseStatus] = useState('');
   const [referral, setReferral] = useState('');
@@ -25,6 +25,24 @@ function Case({ updateCase }) {
 
   const caseTitle = 'Arroyo v Li';
   const notes = ['note 1', 'note 2', 'note go home'];
+  const object = {
+    caseId: 1234,
+    caseStatus: 'in-progress',
+    referral: 'yes',
+    legalPlan: 'default',
+  };
+
+  useEffect(() => {
+    // superagent.get(`${API}/case/${selectedCase.id}`)
+    //   .then((result) => {
+    //     getCase(result.body);
+    //   });
+    props.getCase(object);
+    setCaseId(object.id);
+    setCaseStatus(object.caseStatus);
+    setReferral(object.referral);
+    setLegalPlan(object.legalPlan);
+  }, []);
 
   function handleStatusChange(event) {
     setCaseStatus(event.target.value);
@@ -40,12 +58,14 @@ function Case({ updateCase }) {
 
   function handleUpdate(event, id) {
     event.preventDefault();
-    const data = { id, caseStatus, referral, legalPlan };
+    const data = {
+      id, caseStatus, referral, legalPlan,
+    };
     superagent.put(`${API}/case/${id}`)
       .send(data)
       .set('Accept', 'application/json')
       .then((results) => {
-        updateCase(results.body);
+        props.updateCase(results.body);
       });
   }
 
@@ -93,15 +113,18 @@ function Case({ updateCase }) {
 }
 
 const mapStateToProps = (state) => ({
-  cases: state.cases,
+  currentCase: state.currentCase,
+  // selectedCase: state.selectedCase,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // getCase: (id) => dispatch(caseActions.fetchCaseAction(id)),
+  getCase: (data) => dispatch(getCaseAction(data)),
   updateCase: (data) => dispatch(updateCaseAction(data)),
 });
   
 Case.protoTypes = {
+  props: PropTypes.object,
+  currentCase: PropTypes.object,
   updateCase: PropTypes.func,
 };
 
