@@ -10,9 +10,9 @@ const API = process.env.API_URL;
 
 function Case(props) {
   const [caseId, setCaseId] = useState('');
-  // const [caseTitle, setCaseTitle] = useState('');
+  const [caseTitle, setCaseTitle] = useState('');
   const [caseStatus, setCaseStatus] = useState('');
-  const [referral, setReferral] = useState('');
+  const [referralType, setReferralType] = useState('');
   const [legalPlan, setLegalPlan] = useState('');
   // const [dates, setDates] = useState([]);
   // const [notes, setNotes] = useState([]);
@@ -23,10 +23,10 @@ function Case(props) {
   // const [opposingParty, setOpposingParty] = useState({});
   // const [associatedContact, setAssociatedContact] = useState({});
 
-  const caseTitle = 'Arroyo v Li';
   const notes = ['note 1', 'note 2', 'note go home'];
   const object = {
     caseId: '1234',
+    caseTitle: 'Arroyo v Li',
     caseStatus: 'in-progress',
     referral: 'yes',
     legalPlan: 'default',
@@ -40,14 +40,21 @@ function Case(props) {
   // };
 
   useEffect(() => {
-    // superagent.get(`${API}/case/${selectedCase.id}`)
+    //TODO: Waiting for the back-end to have case id route
+    // superagent.get(`${API}/case/CASEID-123456`)
     //   .then((result) => {
-    //     getCase(result.body);
+    //     props.getCase(result.body);
+    //     setCaseId(result.body.caseId);
+    //     setCaseTitle(result.body.title);
+    //     setCaseStatus(result.body.caseStatus);
+    //     setReferralType(result.body.referralType);
+    //     setLegalPlan(result.body.legalPlan);
     //   });
     props.getCase(object);
     setCaseId(object.caseId);
+    setCaseTitle(object.caseTitle);
     setCaseStatus(object.caseStatus);
-    setReferral(object.referral);
+    setReferralType(object.referralType);
     setLegalPlan(object.legalPlan);
   }, []);
 
@@ -56,7 +63,7 @@ function Case(props) {
   }
 
   function handleReferralChange(event) {
-    setReferral(event.target.value);
+    setReferralType(event.target.value);
   }
 
   function handleLegalPlanChange(event) {
@@ -65,9 +72,8 @@ function Case(props) {
 
   function handleUpdate(event) {
     event.preventDefault();
-    console.log('CASE ID', caseId);
     const data = {
-      caseId, caseStatus, referral, legalPlan,
+      caseId, caseStatus, referralType, legalPlan,
     };
     // superagent.put(`${API}/case/${id}`)
     //   .send(data)
@@ -90,17 +96,19 @@ function Case(props) {
             <option value='unset'>Unset</option>
             <option value='in-progress'>In Progress</option>
             <option value='closed'>Closed</option>
+            <option value='open'>Open</option>
           </select>
         </label>
         <label> Referral
-          <select value={referral} onChange={handleReferralChange}>
-            <option value='no'>No</option>
+          <select value={referralType} onChange={handleReferralChange}>
+            <option value='none'>No</option>
             <option value='yes'>Yes</option>
           </select>
         </label>
         <label> Legal Plan
           <select value={legalPlan} onChange={handleLegalPlanChange}>
             <option value='default'>Default</option>
+            <option value='none'>None</option>
             <option value='family'>Family</option>
             <option value='criminal'>Criminal</option>
           </select>
@@ -115,7 +123,7 @@ function Case(props) {
       <Search />
 
       <button onClick={(event) => handleUpdate(event)}>
-        Save Changes
+        Save Case Details
       </button>
     </>
   );
@@ -133,6 +141,7 @@ const mapDispatchToProps = (dispatch) => ({
   
 Case.protoTypes = {
   props: PropTypes.object,
+  getCase: PropTypes.func,
   currentCase: PropTypes.object,
   updateCase: PropTypes.func,
 };
