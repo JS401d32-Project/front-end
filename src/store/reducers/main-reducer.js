@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-
-// import pets from './pets-reducer';
+import cases from './case-reducer';
 
 export default combineReducers({
-//   pets,
+  cases,
 });
