@@ -26,11 +26,18 @@ function Case(props) {
   const caseTitle = 'Arroyo v Li';
   const notes = ['note 1', 'note 2', 'note go home'];
   const object = {
-    caseId: 1234,
+    caseId: '1234',
     caseStatus: 'in-progress',
     referral: 'yes',
     legalPlan: 'default',
   };
+
+  // const updateObject = {
+  //   caseId: 1111,
+  //   caseStatus: 'closed',
+  //   referral: 'yes',
+  //   legalPlan: 'family',
+  // };
 
   useEffect(() => {
     // superagent.get(`${API}/case/${selectedCase.id}`)
@@ -38,7 +45,7 @@ function Case(props) {
     //     getCase(result.body);
     //   });
     props.getCase(object);
-    setCaseId(object.id);
+    setCaseId(object.caseId);
     setCaseStatus(object.caseStatus);
     setReferral(object.referral);
     setLegalPlan(object.legalPlan);
@@ -56,17 +63,19 @@ function Case(props) {
     setLegalPlan(event.target.value);
   }
 
-  function handleUpdate(event, id) {
+  function handleUpdate(event) {
     event.preventDefault();
+    console.log('CASE ID', caseId);
     const data = {
-      id, caseStatus, referral, legalPlan,
+      caseId, caseStatus, referral, legalPlan,
     };
-    superagent.put(`${API}/case/${id}`)
-      .send(data)
-      .set('Accept', 'application/json')
-      .then((results) => {
-        props.updateCase(results.body);
-      });
+    // superagent.put(`${API}/case/${id}`)
+    //   .send(data)
+    //   .set('Accept', 'application/json')
+    //   .then((results) => {
+    //     props.updateCase(results.body);
+    //   });
+    props.updateCase(data);
   }
 
   return (
@@ -105,7 +114,7 @@ function Case(props) {
 
       <Search />
 
-      <button onClick={(event) => handleUpdate(event, caseId)}>
+      <button onClick={(event) => handleUpdate(event)}>
         Save Changes
       </button>
     </>
