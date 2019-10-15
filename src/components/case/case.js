@@ -1,4 +1,6 @@
 import React, { useState, useReducer } from 'react';
+
+import Search from './search/search';
 // import { connect } from 'react-redux';
 // import Contact from '../contact/contact'; //TODO: check other team
 
@@ -64,6 +66,8 @@ function Case() {
       {notes.map((note, index) => (
         <p key={index}>{note}</p>
       ))}
+
+      <Search />
     </>
   );
 }
