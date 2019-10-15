@@ -4,7 +4,7 @@ export default (state = {}, { type, payload }) => {
     case 'CASE_CREATE':
       break;
     case 'CASE_UPDATE':
-      break;
+      return { ...state, payload };
     default:
       return state;
   }

@@ -1,10 +1,14 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import superagent from 'superagent';
 
 import Search from './search/search';
-// import { connect } from 'react-redux';
-// import Contact from '../contact/contact'; //TODO: check other team
+import updateCaseAction from '../../store/actions/case-action'; 
 
-function Case() {
+const API = process.env.API_URL;
+
+function Case({ updateCase }) {
   // const [caseId, setCaseId] = useState('');
   // const [caseTitle, setCaseTitle] = useState('');
   const [caseStatus, setCaseStatus] = useState('');
@@ -34,9 +38,21 @@ function Case() {
     setLegalPlan(event.target.value);
   }
 
+  function handleUpdate(event, id) {
+    event.preventDefault();
+    const data = { id, caseStatus, referral, legalPlan };
+    superagent.put(`${API}/case/${id}`)
+      .send(data)
+      .set('Accept', 'application/json')
+      .then((results) => {
+        updateCase(results.body);
+      });
+  }
+
   return (
     <>
       <h2>{caseTitle}: Case Map</h2>
+      <p>Case Id: {caseId}</p>
 
       <form>
         <p>Case Title: {caseTitle}</p>
@@ -68,9 +84,25 @@ function Case() {
       ))}
 
       <Search />
+
+      <button onClick={(event) => handleUpdate(event, caseId)}>
+        Save Changes
+      </button>
     </>
   );
 }
 
-// TODO: Jo & Leyla - will change this to connect to Redux store
-export default Case;
+const mapStateToProps = (state) => ({
+  cases: state.cases,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  // getCase: (id) => dispatch(caseActions.fetchCaseAction(id)),
+  updateCase: (data) => dispatch(updateCaseAction(data)),
+});
+  
+Case.protoTypes = {
+  updateCase: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Case);
