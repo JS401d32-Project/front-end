@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
-import currentCase from './case-reducer';
+
+import cases from './case-reducer';
+import contacts from './contacts-reducer';
 
 export default combineReducers({
-  currentCase,
+  cases,
+  contacts,
 });
