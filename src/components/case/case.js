@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import superagent from 'superagent';
+// import superagent from 'superagent';
 import PropTypes from 'prop-types';
 
 import Search from './search/search';
 import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 
-const API = process.env.API_URL;
+// const API = process.env.API_URL;
 
 function Case(props) {
   const [caseId, setCaseId] = useState('');
@@ -40,7 +40,7 @@ function Case(props) {
   // };
 
   useEffect(() => {
-    //TODO: Waiting for the back-end to have case id route
+    // TODO: Waiting for the back-end to have case id route
     // superagent.get(`${API}/case/CASEID-123456`)
     //   .then((result) => {
     //     props.getCase(result.body);
@@ -138,8 +138,8 @@ const mapDispatchToProps = (dispatch) => ({
   getCase: (data) => dispatch(getCaseAction(data)),
   updateCase: (data) => dispatch(updateCaseAction(data)),
 });
-  
-Case.protoTypes = {
+
+Case.propTypes = {
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
