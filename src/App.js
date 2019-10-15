@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import Contacts from './components/contact/contacts-form';
 import NavBar from './components/navBar/nav';
@@ -11,11 +11,13 @@ export default function App() {
   return (
     <>
       <NavBar />
-      <Switch>
-        <Route exact path="/" component={HomePage}/>
-        <Route exact path="/casePage" component={CasePage}/>
-        <Route exact path="/oauth" component={OAuth}/>
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <Route exact path="/casePage" component={CasePage}/>
+          <Route exact path="/oauth" component={OAuth}/>
+        </Switch>
+      </BrowserRouter>
       <Contacts />
     </>
   );
