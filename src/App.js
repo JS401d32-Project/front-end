@@ -1,24 +1,15 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import HomePage from './components/home-test/home';
+import CasePage from './components/case/case';
+import OAuth from './components/oauth/OAuth';
 
-function runOauth() {
-  return ({
-    method: 'get',
-    url: 'https://accounts.google.com/o/oauth2/v2/auth?scope=profile+email&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Foauth&client_id=596229894893-3nfgsdoa4cmfvi6r1i6la8jucb5606df.apps.googleusercontent.com',
-  }).catch((error) => {
-    console.log(error);
-  }).then((response) => {
-    console.log(response);
-  });
-}
-
-
-function App() {
+export default function App() {
   return (
-    <>
-      <h1>Hello JS 401!</h1>
-      <button onSubmit={runOauth}>Test Oauth</button>
-    </>
+    <Switch>
+      <Route exact path="/" component={HomePage}/>
+      <Route exact path="/casePage" component={CasePage}/>
+      <Route exact path="/oauth" component={OAuth}/>
+    </Switch>
   );
 }
-
-export default App;
