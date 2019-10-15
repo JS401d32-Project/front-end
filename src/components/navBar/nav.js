@@ -1,26 +1,26 @@
 import React from 'react';
-import './nav.css'
+import './nav.css';
 
-class NavBar extends React.Component{
-    render(){
-      return(
-        <>
-            <div class="nav">
+class NavBar extends React.Component {
+  render() {
+    return (
+      <>
+            <div className="nav">
         <input type="checkbox" id="nav-check"/>
-        <div class="nav-header">
-          <div class="nav-title">
+        <div className="nav-header">
+          <div className="nav-title">
             Case Hawk
           </div>
         </div>
-        <div class="nav-btn">
-          <label for="nav-check">
+        <div className="nav-btn">
+          <label htmlFor="nav-check">
             <span></span>
             <span></span>
             <span></span>
           </label>
         </div>
         
-        <div class="nav-links">
+        <div className="nav-links">
           <a href="#" target="_blank">home</a>
           <a href="#" target="_blank">something</a>
           <a href="#" target="_blank">something</a>
@@ -28,10 +28,10 @@ class NavBar extends React.Component{
           <a href="#" target="_blank">something</a>
         </div>
       </div>
-        </>
+      </>
   
-      )
-    }
+    );
   }
+}
   
-  export default NavBar;
+export default NavBar;

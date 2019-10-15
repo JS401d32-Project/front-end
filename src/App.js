@@ -1,13 +1,20 @@
 import React from 'react';
-import NavBar from './components/navBar/nav.js'
+import { Route, Switch } from 'react-router-dom';
 
-function App() {
+import NavBar from './components/navBar/nav';
+import HomePage from './components/home-test/home';
+import CasePage from './components/case/case';
+import OAuth from './components/oauth/OAuth';
+
+export default function App() {
   return (
     <>
       <NavBar />
-      <h1>Hello JS 401!</h1>
+      <Switch>
+        <Route exact path="/" component={HomePage}/>
+        <Route exact path="/casePage" component={CasePage}/>
+        <Route exact path="/oauth" component={OAuth}/>
+      </Switch>
     </>
   );
 }
-
-export default App;
