@@ -8,7 +8,7 @@ function Case() {
   const [caseStatus, setCaseStatus] = useState('');
   const [referral, setReferral] = useState('');
   const [legalPlan, setLegalPlan] = useState('');
-  // // const [dates, setDates] = useState([]);
+  // const [dates, setDates] = useState([]);
   // const [notes, setNotes] = useState([]);
   // const [client, setClient] = useState({});
   // const [attorney, setAttorney] = useState({});
@@ -68,4 +68,5 @@ function Case() {
   );
 }
 
+// TODO: Jo & Leyla - will change this to connect to Redux store
 export default Case;
