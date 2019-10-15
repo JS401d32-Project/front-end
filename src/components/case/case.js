@@ -1,5 +1,5 @@
 import React, { useState, useReducer } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 // import Contact from '../contact/contact'; //TODO: check other team
 
