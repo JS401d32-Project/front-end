@@ -1,13 +1,12 @@
 import React from 'react';
-import Case from './components/case/case';
+import { Route, Switch } from 'react-router-dom'
+import HomePage from './components/home-test/home'
+import CasePage from './components/case/case';
 
-function App() {
+export default function App() {
   return (
-    <>
-      <h1>Hello JS 401!</h1>
-      <Case />
-    </>
-  );
-}
-
-export default App;
+    <Switch>
+      <Route exact path="/" component={HomePage}/>
+      <Route exact path="/casePage" component={CasePage}/>
+    </Switch>
+  )};
