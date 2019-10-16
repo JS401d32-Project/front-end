@@ -2,39 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import superagent from 'superagent';
 import PropTypes from 'prop-types';
-import ReactTable from 'react-table';
 
-// import CaseNote from './case-note/case-note';
-import Search from './search/search';
-import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
+import Search from '../search/search';
+import { getCaseAction, updateCaseAction } from '../../../store/actions/case-action';
 
 // TODO: Need to be able to get this from .env somehow?? Shows as undefined
 // const API = process.env.API_URL;
 const API = 'http://localhost:4000';
 
-const columns = [
-  {
-    Header: 'Date Created',
-    accessor: 'dateCreated',
-    headerStyle: { whiteSpace: 'unset' },
-    style: { whiteSpace: 'unset' },
-  },
-  {
-    Header: 'Title',
-    accessor: 'title',
-    headerStyle: { whiteSpace: 'unset' },
-    style: { whiteSpace: 'unset' },
-  },
-];
-
-function Case(props) {
+function CaseForm(props, cases) {
   const [caseId, setCaseId] = useState('');
   const [caseTitle, setCaseTitle] = useState('');
   const [caseStatus, setCaseStatus] = useState('');
   const [referralType, setReferralType] = useState('');
   const [legalPlan, setLegalPlan] = useState('');
   // const [dates, setDates] = useState([]);
-  const [caseNotes, setCaseNotes] = useState([]);
+  // const [notes, setNotes] = useState([]);
   // const [client, setClient] = useState({});
   // const [attorney, setAttorney] = useState({});
   // const [paralegal, setParalegal] = useState({});
@@ -44,21 +27,24 @@ function Case(props) {
 
   const notes = ['note 1', 'note 2', 'note go home'];
 
-  useEffect(() => {
-    // TODO: waiting on selectedCase to be in store
-    superagent.get(`${API}/case/CASEID-123456`)
-      .then((response) => {
-        const result = response.body[0];
-        props.getCase(result);
-        setCaseId(result.id);
-        setCaseTitle(result.title);
-        setCaseStatus(result.status);
-        setReferralType(result.referralType);
-        setLegalPlan(result.legalPlan);
-        // console.log(result.caseNotes);
-        setCaseNotes(result.caseNotes);
-      });
-  }, []);
+  useEffect(async () => {
+    // // TODO: waiting on selectedCase to be in store
+    // superagent.get(`${API}/case/CASEID-123456`)
+    //   .then((response) => {
+    //     const result = response.body[0];
+    //     props.getCase(result);
+    //     setCaseId(result.caseId);
+    //     setCaseTitle(result.title);
+    //     setCaseStatus(result.status);
+    //     setReferralType(result.referralType);
+    //     setLegalPlan(result.legalPlan);
+    //   });
+    await console.log('PROPS', props);
+    console.log('STATE', cases);
+    // setCaseStatus(props.cases.status);
+    // setReferralType(result.referralType);
+    // setLegalPlan(result.legalPlan);
+  }, [props]);
 
   function handleStatusChange(event) {
     setCaseStatus(event.target.value);
@@ -88,11 +74,11 @@ function Case(props) {
 
   return (
     <>
-      <h2>{caseTitle}: Case Map</h2>
-      <p>Case Id: {caseId}</p>
+      {/*<h2>{caseTitle}: Case Map</h2>*/}
+      {/*<p>Case Id: {caseId}</p>*/}
 
       <form>
-        <p>Case Title: {caseTitle}</p>
+        {/*<p>Case Title: {caseTitle}</p>*/}
         <label> Current Status
           <select value={caseStatus} onChange={handleStatusChange}>
             <option value='unset'>Unset</option>
@@ -116,37 +102,23 @@ function Case(props) {
           </select>
         </label>
       </form>
+
+      {/*<h5>Case Notes</h5>*/}
+      {/*{notes.map((note, index) => (*/}
+      {/*  <p key={index}>{note}</p>*/}
+      {/*))}*/}
+
+      {/*<Search />*/}
+
       <button onClick={(event) => handleUpdate(event)}>
         Save Case Details
       </button>
-
-      {/*<h5>Case Notes</h5>*/}
-      {/*{caseNotes.map((note, index) => (*/}
-      {/*  <p key={index}>{note.title}</p>*/}
-      {/*))}*/}
-
-      {/*<CaseNote />*/}
-
-      <div className="caseList" style={ { textAlign: 'center', padding: '50px' } }>
-        <ReactTable
-          // manual
-          // minRows={0}
-          // pageSize={1}
-          data={caseNotes}
-          columns={columns}
-          // pages={0}
-          // defaultPageSize={5}
-          // showPagination={true}
-        />
-      </div>
-
-      <Search />
-
     </>
   );
 }
 
 const mapStateToProps = (state) => ({
+  cases: state.cases,
   currentCase: state.currentCase,
   // selectedCase: state.selectedCase,
 });
@@ -156,11 +128,11 @@ const mapDispatchToProps = (dispatch) => ({
   updateCase: (data) => dispatch(updateCaseAction(data)),
 });
 
-Case.propTypes = {
+CaseForm.propTypes = {
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
   updateCase: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Case);
+export default connect(mapStateToProps, mapDispatchToProps)(CaseForm);
