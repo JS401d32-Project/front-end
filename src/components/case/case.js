@@ -1,16 +1,41 @@
-import React, { useState, useReducer } from 'react';
-import { Link } from 'react-router-dom'
-// import { connect } from 'react-redux';
-// import Contact from '../contact/contact'; //TODO: check other team
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+// import superagent from 'superagent';
+import PropTypes from 'prop-types';
+import ReactTable from 'react-table';
 
-function Case() {
-  // const [caseId, setCaseId] = useState('');
-  // const [caseTitle, setCaseTitle] = useState('');
+// import CaseNote from './case-note/case-note';
+import Search from './search/search';
+import CaseIntakeForm from './case-intake-form/case-intake-form';
+import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
+
+// TODO: Need to be able to get this from .env somehow?? Shows as undefined
+// const API = process.env.API_URL;
+const API = 'http://localhost:4000';
+
+const columns = [
+  {
+    Header: 'Date Created',
+    accessor: 'dateCreated',
+    headerStyle: { whiteSpace: 'unset' },
+    style: { whiteSpace: 'unset' },
+  },
+  {
+    Header: 'Title',
+    accessor: 'title',
+    headerStyle: { whiteSpace: 'unset' },
+    style: { whiteSpace: 'unset' },
+  },
+];
+
+function Case(props) {
+  const [caseId, setCaseId] = useState('');
+  const [caseTitle, setCaseTitle] = useState('');
   const [caseStatus, setCaseStatus] = useState('');
-  const [referral, setReferral] = useState('');
+  const [referralType, setReferralType] = useState('');
   const [legalPlan, setLegalPlan] = useState('');
   // const [dates, setDates] = useState([]);
-  // const [notes, setNotes] = useState([]);
+  const [caseNotes, setCaseNotes] = useState([]);
   // const [client, setClient] = useState({});
   // const [attorney, setAttorney] = useState({});
   // const [paralegal, setParalegal] = useState({});
@@ -18,56 +43,116 @@ function Case() {
   // const [opposingParty, setOpposingParty] = useState({});
   // const [associatedContact, setAssociatedContact] = useState({});
 
-  const caseTitle = 'Arroyo v Li';
-  const notes = ['note 1', 'note 2', 'note go home'];
+  useEffect(() => {
+
+    // TODO: waiting on selectedCase to be in store
+    superagent.get(`${API}/case/CASEID-123456`)
+      .then((response) => {
+        const result = response.body[0];
+        props.getCase(result);
+        setCaseId(result.id);
+        setCaseTitle(result.title);
+        setCaseStatus(result.status);
+        setReferralType(result.referralType);
+        setLegalPlan(result.legalPlan);
+        // console.log(result.caseNotes);
+        setCaseNotes(result.caseNotes);
+      });
+  }, []);
 
   function handleStatusChange(event) {
     setCaseStatus(event.target.value);
   }
 
   function handleReferralChange(event) {
-    setReferral(event.target.value);
+    setReferralType(event.target.value);
   }
 
   function handleLegalPlanChange(event) {
     setLegalPlan(event.target.value);
   }
 
+  function handleUpdate(event) {
+    event.preventDefault();
+    const data = {
+      caseId, caseStatus, referralType, legalPlan,
+    };
+    // superagent.put(`${API}/case/${id}`)
+    //   .send(data)
+    //   .set('Accept', 'application/json')
+    //   .then((results) => {
+    //     props.updateCase(results.body);
+    //   });
+    props.updateCase(data);
+  }
+
   return (
     <>
       <h2>{caseTitle}: Case Map</h2>
-      <Link to="/">Back to Home</Link>
+      <p>Case Id: {caseId}</p>
+
       <form>
         <p>Case Title: {caseTitle}</p>
         <label> Current Status
           <select value={caseStatus} onChange={handleStatusChange}>
             <option value='unset'>Unset</option>
-            <option value='in-progress'>In Progress</option>
+            <option value='open'>Open</option>
+            <option value='interim'>Interim</option>
             <option value='closed'>Closed</option>
           </select>
         </label>
         <label> Referral
-          <select value={referral} onChange={handleReferralChange}>
-            <option value='no'>No</option>
+          <select value={referralType} onChange={handleReferralChange}>
+            <option value='none'>No</option>
             <option value='yes'>Yes</option>
           </select>
         </label>
         <label> Legal Plan
           <select value={legalPlan} onChange={handleLegalPlanChange}>
             <option value='default'>Default</option>
-            <option value='family'>Family</option>
-            <option value='criminal'>Criminal</option>
+            <option value='none'>None</option>
+            <option value='hyatt'>Hyatt</option>
+            <option value='arag'>ARAG</option>
           </select>
         </label>
       </form>
+      <button onClick={(event) => handleUpdate(event)}>
+        Save Case Details
+      </button>
 
-      <h5>Case Notes</h5>
-      {notes.map((note, index) => (
-        <p key={index}>{note}</p>
-      ))}
+      <div className="caseList" style={ { textAlign: 'center', padding: '50px' } }>
+        <ReactTable
+          // manual
+          // minRows={0}
+          // pageSize={1}
+          data={caseNotes}
+          columns={columns}
+          // pages={0}
+          // defaultPageSize={5}
+          // showPagination={true}
+        />
+      </div>
+
+      <Search />
     </>
   );
 }
 
-// TODO: Jo & Leyla - will change this to connect to Redux store
-export default Case;
+const mapStateToProps = (state) => ({
+  currentCase: state.currentCase,
+  // selectedCase: state.selectedCase,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getCase: (data) => dispatch(getCaseAction(data)),
+  updateCase: (data) => dispatch(updateCaseAction(data)),
+});
+
+Case.propTypes = {
+  props: PropTypes.object,
+  getCase: PropTypes.func,
+  currentCase: PropTypes.object,
+  updateCase: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Case);

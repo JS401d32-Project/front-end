@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dotenv": "^8.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-jest": "^22.19.0",
+    "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",
@@ -23,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint \"**/*.js\" --fix",
+    "lint": "eslint '**/*.js' --fix",
     "docs": "styleguidist server"
   },
   "eslintConfig": {
@@ -40,5 +42,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "## Authors - Austin Hedeen - Benjamin Clark - Bradley G. Elliott - Corey Chang - Evan BC - Hanna Alemu - Jessica Walters - Leyla Li - Lillian Gales - Joanna Arroyo - Trae Bennett",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JS-401-Final/front-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JS-401-Final/front-end/issues"
+  },
+  "homepage": "https://github.com/JS-401-Final/front-end#readme"
 }
