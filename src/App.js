@@ -11,11 +11,11 @@ export default function App() {
   return (
     <>
       <NavBar />
+      <OAuth />
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={HomePage}/>
           <Route exact path="/casePage" component={CasePage}/>
-          <Route exact path="/oauth" component={OAuth}/>
         </Switch>
       </BrowserRouter>
       <Contacts />
