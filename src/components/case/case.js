@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-// import superagent from 'superagent';
+import superagent from 'superagent';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 
