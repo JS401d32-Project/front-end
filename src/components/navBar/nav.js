@@ -1,37 +1,34 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 import './nav.css';
 
-class NavBar extends React.Component {
-  render() {
-    return (
-      <>
+export default function NavBar() {
+  return (
+    <>
             <div className="nav">
         <input type="checkbox" id="nav-check"/>
         <div className="nav-header">
+          <img className='logo' src={logo} alt="Logo" />
           <div className="nav-title">
             Case Hawk
           </div>
+
+
         </div>
         <div className="nav-btn">
           <label htmlFor="nav-check">
-            <span></span>
-            <span></span>
-            <span></span>
           </label>
         </div>
-        
+
         <div className="nav-links">
-          <a href="#" target="_blank">home</a>
-          <a href="#" target="_blank">something</a>
-          <a href="#" target="_blank">something</a>
-          <a href="#" target="_blank">something</a>
-          <a href="#" target="_blank">something</a>
+          <Link to="/">Home</Link>
+          <Link to="/casePage">Cases</Link>
+          <Link to="/contacts">Intake</Link>
+          <Link to="/oauth">Logout</Link>
         </div>
       </div>
-      </>
+    </>
   
-    );
-  }
+  );
 }
-  
-export default NavBar;
