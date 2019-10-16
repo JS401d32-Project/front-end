@@ -12,7 +12,7 @@ function CaseForm(props) {
   const [referralType, setReferralType] = useState('');
   const [legalPlan, setLegalPlan] = useState('');
   // const [dates, setDates] = useState([]);
-  const [caseNotes, setCaseNotes] = useState([]);
+  //   const [caseNotes, setCaseNotes] = useState([]);
   // const [client, setClient] = useState({});
   // const [attorney, setAttorney] = useState({});
   // const [paralegal, setParalegal] = useState({});
@@ -27,7 +27,7 @@ function CaseForm(props) {
     setReferralType(props.currentCase.referralType);
     setLegalPlan(props.currentCase.legalPlan);
     // console.log(result.caseNotes);
-    setCaseNotes(props.currentCase.caseNotes);
+    // setCaseNotes(props.currentCase.caseNotes);
   });
 
 
