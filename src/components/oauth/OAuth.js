@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import cookie from 'react-cookies';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import userActions from '../../store/actions/user-actions';
 
 const OAuth = (props) => {
-
   useEffect(() => {
     props.saveToken(cookie.load('X-401d19-OAuth-token'));
   }, []);
@@ -27,3 +27,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OAuth);
+
+OAuth.propTypes = {
+  props: PropTypes.object,
+  saveToken: PropTypes.func,
+  token: PropTypes.string,
+};
