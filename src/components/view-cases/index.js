@@ -8,7 +8,7 @@ const API_URL = 'http://localhost:4000';
 const columns = [
   {
     Header: 'View Details',
-    accessor: 'caseId',
+    accessor: 'id',
     headerStyle: { whiteSpace: 'unset' },
     style: { whiteSpace: 'unset' },
     Cell: (e) => <Link to={`casePage/${e.value}`}>View Case Details</Link>, // eslint-disable-line
