@@ -6,7 +6,7 @@ export default function NoRoute() {
     <>
 
     <div>
-      <img src={PageNotFound} />
+      <img src={PageNotFound} alt={'broken robot'}/>
     </div>;
     </>
   );
