@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 // import CaseIntakeForm from './case-intake-form/case-intake-form';
 // import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 import CaseForm from './case-form/case-form';
+import Contact from '../contact/contact-render';
 import Staff from './case-staff/case-staff';
 import OpposingAttorney from './case-opposing-attorney/case-opposing-attorney';
 import OpposingParty from './case-opposing-party/case-opposing-party';
@@ -57,6 +58,9 @@ function Case(props) {
       {ready  
         ? <>
           <CaseForm /> 
+          <h3>Client Information</h3>
+          <Contact type='client'/>
+          <br />
           <h3>Staff</h3>
           <Staff />
           <br />
@@ -71,6 +75,9 @@ function Case(props) {
           <br />
           <h3>Associated Contacts</h3>
           <AssociatedContacts />
+        {/* <h3>Attorney Information</h3> */}
+        {/*  { props.currentCase.staffAttorneys.map((attorney, i) =>
+        <Contact type='attorney' key={i} name={attorney.id}/>)} */}
         </>
         : null}
     </>
