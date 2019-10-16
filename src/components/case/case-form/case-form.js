@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getCaseAction, updateCaseAction } from '../../../store/actions/case-action';
+// import { getCaseAction, updateCaseAction } from '../../../store/actions/case-action';
 
 
 function CaseForm(props) {
@@ -93,10 +93,10 @@ const mapStateToProps = (state) => ({
   // selectedCase: state.selectedCase,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getCase: (id) => dispatch(getCaseAction(id)),
-  updateCase: (data) => dispatch(updateCaseAction(data)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   getCase: (id) => dispatch(getCaseAction(id)),
+//   updateCase: (data) => dispatch(updateCaseAction(data)),
+// });
 
 CaseForm.propTypes = {
   props: PropTypes.object,
@@ -105,4 +105,4 @@ CaseForm.propTypes = {
   updateCase: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CaseForm);
+export default connect(mapStateToProps, null)(CaseForm);
