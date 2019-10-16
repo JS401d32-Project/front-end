@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
-const API = 'http://localhost:4000';
 
 const Contact = (props) => {
   const [contactReady, setContactReady] = useState(false);
@@ -48,6 +47,8 @@ const mapDispatchToProps = (dispatch) => ({
 Contact.propTypes = {
   currentCase: PropTypes.object,
   fetchContact: PropTypes.func,
+  contacts: PropTypes.array,
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contact);
