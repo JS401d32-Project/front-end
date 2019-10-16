@@ -12,17 +12,17 @@ const update = (data) => ({
 
 //TODO: get the id from somewhere
 const getCaseAction = (id) => (dispatch) => {
-  const options = {
-    method: 'GET',
-    // headers: {
-    //   'Content-Type': 'application/json',
-    //   Accept: 'application/json',
-    // },
-  };
-  console.log('this is the id from case-action', id);
-  return fetch(`${API}/case/${id}`, options)
-    .then((result) => result.json())
-    .then((data) => dispatch(get(data[0])));
+  // const options = {
+  //   method: 'GET',
+  //   // headers: {
+  //   //   'Content-Type': 'application/json',
+  //   //   Accept: 'application/json',
+  //   // },
+  // };
+  // console.log('this is the id from case-action', id);
+  // return fetch(`${API}/case/${id}`, options)
+  //   .then((result) => result.json())
+  //   .then((data) => dispatch(get(data[0])));
 };
 
 const updateCaseAction = (data, id) => (dispatch) => {

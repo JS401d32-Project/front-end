@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import superagent from 'superagent';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 
@@ -8,6 +7,7 @@ import ReactTable from 'react-table';
 import Search from './search/search';
 import CaseIntakeForm from './case-intake-form/case-intake-form';
 import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
+import CaseForm from './case-form/case-form';
 // import { Route } from 'react-router-dom';
 
 // TODO: Need to be able to get this from .env somehow?? Shows as undefined
@@ -16,22 +16,23 @@ const API = 'http://localhost:4000';
 // const routeAddress = window.location.pref;
 // console.log(routeAddress);
 
-const columns = [
-  {
-    Header: 'Date Created',
-    accessor: 'dateCreated',
-    headerStyle: { whiteSpace: 'unset' },
-    style: { whiteSpace: 'unset' },
-  },
-  {
-    Header: 'Title',
-    accessor: 'title',
-    headerStyle: { whiteSpace: 'unset' },
-    style: { whiteSpace: 'unset' },
-  },
-];
+// const columns = [
+//   {
+//     Header: 'Date Created',
+//     accessor: 'dateCreated',
+//     headerStyle: { whiteSpace: 'unset' },
+//     style: { whiteSpace: 'unset' },
+//   },
+//   {
+//     Header: 'Title',
+//     accessor: 'title',
+//     headerStyle: { whiteSpace: 'unset' },
+//     style: { whiteSpace: 'unset' },
+//   },
+// ];
 
 function Case(props) {
+  const [ready, setReady] = useState(false);
   const [caseId, setCaseId] = useState('');
   const [caseTitle, setCaseTitle] = useState('');
   const [caseStatus, setCaseStatus] = useState('');
@@ -47,86 +48,18 @@ function Case(props) {
   // const [associatedContact, setAssociatedContact] = useState({});
   
   useEffect(() => {
-    props.getCase('CASEID-123456')
-      .then((result) => {
-        setCaseId(result.payload.caseId);
-        setCaseTitle(result.payload.title);
-        setCaseStatus(result.payload.status);
-        setReferralType(result.payload.referralType);
-        setLegalPlan(result.payload.legalPlan);
-        // console.log(result.caseNotes);
-        setCaseNotes(result.payload.caseNotes);
-      });
-  }, []);
-
-  function handleStatusChange(event) {
-    setCaseStatus(event.target.value);
-  }
-
-  function handleReferralChange(event) {
-    setReferralType(event.target.value);
-  }
-
-  function handleLegalPlanChange(event) {
-    setLegalPlan(event.target.value);
-  }
-
-  function handleUpdate(event) {
-    event.preventDefault();
-    const data = {
-      caseId, caseStatus, referralType, legalPlan,
+    const options = {
+      method: 'GET',
     };
-    props.updateCase(data);
-  }
+    fetch(`${API}/case/CASEID-123456`, options)
+      .then((result) => result.json())
+      .then((data) => props.getCase(data[0]))
+      .then(() => setReady(true));
+  }, []);
 
   return (
     <>
-      <h2>{caseTitle}: Case Map</h2>
-      <p>Case Id: {caseId}</p>
-
-      <form>
-        <p>Case Title: {caseTitle}</p>
-        <label> Current Status
-          <select value={caseStatus} onChange={handleStatusChange}>
-            <option value='unset'>Unset</option>
-            <option value='open'>Open</option>
-            <option value='interim'>Interim</option>
-            <option value='closed'>Closed</option>
-          </select>
-        </label>
-        <label> Referral
-          <select value={referralType} onChange={handleReferralChange}>
-            <option value='none'>No</option>
-            <option value='yes'>Yes</option>
-          </select>
-        </label>
-        <label> Legal Plan
-          <select value={legalPlan} onChange={handleLegalPlanChange}>
-            <option value='default'>Default</option>
-            <option value='none'>None</option>
-            <option value='hyatt'>Hyatt</option>
-            <option value='arag'>ARAG</option>
-          </select>
-        </label>
-      </form>
-      <button onClick={(event) => handleUpdate(event)}>
-        Save Case Details
-      </button>
-
-      <div className="caseList" style={ { textAlign: 'center', padding: '50px' } }>
-        <ReactTable
-          // manual
-          // minRows={0}
-          // pageSize={1}
-          data={caseNotes}
-          columns={columns}
-          // pages={0}
-          // defaultPageSize={5}
-          // showPagination={true}
-        />
-      </div>
-
-      <Search />
+      {ready ? <CaseForm /> : null}
     </>
   );
 }
@@ -137,8 +70,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getCase: (id) => dispatch(getCaseAction(id)),
-  updateCase: (data) => dispatch(updateCaseAction(data)),
+  getCase: (data) => dispatch({
+    type: 'CASE_FETCH',
+    payload: data,
+  }),
+  // updateCase: (data) => dispatch(updateCaseAction(data)),
 });
 
 Case.propTypes = {
