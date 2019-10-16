@@ -5,4 +5,11 @@ const saveToken = (token) => {
   };
 };
 
-export default { saveToken };
+const removeToken = () => {
+  return {
+    type: 'TOKEN_REMOVE',
+    payload: {},
+  };
+};
+
+export default { saveToken, removeToken };
