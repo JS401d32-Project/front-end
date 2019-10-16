@@ -7,10 +7,13 @@ import ReactTable from 'react-table';
 // import CaseNote from './case-note/case-note';
 import Search from './search/search';
 import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
+// import { Route } from 'react-router-dom';
 
 // TODO: Need to be able to get this from .env somehow?? Shows as undefined
 // const API = process.env.API_URL;
 const API = 'http://localhost:4000';
+// const routeAddress = window.location.pref;
+// console.log(routeAddress);
 
 const columns = [
   {
@@ -41,21 +44,22 @@ function Case(props) {
   // const [assistant, setAssistant] = useState({});
   // const [opposingParty, setOpposingParty] = useState({});
   // const [associatedContact, setAssociatedContact] = useState({});
-
+  
   useEffect(() => {
     // TODO: waiting on selectedCase to be in store
-    superagent.get(`${API}/case/CASEID-123456`)
-      .then((response) => {
-        const result = response.body[0];
-        props.getCase(result);
-        setCaseId(result.id);
-        setCaseTitle(result.title);
-        setCaseStatus(result.status);
-        setReferralType(result.referralType);
-        setLegalPlan(result.legalPlan);
-        // console.log(result.caseNotes);
-        setCaseNotes(result.caseNotes);
-      });
+    // superagent.get(`${API}/case/CASEID-123456`)
+    //   .then((response) => {
+    //     const result = response.body[0];
+    //     props.getCase(result);
+    //     setCaseId(result.id);
+    //     setCaseTitle(result.title);
+    //     setCaseStatus(result.status);
+    //     setReferralType(result.referralType);
+    //     setLegalPlan(result.legalPlan);
+    //     // console.log(result.caseNotes);
+    //     setCaseNotes(result.caseNotes);
+    //   });
+    props.getCase('CASEID-123456');
   }, []);
 
   function handleStatusChange(event) {
@@ -143,7 +147,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getCase: (data) => dispatch(getCaseAction(data)),
+  getCase: (id) => dispatch(getCaseAction(id)),
   updateCase: (data) => dispatch(updateCaseAction(data)),
 });
 

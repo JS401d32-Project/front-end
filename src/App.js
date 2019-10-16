@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
-import Contacts from './components/contact/contacts-form';
+// import Contacts from './components/contact/contacts-form';
 import NavBar from './components/navBar/nav';
 import HomePage from './components/home-test/home';
 import CasePage from './components/case/case';
@@ -18,7 +18,7 @@ export default function App() {
           <Route exact path="/oauth" component={OAuth}/>
         </Switch>
       </BrowserRouter>
-      <Contacts />
+      {/* <Contacts /> */}
     </>
   );
 }
