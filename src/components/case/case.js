@@ -12,10 +12,8 @@ import Contact from '../contact/contact-render';
 // import { Route } from 'react-router-dom';
 
 // TODO: Need to be able to get this from .env somehow?? Shows as undefined
-// const API = process.env.API_URL;
+// const API = process.env.REACT_APP_API;
 const API = 'http://localhost:4000';
-// const routeAddress = window.location.pref;
-// console.log(routeAddress);
 
 // const columns = [
 //   {
@@ -34,25 +32,16 @@ const API = 'http://localhost:4000';
 
 function Case(props) {
   const [ready, setReady] = useState(false);
-  // const [caseId, setCaseId] = useState('');
-  // const [caseTitle, setCaseTitle] = useState('');
-  // const [caseStatus, setCaseStatus] = useState('');
-  // const [referralType, setReferralType] = useState('');
-  // const [legalPlan, setLegalPlan] = useState('');
-  // const [dates, setDates] = useState([]);
-  // const [caseNotes, setCaseNotes] = useState([]);
-  // const [client, setClient] = useState({});
-  // const [attorney, setAttorney] = useState({});
-  // const [paralegal, setParalegal] = useState({});
-  // const [assistant, setAssistant] = useState({});
-  // const [opposingParty, setOpposingParty] = useState({});
-  // const [associatedContact, setAssociatedContact] = useState({});
   
   useEffect(() => {
+    const routeAddress = window.location.pathname.split('/');
+    const currentCaseId = routeAddress[2];
+
     const options = {
       method: 'GET',
     };
-    fetch(`${API}/case/CASEID-123456`, options)
+
+    fetch(`${API}/case/${currentCaseId}`, options)
       .then((result) => result.json())
       .then((data) => props.getCase(data[0]))
       .then(() => setReady(true));
@@ -68,7 +57,6 @@ function Case(props) {
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
-  // selectedCase: state.selectedCase,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -76,7 +64,6 @@ const mapDispatchToProps = (dispatch) => ({
     type: 'CASE_FETCH',
     payload: data,
   }),
-  // updateCase: (data) => dispatch(updateCaseAction(data)),
 });
 
 Case.propTypes = {

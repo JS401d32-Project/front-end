@@ -16,7 +16,7 @@ export default function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={HomePage}/>
-          <Route exact path="/casePage" component={CasePage}/>
+          <Route path="/casePage/:id" component={CasePage}/>
           <Route exact path="/contacts" component={Contacts}/>
         </Switch>
       </BrowserRouter>
