@@ -8,4 +8,9 @@ const updateCaseAction = (data) => ({
   payload: data,
 });
 
-export { getCaseAction, updateCaseAction };
+const updateInitialCaseAction = (data) => ({
+  type: 'CASE_UPDATE_INITIAL',
+  payload: data,
+});
+
+export { getCaseAction, updateCaseAction, updateInitialCaseAction };

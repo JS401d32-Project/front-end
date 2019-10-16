@@ -4,6 +4,7 @@ import superagent from 'superagent';
 import PropTypes from 'prop-types';
 
 import Search from './search/search';
+import CaseIntakeForm from './case-intake-form/case-intake-form';
 import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 
 const API = process.env.API_URL;
@@ -125,6 +126,8 @@ function Case(props) {
       <button onClick={(event) => handleUpdate(event)}>
         Save Case Details
       </button>
+
+      <CaseIntakeForm />
     </>
   );
 }
