@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.png';
 import './nav.css';
 
-export default function NavBar () {
-
-    return (
-      <>
+export default function NavBar() {
+  return (
+    <>
             <div className="nav">
         <input type="checkbox" id="nav-check"/>
         <div className="nav-header">
@@ -29,7 +28,7 @@ export default function NavBar () {
           <Link to="/oauth">Logout</Link>
         </div>
       </div>
-      </>
+    </>
   
-    );
-  }
+  );
+}

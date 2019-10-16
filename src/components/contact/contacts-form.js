@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -29,12 +29,6 @@ const Contacts = (props) => {
   const [contactMobilePhone, setMobilePhone] = useState('');
   const [contactFax, setFax] = useState('');
   const [contactComments, setComments] = useState('');
-
-
-  useEffect(() => {
-    props.fetchContacts()
-      .then((result) => console.log(result));
-  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
