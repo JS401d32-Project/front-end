@@ -9,7 +9,6 @@ const OAuth = (props) => {
     props.saveToken(cookie.load('X-401d19-OAuth-token'));
   }, []);
 
-
   return (
     <>
       <p>{props.token}</p>
@@ -29,7 +28,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(OAuth);
 
 OAuth.propTypes = {
-  props: PropTypes.object,
   saveToken: PropTypes.func,
   token: PropTypes.string,
 };
