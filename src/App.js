@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
-import HomePage from './components/home-test/home'
+import HomePage from './components/view-cases'
 import CasePage from './components/case/case';
 
 export default function App() {
