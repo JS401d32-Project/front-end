@@ -10,6 +10,6 @@ const removeToken = () => {
     type: 'TOKEN_REMOVE',
     payload: {},
   };
-}
+};
 
 export default { saveToken, removeToken };
