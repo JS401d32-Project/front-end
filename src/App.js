@@ -11,13 +11,13 @@ import NoRoute from './components/no-route';
 export default function App() {
   return (
     <>
-
+      <NavBar />
+      <OAuth />
       <BrowserRouter>
         <NavBar />
         <Switch>
           <Route exact path="/" component={HomePage}/>
-          <Route exact path="/casePage" component={CasePage}/>
-          <Route exact path="/oauth" component={OAuth}/>
+          <Route path="/casePage/:id" component={CasePage}/>
           <Route exact path="/contacts" component={Contacts}/>
           <Route component={NoRoute} />
         </Switch>

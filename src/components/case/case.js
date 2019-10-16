@@ -1,149 +1,98 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import superagent from 'superagent';
 import PropTypes from 'prop-types';
-import ReactTable from 'react-table';
+// import ReactTable from 'react-table';
 
 // import CaseNote from './case-note/case-note';
-import Search from './search/search';
-import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
+// import Search from './search/search';
+// import CaseIntakeForm from './case-intake-form/case-intake-form';
+// import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
+import CaseForm from './case-form/case-form';
+import Contact from '../contact/contact-render';
+import Staff from './case-staff/case-staff';
+import OpposingAttorney from './case-opposing-attorney/case-opposing-attorney';
+import OpposingParty from './case-opposing-party/case-opposing-party';
+import RefferingPartys from './case-reffering-party/case-reffering-party.js';
+import AssociatedContacts from './case-associated-contacts/case-associated-contacts';
+
+// import { Route } from 'react-router-dom';
 
 // TODO: Need to be able to get this from .env somehow?? Shows as undefined
-// const API = process.env.API_URL;
+// const API = process.env.REACT_APP_API;
 const API = 'http://localhost:4000';
 
-const columns = [
-  {
-    Header: 'Date Created',
-    accessor: 'dateCreated',
-    headerStyle: { whiteSpace: 'unset' },
-    style: { whiteSpace: 'unset' },
-  },
-  {
-    Header: 'Title',
-    accessor: 'title',
-    headerStyle: { whiteSpace: 'unset' },
-    style: { whiteSpace: 'unset' },
-  },
-];
+// const columns = [
+//   {
+//     Header: 'Date Created',
+//     accessor: 'dateCreated',
+//     headerStyle: { whiteSpace: 'unset' },
+//     style: { whiteSpace: 'unset' },
+//   },
+//   {
+//     Header: 'Title',
+//     accessor: 'title',
+//     headerStyle: { whiteSpace: 'unset' },
+//     style: { whiteSpace: 'unset' },
+//   },
+// ];
 
 function Case(props) {
-  const [caseId, setCaseId] = useState('');
-  const [caseTitle, setCaseTitle] = useState('');
-  const [caseStatus, setCaseStatus] = useState('');
-  const [referralType, setReferralType] = useState('');
-  const [legalPlan, setLegalPlan] = useState('');
-  // const [dates, setDates] = useState([]);
-  const [caseNotes, setCaseNotes] = useState([]);
-  // const [client, setClient] = useState({});
-  // const [attorney, setAttorney] = useState({});
-  // const [paralegal, setParalegal] = useState({});
-  // const [assistant, setAssistant] = useState({});
-  // const [opposingParty, setOpposingParty] = useState({});
-  // const [associatedContact, setAssociatedContact] = useState({});
-
+  const [ready, setReady] = useState(false);
+  
   useEffect(() => {
-    // TODO: waiting on selectedCase to be in store
-    superagent.get(`${API}/case/CASEID-123456`)
-      .then((response) => {
-        const result = response.body[0];
-        props.getCase(result);
-        setCaseId(result.id);
-        setCaseTitle(result.title);
-        setCaseStatus(result.status);
-        setReferralType(result.referralType);
-        setLegalPlan(result.legalPlan);
-        // console.log(result.caseNotes);
-        setCaseNotes(result.caseNotes);
-      });
-  }, []);
+    const routeAddress = window.location.pathname.split('/');
+    const currentCaseId = routeAddress[2];
 
-  function handleStatusChange(event) {
-    setCaseStatus(event.target.value);
-  }
-
-  function handleReferralChange(event) {
-    setReferralType(event.target.value);
-  }
-
-  function handleLegalPlanChange(event) {
-    setLegalPlan(event.target.value);
-  }
-
-  function handleUpdate(event) {
-    event.preventDefault();
-    const data = {
-      caseId, caseStatus, referralType, legalPlan,
+    const options = {
+      method: 'GET',
     };
-    // superagent.put(`${API}/case/${id}`)
-    //   .send(data)
-    //   .set('Accept', 'application/json')
-    //   .then((results) => {
-    //     props.updateCase(results.body);
-    //   });
-    props.updateCase(data);
-  }
+
+    fetch(`${API}/case/${currentCaseId}`, options)
+      .then((result) => result.json())
+      .then((data) => props.getCase(data[0]))
+      .then(() => setReady(true));
+  }, []);
 
   return (
     <>
-      <h2>{caseTitle}: Case Map</h2>
-      <p>Case Id: {caseId}</p>
-
-      <form>
-        <p>Case Title: {caseTitle}</p>
-        <label> Current Status
-          <select value={caseStatus} onChange={handleStatusChange}>
-            <option value='unset'>Unset</option>
-            <option value='open'>Open</option>
-            <option value='interim'>Interim</option>
-            <option value='closed'>Closed</option>
-          </select>
-        </label>
-        <label> Referral
-          <select value={referralType} onChange={handleReferralChange}>
-            <option value='none'>No</option>
-            <option value='yes'>Yes</option>
-          </select>
-        </label>
-        <label> Legal Plan
-          <select value={legalPlan} onChange={handleLegalPlanChange}>
-            <option value='default'>Default</option>
-            <option value='none'>None</option>
-            <option value='hyatt'>Hyatt</option>
-            <option value='arag'>ARAG</option>
-          </select>
-        </label>
-      </form>
-      <button onClick={(event) => handleUpdate(event)}>
-        Save Case Details
-      </button>
-
-      <div className="caseList" style={ { textAlign: 'center', padding: '50px' } }>
-        <ReactTable
-          // manual
-          // minRows={0}
-          // pageSize={1}
-          data={caseNotes}
-          columns={columns}
-          // pages={0}
-          // defaultPageSize={5}
-          // showPagination={true}
-        />
-      </div>
-
-      <Search />
+      {ready  
+        ? <>
+          <CaseForm /> 
+          <h3>Client Information</h3>
+          <Contact type='client'/>
+          <br />
+          <h3>Staff</h3>
+          <Staff />
+          <br />
+          <h3>Opposing Party</h3>
+          <OpposingParty />
+          <br />
+          <h3>Oposing Attorney</h3>
+          <OpposingAttorney />
+          <br />
+          <h3>Reffering Party</h3>
+          <RefferingPartys />
+          <br />
+          <h3>Associated Contacts</h3>
+          <AssociatedContacts />
+        {/* <h3>Attorney Information</h3> */}
+        {/*  { props.currentCase.staffAttorneys.map((attorney, i) =>
+        <Contact type='attorney' key={i} name={attorney.id}/>)} */}
+        </>
+        : null}
     </>
   );
 }
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
-  // selectedCase: state.selectedCase,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getCase: (data) => dispatch(getCaseAction(data)),
-  updateCase: (data) => dispatch(updateCaseAction(data)),
+  getCase: (data) => dispatch({
+    type: 'CASE_FETCH',
+    payload: data,
+  }),
 });
 
 Case.propTypes = {
