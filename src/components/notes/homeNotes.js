@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './notes.css';
 import noteActions from '../../store/actions/notes-action';
 
 const Notes = (props) => {
+  useEffect(() => {
+    props.fetchNotes();
+  }, []);
   return (
+
 
     <>
             <ul>
                 {props.notes.map((notes, _id) => (
 
                     <li key={_id}>
-                        <p>{notes.date}</p>
-                        <p>{notes.title}</p>
-                        <p> {notes.author}</p>
+                        <p>{notes.dateCreated}</p>
+                        <p>{notes.content}</p>
+                        <p> {notes.title}</p>
                         <p>{notes.type}</p>
                     </li>
                 ))}
