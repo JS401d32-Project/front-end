@@ -10,7 +10,7 @@ export default (state = {}, { type, payload }) => {
       if (payload.referralType) {
         return { ...state, referralType: payload.referralType };
       }
-    default:
+    default: // eslint-disable-line no-fallthrough
       return state;
   }
 };

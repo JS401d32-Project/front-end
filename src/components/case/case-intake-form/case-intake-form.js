@@ -63,7 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
   updateInitialCase: (data) => dispatch(updateInitialCaseAction(data)),
 });
 
-CaseIntakeForm.protoTypes = {
+CaseIntakeForm.propTypes = {
   props: PropTypes.object,
   updateInitialCase: PropTypes.func,
 };
