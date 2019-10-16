@@ -11,8 +11,6 @@ import NoRoute from './components/no-route';
 export default function App() {
   return (
     <>
-      <NavBar />
-      <OAuth />
       <BrowserRouter>
         <NavBar />
         <Switch>
@@ -21,6 +19,7 @@ export default function App() {
           <Route exact path="/contacts" component={Contacts}/>
           <Route component={NoRoute} />
         </Switch>
+        <OAuth />
       </BrowserRouter>
     </>
   );
