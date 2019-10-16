@@ -42,8 +42,6 @@ function Case(props) {
   // const [opposingParty, setOpposingParty] = useState({});
   // const [associatedContact, setAssociatedContact] = useState({});
 
-  const notes = ['note 1', 'note 2', 'note go home'];
-
   useEffect(() => {
     // TODO: waiting on selectedCase to be in store
     superagent.get(`${API}/case/CASEID-123456`)
@@ -119,13 +117,6 @@ function Case(props) {
       <button onClick={(event) => handleUpdate(event)}>
         Save Case Details
       </button>
-
-      {/*<h5>Case Notes</h5>*/}
-      {/*{caseNotes.map((note, index) => (*/}
-      {/*  <p key={index}>{note.title}</p>*/}
-      {/*))}*/}
-
-      {/*<CaseNote />*/}
 
       <div className="caseList" style={ { textAlign: 'center', padding: '50px' } }>
         <ReactTable
