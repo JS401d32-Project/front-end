@@ -21,13 +21,13 @@ function Staff(props) {
       <h5>Attorneys</h5>
       <ul>
         {attorneys.map((attorney) => {
-          return <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{attorney.firstName + attorney.lastName}</a>;  
+          return <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{`${attorney.firstName} ${attorney.lastName}`}</a>;
         })}
       </ul>
       <h5>Asistants</h5> 
       <ul>
         {assistants.map((assistant) => {
-          return <a href={`${API}/contact/${assistant.id}`} key={assistant.id}>{assistant.firstName + assistant.lastName}</a>;  
+          return <a href={`${API}/contact/${assistant.id}`} key={assistant.id}>{`${assistant.firstName} ${assistant.lastName}`}</a>;
         })}
       </ul> 
     </>
