@@ -6,7 +6,6 @@ import ReactTable from 'react-table';
 
 // import CaseNote from './case-note/case-note';
 import Search from './search/search';
-import CaseIntakeForm from './case-intake-form/case-intake-form';
 import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 
 // TODO: Need to be able to get this from .env somehow?? Shows as undefined
@@ -44,7 +43,6 @@ function Case(props) {
   // const [associatedContact, setAssociatedContact] = useState({});
 
   useEffect(() => {
-
     // TODO: waiting on selectedCase to be in store
     superagent.get(`${API}/case/CASEID-123456`)
       .then((response) => {
