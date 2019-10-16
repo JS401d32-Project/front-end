@@ -6,6 +6,7 @@ import ReactTable from 'react-table';
 
 // import CaseNote from './case-note/case-note';
 import Search from './search/search';
+import CaseIntakeForm from './case-intake-form/case-intake-form';
 import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 // import { Route } from 'react-router-dom';
 
@@ -46,20 +47,16 @@ function Case(props) {
   // const [associatedContact, setAssociatedContact] = useState({});
   
   useEffect(() => {
-    // TODO: waiting on selectedCase to be in store
-    // superagent.get(`${API}/case/CASEID-123456`)
-    //   .then((response) => {
-    //     const result = response.body[0];
-    //     props.getCase(result);
-    //     setCaseId(result.id);
-    //     setCaseTitle(result.title);
-    //     setCaseStatus(result.status);
-    //     setReferralType(result.referralType);
-    //     setLegalPlan(result.legalPlan);
-    //     // console.log(result.caseNotes);
-    //     setCaseNotes(result.caseNotes);
-    //   });
-    props.getCase('CASEID-123456');
+    props.getCase('CASEID-123456')
+      .then((result) => {
+        setCaseId(result.payload.caseId);
+        setCaseTitle(result.payload.title);
+        setCaseStatus(result.payload.status);
+        setReferralType(result.payload.referralType);
+        setLegalPlan(result.payload.legalPlan);
+        // console.log(result.caseNotes);
+        setCaseNotes(result.payload.caseNotes);
+      });
   }, []);
 
   function handleStatusChange(event) {
@@ -79,12 +76,6 @@ function Case(props) {
     const data = {
       caseId, caseStatus, referralType, legalPlan,
     };
-    // superagent.put(`${API}/case/${id}`)
-    //   .send(data)
-    //   .set('Accept', 'application/json')
-    //   .then((results) => {
-    //     props.updateCase(results.body);
-    //   });
     props.updateCase(data);
   }
 
@@ -136,7 +127,6 @@ function Case(props) {
       </div>
 
       <Search />
-
     </>
   );
 }

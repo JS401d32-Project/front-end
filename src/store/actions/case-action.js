@@ -22,7 +22,7 @@ const getCaseAction = (id) => (dispatch) => {
   console.log('this is the id from case-action', id);
   return fetch(`${API}/case/${id}`, options)
     .then((result) => result.json())
-    .then((data) => dispatch(get(data)));
+    .then((data) => dispatch(get(data[0])));
 };
 
 const updateCaseAction = (data, id) => (dispatch) => {
@@ -40,4 +40,10 @@ const updateCaseAction = (data, id) => (dispatch) => {
     .then((updateData) => dispatch(update(updateData)));
 };
 
-export { getCaseAction, updateCaseAction };
+
+const updateInitialCaseAction = (data) => ({
+  type: 'CASE_UPDATE_INITIAL',
+  payload: data,
+});
+
+export { getCaseAction, updateCaseAction, updateInitialCaseAction };
