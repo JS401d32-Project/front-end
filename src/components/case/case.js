@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-// import superagent from 'superagent';
+import superagent from 'superagent';
 import PropTypes from 'prop-types';
 
 import Search from './search/search';
 import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 
 // const API = process.env.API_URL;
+const API = 'http://localhost:4000';
 
 function Case(props) {
   const [caseId, setCaseId] = useState('');
@@ -24,13 +25,13 @@ function Case(props) {
   // const [associatedContact, setAssociatedContact] = useState({});
 
   const notes = ['note 1', 'note 2', 'note go home'];
-  const object = {
-    caseId: '1234',
-    caseTitle: 'Arroyo v Li',
-    caseStatus: 'in-progress',
-    referral: 'yes',
-    legalPlan: 'default',
-  };
+  // const object = {
+  //   caseId: '1234',
+  //   caseTitle: 'Arroyo v Li',
+  //   caseStatus: 'in-progress',
+  //   referral: 'yes',
+  //   legalPlan: 'default',
+  // };
 
   // const updateObject = {
   //   caseId: 1111,
@@ -41,21 +42,23 @@ function Case(props) {
 
   useEffect(() => {
     // TODO: Waiting for the back-end to have case id route
-    // superagent.get(`${API}/case/CASEID-123456`)
-    //   .then((result) => {
-    //     props.getCase(result.body);
-    //     setCaseId(result.body.caseId);
-    //     setCaseTitle(result.body.title);
-    //     setCaseStatus(result.body.caseStatus);
-    //     setReferralType(result.body.referralType);
-    //     setLegalPlan(result.body.legalPlan);
-    //   });
-    props.getCase(object);
-    setCaseId(object.caseId);
-    setCaseTitle(object.caseTitle);
-    setCaseStatus(object.caseStatus);
-    setReferralType(object.referralType);
-    setLegalPlan(object.legalPlan);
+    superagent.get(`${API}/case/CASEID-123456`)
+      .then((response) => {
+        // console.log('RESULTS', result.body[0]);
+        const result = response.body[0];
+        props.getCase(result);
+        setCaseId(result.id);
+        setCaseTitle(result.title);
+        setCaseStatus(result.status);
+        setReferralType(result.referralType);
+        setLegalPlan(result.legalPlan);
+      });
+    // props.getCase(object);
+    // setCaseId(object.caseId);
+    // setCaseTitle(object.caseTitle);
+    // setCaseStatus(object.caseStatus);
+    // setReferralType(object.referralType);
+    // setLegalPlan(object.legalPlan);
   }, []);
 
   function handleStatusChange(event) {
