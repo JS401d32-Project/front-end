@@ -3,7 +3,12 @@ export default (state = {}, { type, payload }) => {
     case 'CASE_FETCH':
       return { ...payload };
     case 'CASE_UPDATE':
-      return { ...payload };
+      return {
+        ...state,
+        status: payload.caseStatus,
+        referralType: payload.referralType,
+        legalPlan: payload.legalPlan,
+      };
     default:
       return state;
   }
