@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Search from './search/search';
 import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 
+// TODO: Need to be able to get this from .env somehow?? Shows as undefined
 // const API = process.env.API_URL;
 const API = 'http://localhost:4000';
 
@@ -25,26 +26,11 @@ function Case(props) {
   // const [associatedContact, setAssociatedContact] = useState({});
 
   const notes = ['note 1', 'note 2', 'note go home'];
-  // const object = {
-  //   caseId: '1234',
-  //   caseTitle: 'Arroyo v Li',
-  //   caseStatus: 'in-progress',
-  //   referral: 'yes',
-  //   legalPlan: 'default',
-  // };
-
-  // const updateObject = {
-  //   caseId: 1111,
-  //   caseStatus: 'closed',
-  //   referral: 'yes',
-  //   legalPlan: 'family',
-  // };
 
   useEffect(() => {
-    // TODO: Waiting for the back-end to have case id route
+    // TODO: waiting on selectedCase to be in store
     superagent.get(`${API}/case/CASEID-123456`)
       .then((response) => {
-        // console.log('RESULTS', result.body[0]);
         const result = response.body[0];
         props.getCase(result);
         setCaseId(result.id);
@@ -53,12 +39,6 @@ function Case(props) {
         setReferralType(result.referralType);
         setLegalPlan(result.legalPlan);
       });
-    // props.getCase(object);
-    // setCaseId(object.caseId);
-    // setCaseTitle(object.caseTitle);
-    // setCaseStatus(object.caseStatus);
-    // setReferralType(object.referralType);
-    // setLegalPlan(object.legalPlan);
   }, []);
 
   function handleStatusChange(event) {
@@ -97,9 +77,9 @@ function Case(props) {
         <label> Current Status
           <select value={caseStatus} onChange={handleStatusChange}>
             <option value='unset'>Unset</option>
-            <option value='in-progress'>In Progress</option>
-            <option value='closed'>Closed</option>
             <option value='open'>Open</option>
+            <option value='interim'>Interim</option>
+            <option value='closed'>Closed</option>
           </select>
         </label>
         <label> Referral
@@ -112,8 +92,8 @@ function Case(props) {
           <select value={legalPlan} onChange={handleLegalPlanChange}>
             <option value='default'>Default</option>
             <option value='none'>None</option>
-            <option value='family'>Family</option>
-            <option value='criminal'>Criminal</option>
+            <option value='hyatt'>Hyatt</option>
+            <option value='arag'>ARAG</option>
           </select>
         </label>
       </form>
