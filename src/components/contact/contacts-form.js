@@ -32,7 +32,8 @@ const Contacts = (props) => {
 
 
   useEffect(() => {
-    props.fetchContacts();
+    props.fetchContacts()
+      .then((result) => console.log(result));
   }, []);
 
   function handleSubmit(event) {
@@ -65,7 +66,7 @@ const Contacts = (props) => {
 
   return (
     <>
-        <ul>
+        {/* <ul>
             {props.contacts.map((contact, _id) => (
 
          <li key={_id}>
@@ -94,7 +95,7 @@ const Contacts = (props) => {
           </li>
             ))}
 
-        </ul>
+        </ul> */}
 
         <h1> Add Contacts</h1>
 

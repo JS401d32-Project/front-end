@@ -1,142 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-// import superagent from 'superagent';
 import PropTypes from 'prop-types';
+// import ReactTable from 'react-table';
 
-import Search from './search/search';
-import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
+// import CaseNote from './case-note/case-note';
+// import Search from './search/search';
+// import CaseIntakeForm from './case-intake-form/case-intake-form';
+// import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
+import CaseForm from './case-form/case-form';
+import Contact from '../contact/contact-render';
+// import { Route } from 'react-router-dom';
 
-// const API = process.env.API_URL;
+// TODO: Need to be able to get this from .env somehow?? Shows as undefined
+// const API = process.env.REACT_APP_API;
+const API = 'http://localhost:4000';
+
+// const columns = [
+//   {
+//     Header: 'Date Created',
+//     accessor: 'dateCreated',
+//     headerStyle: { whiteSpace: 'unset' },
+//     style: { whiteSpace: 'unset' },
+//   },
+//   {
+//     Header: 'Title',
+//     accessor: 'title',
+//     headerStyle: { whiteSpace: 'unset' },
+//     style: { whiteSpace: 'unset' },
+//   },
+// ];
 
 function Case(props) {
-  const [caseId, setCaseId] = useState('');
-  const [caseTitle, setCaseTitle] = useState('');
-  const [caseStatus, setCaseStatus] = useState('');
-  const [referralType, setReferralType] = useState('');
-  const [legalPlan, setLegalPlan] = useState('');
-  // const [dates, setDates] = useState([]);
-  // const [notes, setNotes] = useState([]);
-  // const [client, setClient] = useState({});
-  // const [attorney, setAttorney] = useState({});
-  // const [paralegal, setParalegal] = useState({});
-  // const [assistant, setAssistant] = useState({});
-  // const [opposingParty, setOpposingParty] = useState({});
-  // const [associatedContact, setAssociatedContact] = useState({});
-
-  const notes = ['note 1', 'note 2', 'note go home'];
-  const object = {
-    caseId: '1234',
-    caseTitle: 'Arroyo v Li',
-    caseStatus: 'in-progress',
-    referral: 'yes',
-    legalPlan: 'default',
-  };
-
-  // const updateObject = {
-  //   caseId: 1111,
-  //   caseStatus: 'closed',
-  //   referral: 'yes',
-  //   legalPlan: 'family',
-  // };
-
+  const [ready, setReady] = useState(false);
+  
   useEffect(() => {
-    // TODO: Waiting for the back-end to have case id route
-    // superagent.get(`${API}/case/CASEID-123456`)
-    //   .then((result) => {
-    //     props.getCase(result.body);
-    //     setCaseId(result.body.caseId);
-    //     setCaseTitle(result.body.title);
-    //     setCaseStatus(result.body.caseStatus);
-    //     setReferralType(result.body.referralType);
-    //     setLegalPlan(result.body.legalPlan);
-    //   });
-    props.getCase(object);
-    setCaseId(object.caseId);
-    setCaseTitle(object.caseTitle);
-    setCaseStatus(object.caseStatus);
-    setReferralType(object.referralType);
-    setLegalPlan(object.legalPlan);
-  }, []);
+    const routeAddress = window.location.pathname.split('/');
+    const currentCaseId = routeAddress[2];
 
-  function handleStatusChange(event) {
-    setCaseStatus(event.target.value);
-  }
-
-  function handleReferralChange(event) {
-    setReferralType(event.target.value);
-  }
-
-  function handleLegalPlanChange(event) {
-    setLegalPlan(event.target.value);
-  }
-
-  function handleUpdate(event) {
-    event.preventDefault();
-    const data = {
-      caseId, caseStatus, referralType, legalPlan,
+    const options = {
+      method: 'GET',
     };
-    // superagent.put(`${API}/case/${id}`)
-    //   .send(data)
-    //   .set('Accept', 'application/json')
-    //   .then((results) => {
-    //     props.updateCase(results.body);
-    //   });
-    props.updateCase(data);
-  }
+
+    fetch(`${API}/case/${currentCaseId}`, options)
+      .then((result) => result.json())
+      .then((data) => props.getCase(data[0]))
+      .then(() => setReady(true));
+  }, []);
 
   return (
     <>
-      <h2>{caseTitle}: Case Map</h2>
-      <p>Case Id: {caseId}</p>
+      {ready
+        ? <>
+        <CaseForm />
 
-      <form>
-        <p>Case Title: {caseTitle}</p>
-        <label> Current Status
-          <select value={caseStatus} onChange={handleStatusChange}>
-            <option value='unset'>Unset</option>
-            <option value='in-progress'>In Progress</option>
-            <option value='closed'>Closed</option>
-            <option value='open'>Open</option>
-          </select>
-        </label>
-        <label> Referral
-          <select value={referralType} onChange={handleReferralChange}>
-            <option value='none'>No</option>
-            <option value='yes'>Yes</option>
-          </select>
-        </label>
-        <label> Legal Plan
-          <select value={legalPlan} onChange={handleLegalPlanChange}>
-            <option value='default'>Default</option>
-            <option value='none'>None</option>
-            <option value='family'>Family</option>
-            <option value='criminal'>Criminal</option>
-          </select>
-        </label>
-      </form>
+        <h3>Client Information</h3>
+        <Contact type='client'/>
 
-      <h5>Case Notes</h5>
-      {notes.map((note, index) => (
-        <p key={index}>{note}</p>
-      ))}
-
-      <Search />
-
-      <button onClick={(event) => handleUpdate(event)}>
-        Save Case Details
-      </button>
+        {/* <h3>Attorney Information</h3> */}
+        {/*  { props.currentCase.staffAttorneys.map((attorney, i) =>
+        <Contact type='attorney' key={i} name={attorney.id}/>)} */}
+        </>
+        : null}
     </>
   );
 }
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
-  // selectedCase: state.selectedCase,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getCase: (data) => dispatch(getCaseAction(data)),
-  updateCase: (data) => dispatch(updateCaseAction(data)),
+  getCase: (data) => dispatch({
+    type: 'CASE_FETCH',
+    payload: data,
+  }),
 });
 
 Case.propTypes = {
