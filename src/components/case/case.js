@@ -49,8 +49,17 @@ function Case(props) {
 
   return (
     <>
-      {ready ? <CaseForm /> : null}
-      {ready ? <Contact/> : null}
+      {ready
+        ? <>
+        <CaseForm />
+
+        <h3>Client Information</h3>
+        <Contact type='client'/>
+
+        {/*<h3>Attorney Information</h3>*/}
+        {/*  { props.currentCase.staffAttorneys.map((attorney, i) => <Contact type='attorney' key={i} name={attorney.id}/>)}*/}
+        </>
+        : null}
     </>
   );
 }

@@ -1,44 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
-
+const API = 'http://localhost:4000';
 
 const Contact = (props) => {
-  const id = 'ck1sgh6tn003r0728x2jpmy52';
+  const [contactReady, setContactReady] = useState(false);
+  // let contactId = null;
+  // if (props.type === 'client'){
+  //   contactId = props.currentCase.client.id;
+  // }
+  // if (props.type === 'attorney'){
+  //   console.log('SUB ID', props.name);
+  //   contactId = props.name;
+  // }
+  const { id } = props.currentCase.client;
+
   useEffect(() => {
     props.fetchContact(id)
-      .then(((results) => console.log(results)));
+      .then(() => setContactReady(true));
   }, []);
 
-  // const client = {
-  //   lastName: 'testing',
-  //   firstName: 'testing2',
-  //   email: 'test@gmail.com',
-  // };
 
   return (
     <>
-      <h3>Client Information</h3>
-      {/*<p>{props.contact.lastName}</p>*/}
-      {/*<p>{props.contact.firstName}</p>*/}
-      {/*<p>{props.contact.email}</p>*/}
-      <p></p>
-      <p></p>
+      { contactReady
+        ? <>
+          <p>{props.contacts[0].lastName}</p>
+          <p>{props.contacts[0].firstName}</p>
+          <p>{props.contacts[0].email}</p>
+        </>
+        : null}
     </>
   );
 };
 
 const mapStateToProps = (state) => ({
-  contact: state.contact,
+  currentCase: state.currentCase,
+  contacts: state.contacts,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchContact: () => dispatch(contactActions.fetchContact()),
+  fetchContact: (id) => dispatch(contactActions.fetchContact(id)),
 });
 
 Contact.propTypes = {
+  currentCase: PropTypes.object,
   fetchContact: PropTypes.func,
 };
 

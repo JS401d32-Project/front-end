@@ -3,7 +3,7 @@ export default (state = [], action) => {
     case 'FETCH_CONTACTS':
       return action.payload;
     case 'FETCH_CONTACT':
-      return action.payload;
+      return [...state, action.payload];
     case 'ADD_CONTACT':
       return [...state, action.payload];
     default: 
