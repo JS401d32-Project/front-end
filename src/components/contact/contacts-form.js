@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
+import Notes from "../notes/homeNotes";
 
 const Contacts = (props) => {
   const [contactLastName, setLastName] = useState('');
@@ -37,7 +38,6 @@ const Contacts = (props) => {
            <p>First Name: {contact.firstName}</p>
            <p> Phone Number: {contact.phoneNumber}</p>
            <p>E-Mail: {contact.eMail}</p>
-           <p>Contact Notes: {contact.contactNotes}</p>
            </li>
             ))}
 
@@ -71,7 +71,7 @@ const Contacts = (props) => {
                     placeholder='E-Mail'
                 />
                 <button type="submit">Add Contact</button>
-                
+                <footer id={'notes'}><Notes/></footer>
             </form>
     </>
             
