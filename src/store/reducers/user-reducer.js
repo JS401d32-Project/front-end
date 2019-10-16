@@ -1,9 +1,9 @@
 
 export default (state = {}, { type, payload }) => {
   switch (type) {
-    case 'TOKEN_SAVE':
-      return payload;
-    case 'TOKEN_REMOVE':
+    case 'PROFILE_SAVE':
+      return { ...payload };
+    case 'PROFILE_REMOVE':
       return payload;
     default:
       return state;
