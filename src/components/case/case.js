@@ -8,6 +8,12 @@ import PropTypes from 'prop-types';
 // import CaseIntakeForm from './case-intake-form/case-intake-form';
 // import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 import CaseForm from './case-form/case-form';
+import Staff from './case-staff/case-staff';
+import OpposingAttorney from './case-opposing-attorney/case-opposing-attorney';
+import OpposingParty from './case-opposing-party/case-opposing-party';
+import RefferingPartys from './case-reffering-party/case-reffering-party.js';
+import AssociatedContacts from './case-associated-contacts/case-associated-contacts';
+
 // import { Route } from 'react-router-dom';
 
 // TODO: Need to be able to get this from .env somehow?? Shows as undefined
@@ -59,7 +65,25 @@ function Case(props) {
 
   return (
     <>
-      {ready ? <CaseForm /> : null}
+      {ready  
+        ? <>
+          <CaseForm /> 
+          <h3>Staff</h3>
+          <Staff />
+          <br />
+          <h3>Opposing Party</h3>
+          <OpposingParty />
+          <br />
+          <h3>Oposing Attorney</h3>
+          <OpposingAttorney />
+          <br />
+          <h3>Reffering Party</h3>
+          <RefferingPartys />
+          <br />
+          <h3>Associated Contacts</h3>
+          <AssociatedContacts />
+        </>
+        : null}
     </>
   );
 }
