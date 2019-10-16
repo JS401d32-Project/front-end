@@ -38,7 +38,7 @@ const Contacts = (props) => {
            <p> Phone Number: {contact.phoneNumber}</p>
            <p>E-Mail: {contact.eMail}</p>
            <p>Contact Notes: {contact.contactNotes}</p>
-           </li>
+          </li>
             ))}
 
         </ul>
