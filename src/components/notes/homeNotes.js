@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import ReactTable from 'react-table';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './notes.css';
 import PropTypes from 'prop-types';

@@ -18,8 +18,7 @@ const Note = (props) => {
 
     <>
     {noteStatus
-      ? 
-             <ul>
+      ? <ul>
               {props.displayNote.caseId}
               {props.displayNote.title}
               {props.displayNote.author}

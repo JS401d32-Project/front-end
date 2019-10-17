@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import PropTypes from 'prop-types';
 import Note from './note-details';
-import Notes from './homeNotes';
-
 
 class ModalExample extends React.Component {
   constructor() {
@@ -17,7 +16,6 @@ class ModalExample extends React.Component {
 
   handleOpenModal() {
     this.setState({ showModal: true });
-
   }
 
   handleCloseModal() {
@@ -41,5 +39,9 @@ class ModalExample extends React.Component {
     );
   }
 }
+
+ModalExample.propTypes = {
+  id: PropTypes.string,
+};
 
 export default ModalExample;
