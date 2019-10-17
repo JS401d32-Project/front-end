@@ -5,7 +5,7 @@ import 'react-table/react-table.css';
 import Notes from '../notes/homeNotes';
 import './index.scss';
 
-const API_URL = 'http://localhost:4000';
+const API_URL = process.env.REACT_APP_API;
 
 const columns = [
   {

@@ -5,15 +5,11 @@ import PropTypes from 'prop-types';
 import { updateCaseAction } from '../../../store/actions/case-action.js';
 
 function CaseForm(props) {
-  const [caseId, setCaseId] = useState('');
-  const [caseTitle, setCaseTitle] = useState('');
   const [caseStatus, setCaseStatus] = useState('');
   const [referralType, setReferralType] = useState('');
   const [legalPlan, setLegalPlan] = useState('');
 
   useEffect(() => {
-    setCaseId(props.currentCase.caseId);
-    setCaseTitle(props.currentCase.title);
     setCaseStatus(props.currentCase.status);
     setReferralType(props.currentCase.referralType);
     setLegalPlan(props.currentCase.legalPlan);
@@ -42,11 +38,10 @@ function CaseForm(props) {
 
   return (
     <>
-      <h2>{caseTitle}: Case Map</h2>
-      <p>Case Id: {caseId}</p>
-
+      <h3>Case Details</h3>
       <form>
-        <p>Case Title: {caseTitle}</p>
+        <p>Title: {props.currentCase.title}</p>
+        <p>Id: {props.currentCase.caseId}</p>
         <label> Current Status
           <select value={caseStatus} onChange={handleStatusChange}>
             <option value='unset'>Unset</option>
