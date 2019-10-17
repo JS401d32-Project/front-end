@@ -18,7 +18,7 @@ const Contact = (props) => {
   return (
     <>
       <div className='container'>
-        <CaseIntake />
+
       { contactReady
         ? <>
           <p>{props.contacts[0].firstName} {props.contacts[0].lastName}</p>
