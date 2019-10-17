@@ -8,6 +8,10 @@ import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
 
+/**
+ * Contactas component allows users to add new contact informations to database
+ * @visibleName Contacts
+ */
 const Contacts = (props) => {
   const [contactLastName, setLastName] = useState('');
   const [contactFirstName, setFirstName] = useState('');
@@ -67,7 +71,39 @@ const Contacts = (props) => {
   }
 
   return (
-    <>
+    <React.Fragment>
+        {/* <ul>
+            {props.contacts.map((contact, _id) => (
+
+         <li key={_id}>
+           <p>Last Name: {contact.lastName}</p>
+           <p>First Name: {contact.firstName}</p>
+           <p> Phone Number: {contact.phoneNumber}</p>
+           <p>E-Mail: {contact.eMail}</p>
+           <p>SSN: {contact.socialSecurity}</p>
+           <p>Birthdate: {contact.birthdate}</p>
+           <p>Home Street Address: {contact.homeStreet}</p>
+           <p>Home Street Address 2: {contact.homeStreet2}</p>
+           <p>Home City: {contact.homeCity}</p>
+           <p>Home State: {contact.homeState}</p>
+           <p>Home Zip: {contact.homeZip}</p>
+           <p>Company Name: {contact.workCompanyName}</p>
+           <p>Work Street Address: {contact.workStreet}</p>
+           <p>Work Street Address 2: {contact.workStreet2}</p>
+           <p>Work City: {contact.workCity}</p>
+           <p>Work State: {contact.workState}</p>
+           <p>Work Zip: {contact.workZip}</p>
+           <p>Main E-mail: {contact.emailMain}</p>  
+           <p>Backup E-mail: {contact.emailBackup}</p>         
+           <p>Primary Phone: {contact.primaryPhone}</p>
+           <p>Secondary Phone: {contact.secondaryPhone}</p>
+           <p>Mobile Phone: {contact.mobilePhone}</p>
+           <p>Fax: {contact.fax}</p>
+           <p>Contact Notes: {contact.comments}</p>
+          </li>
+            ))}
+
+        </ul> */}
       <div className='container'>
         <h1> Add Contacts</h1>
             <div className = "inputForm">
@@ -218,7 +254,7 @@ const Contacts = (props) => {
             </form>
             </div>
       </div>
-    </>
+    </React.Fragment>
             
   );
 };
@@ -235,6 +271,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
   
 Contacts.propTypes = {
+  /**
+   * Contacts label.
+   */
   fetchContacts: PropTypes.func,
   addContact: PropTypes.func,
   contacts: PropTypes.array,

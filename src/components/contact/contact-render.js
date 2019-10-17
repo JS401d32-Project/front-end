@@ -15,11 +15,11 @@ const Contact = (props) => {
   }, [contactReady]);
 
   return (
-    <>
+    <React.Fragment>
       <div className='container'>
 
       { contactReady
-        ? <>
+        ? <React.Fragment>
           <p>{props.contacts[0].firstName} {props.contacts[0].lastName}</p>
           <ul>
             <li>Home Address: {props.contacts[0].homeStreet}</li>
@@ -38,11 +38,11 @@ const Contact = (props) => {
             <li>SSN: {props.contacts[0].socialSecurity}</li>
             <li>Comments: {props.contacts[0].contactComment}</li>
           </ul>
-        </>
+        </React.Fragment>
         : null}
 
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
