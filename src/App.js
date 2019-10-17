@@ -10,12 +10,13 @@ import If from './components/if/If';
 const App = (props) => {
   return (
     <>
-      <If condition={props.id}>
+      {/* <If condition={props.id}>
         <CaseHawk />
       </If>
       <If condition={!props.id}>
         <LandingPage />
-      </If>
+      </If> */}
+      <CaseHawk />
     </>
   );
 };

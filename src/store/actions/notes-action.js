@@ -7,21 +7,39 @@ const get = (payload) => {
   };
 };
 
+const toStandardTime = (militaryTime) => {
+  const militaryTimeSplit = militaryTime.split(':');
+  let updatedTime;
+  if (militaryTimeSplit[0].charAt(0) > 1) { 
+    updatedTime = `${militaryTimeSplit[0] - 12}:${militaryTimeSplit[1]} P.M.`;
+  } else {
+    updatedTime = `${militaryTimeSplit[0]}:${militaryTimeSplit[1]} A.M.`;
+  }
+  return updatedTime;
+};
+
+const alterDateTime = (string) => {
+  const dateTimeSplit = string.split('T');
+  let date = dateTimeSplit[0].split('-');
+  date = `${date[1]}/${date[2]}/${date[0]}`;
+  const time = toStandardTime(dateTimeSplit[1]);
+  return `${date} ${time}`;
+};
+
+
 const fetchNotes = () => (dispatch) => {
   return fetch(`${API}/notes`)
     .then((results) => results.json())
-    // .then((data) => dispatch(get(data)));
     .then((data) => {
       const renderDataArray = data.map((note) => {
-        console.log(note.author.userName, note.dateCreated, note.title);
+        console.log(note.dateCreated);
         const alteredObj = {
           author: note.author.userName,
-          dateCreated: note.dateCreated,
+          dateCreated: alterDateTime(note.dateCreated),
           title: note.title,
         };
         return alteredObj;
       });
-      console.log(renderDataArray);
       dispatch(get(renderDataArray));
     });
 };
