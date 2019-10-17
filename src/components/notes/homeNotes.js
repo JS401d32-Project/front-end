@@ -30,7 +30,6 @@ const columns = [
 ];
 
 const Notes = (props) => {
-  
   useEffect(() => {
     props.fetchNotes();
   }, []);
