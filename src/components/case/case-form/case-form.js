@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { updateCaseAction } from '../../../store/actions/case-action';
+import { updateCaseAction } from '../../../store/actions/case-action.js';
 
 function CaseForm(props) {
   const [caseId, setCaseId] = useState('');

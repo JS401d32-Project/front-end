@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import PropTypes from 'prop-types';
 import Note from './note-details';
-
 
 class ModalExample extends React.Component {
   constructor() {
@@ -30,7 +30,7 @@ class ModalExample extends React.Component {
                     isOpen={this.state.showModal}
                     contentLabel="Minimal Modal Example"
                 >
-                            <Note/>
+                            <Note id={this.props.id}/>
 
 
                     <button onClick={this.handleCloseModal}>Close Modal</button>
@@ -39,5 +39,9 @@ class ModalExample extends React.Component {
     );
   }
 }
+
+ModalExample.propTypes = {
+  id: PropTypes.string,
+};
 
 export default ModalExample;
