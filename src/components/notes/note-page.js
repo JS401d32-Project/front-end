@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 
 const API = process.env.REACT_APP_API;
 
+/**
+ * Note component displays notes related to the case on the case page
+ * @visibleName Note
+ */
 function Note(props) {
   useEffect(() => {
     const routeAddress = window.location.pathname.split('/');
@@ -36,6 +40,9 @@ const mapStateToProps = (state) => ({
 });
 
 Note.propTypes = {
+  /**
+   * Note label.
+   */
   user: PropTypes.object,
 };
 

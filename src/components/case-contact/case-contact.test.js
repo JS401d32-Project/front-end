@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import CaseContact from './case-contact';
 
-import createStore from '../../../store/create-store';
+import createStore from '../../store/create-store';
 
 const store = createStore();
 

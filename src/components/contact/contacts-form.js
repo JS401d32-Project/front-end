@@ -8,6 +8,10 @@ import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
 
+/**
+ * Contactas component allows users to add new contact informations to database
+ * @visibleName Contacts
+ */
 const Contacts = (props) => {
   const [contactLastName, setLastName] = useState('');
   const [contactFirstName, setFirstName] = useState('');
@@ -67,7 +71,7 @@ const Contacts = (props) => {
   }
 
   return (
-    <>
+    <React.Fragment>
         {/* <ul>
             {props.contacts.map((contact, _id) => (
 
@@ -250,7 +254,7 @@ const Contacts = (props) => {
             </form>
             </div>
       </div>
-    </>
+    </React.Fragment>
             
   );
 };
@@ -267,6 +271,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
   
 Contacts.propTypes = {
+  /**
+   * Contacts label.
+   */
   fetchContacts: PropTypes.func,
   addContact: PropTypes.func,
   contacts: PropTypes.array,
