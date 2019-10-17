@@ -18,7 +18,7 @@ const Contact = (props) => {
       { contactReady
         ? <>
           <p>{props.contacts[0].firstName} {props.contacts[0].lastName}</p>
-          <p>E-email: {props.contacts[0].email}</p>
+          <p>E-mail: {props.contacts[0].email}</p>
         </>
         : null}
     </>
