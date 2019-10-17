@@ -24,6 +24,7 @@ function Case(props) {
     };
 
     fetch(`${API}/case/${currentId}`, options)
+      // .then((result) => console.log(result))
       .then((result) => result.json())
       .then((data) => props.getCase(data[0]))
       .then(() => setReady(true));

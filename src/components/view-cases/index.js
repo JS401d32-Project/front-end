@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import './index.scss'
+import './index.scss';
 
 const API_URL = 'http://localhost:4000';
 
