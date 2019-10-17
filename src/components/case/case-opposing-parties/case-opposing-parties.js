@@ -6,18 +6,18 @@ import PropTypes from 'prop-types';
 
 const API = 'http://localhost:4000';
 
-function OpposingPartys(props) {
-  const [opposingPartys, setOpposingPartys] = useState([]);
+function OpposingParties(props) {
+  const [opposingParties, setOpposingParties] = useState([]);
 
   useEffect(() => {
-    setOpposingPartys(props.currentCase.opposingPartys);
+    setOpposingParties(props.currentCase.opposingParties);
   });
 
   return (
     <>
       <ul>
-        {opposingPartys.map((party) => {
-          return <a href={`${API}/contact/${party.id}`} key={party.id}>{party.firstName + party.lastName}</a>;  
+        {opposingParties.map((party) => {
+          return <a href={`${API}/contact/${party.id}`} key={party.id}>{`${party.firstName} ${party.lastName}`}</a>;
         })}
       </ul>
     </>
@@ -27,13 +27,12 @@ function OpposingPartys(props) {
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
 });
-  
-  
-OpposingPartys.propTypes = {
+
+OpposingParties.propTypes = {
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
   updateCase: PropTypes.func,
 };
   
-export default connect(mapStateToProps, null)(OpposingPartys);
+export default connect(mapStateToProps, null)(OpposingParties);
