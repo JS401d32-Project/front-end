@@ -17,6 +17,7 @@ const Contact = (props) => {
   return (
     <>
       <div className='container'>
+
       { contactReady
         ? <>
           <p>{props.contacts[0].firstName} {props.contacts[0].lastName}</p>
@@ -39,6 +40,7 @@ const Contact = (props) => {
           </ul>
         </>
         : null}
+
       </div>
     </>
   );
