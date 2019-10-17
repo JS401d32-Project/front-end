@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --verbose --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "eslint '**/*.js' --fix",
+    "lint": "eslint '**/*.js'",
+    "lintFix": "eslint '**/*.js' --fix",
     "docs": "styleguidist server"
   },
   "eslintConfig": {
