@@ -2,18 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { updateCaseAction } from '../../../store/actions/case-action';
+import { updateCaseAction } from '../../../store/actions/case-action.js';
 
 function CaseForm(props) {
-  const [caseId, setCaseId] = useState('');
-  const [caseTitle, setCaseTitle] = useState('');
   const [caseStatus, setCaseStatus] = useState('');
   const [referralType, setReferralType] = useState('');
   const [legalPlan, setLegalPlan] = useState('');
 
   useEffect(() => {
-    setCaseId(props.currentCase.caseId);
-    setCaseTitle(props.currentCase.title);
     setCaseStatus(props.currentCase.status);
     setReferralType(props.currentCase.referralType);
     setLegalPlan(props.currentCase.legalPlan);
@@ -37,16 +33,15 @@ function CaseForm(props) {
     const data = {
       status: caseStatus, referralType, legalPlan,
     };
-    props.updateCase(data, props.currentCase.id);
+    props.updateCase(data, props.currentCase.id, props.user.token);
   }
 
   return (
     <>
-      <h2>{caseTitle}: Case Map</h2>
-      <p>Case Id: {caseId}</p>
-
+      <h3>Case Details</h3>
       <form>
-        <p>Case Title: {caseTitle}</p>
+        <p>Title: {props.currentCase.title}</p>
+        <p>Id: {props.currentCase.caseId}</p>
         <label> Current Status
           <select value={caseStatus} onChange={handleStatusChange}>
             <option value='unset'>Unset</option>
@@ -79,10 +74,11 @@ function CaseForm(props) {
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateCase: (data, id) => dispatch(updateCaseAction(data, id)),
+  updateCase: (data, id, token) => dispatch(updateCaseAction(data, id, token)),
 });
 
 CaseForm.propTypes = {
@@ -90,6 +86,7 @@ CaseForm.propTypes = {
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
   updateCase: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaseForm);

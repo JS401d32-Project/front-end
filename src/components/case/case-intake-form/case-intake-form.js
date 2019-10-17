@@ -66,6 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
 CaseIntakeForm.propTypes = {
   props: PropTypes.object,
   updateInitialCase: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaseIntakeForm);

@@ -1,4 +1,4 @@
-const API = 'http://localhost:4000';
+const API = process.env.REACT_APP_API;
 
 const toStandardTime = (militaryTime) => {
   const militaryTimeSplit = militaryTime.split(':');
@@ -35,8 +35,15 @@ const getOne = (payload) => {
   };
 };
 
-const fetchOneNote = (id) => (dispatch) => {
-  return fetch(`${API}/note/${id}`)
+const fetchOneNote = (id, token) => (dispatch) => {
+  const options = {
+    method: 'GET',
+    headers: new Headers({
+      Authorization: `Bearer ${token}`,
+    }),
+  };
+
+  return fetch(`${API}/note/${id}`, options)
     .then((results) => results.json())
     .then((data) => {
       const alteredObj = {
@@ -53,8 +60,15 @@ const fetchOneNote = (id) => (dispatch) => {
 };
 
 
-const fetchNotes = () => (dispatch) => {
-  return fetch(`${API}/notes`)
+const fetchNotes = (token) => (dispatch) => {
+  const options = {
+    method: 'GET',
+    headers: new Headers({
+      Authorization: `Bearer ${token}`,
+    }),
+  };
+
+  return fetch(`${API}/notes`, options)
     .then((results) => results.json())
     .then((data) => {
       const renderDataArray = data.map((note) => {
