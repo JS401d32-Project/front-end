@@ -16,8 +16,8 @@ const customStyles = {
 };
 
 function OpposingAttorneys(props) {
-  const [modalState, setModalState] = useState(false);
   const [opposingAttorneys, setOpposingAttorneys] = useState([]);
+  const [modalState, setModalState] = useState(false);
 
   useEffect(() => {
     setOpposingAttorneys(props.currentCase.opposingAttorneys);
@@ -36,16 +36,6 @@ function OpposingAttorneys(props) {
 
   return (
     <>
-      {/* <ul> */}
-      {/*  {opposingAttorneys.map((attorney, i) => { */}
-      {/*    return ( */}
-      {/*      <li key={i}> */}
-      {/*        <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>
-      {`${attorney.firstName} ${attorney.lastName}`}</a> */}
-      {/*      </li> */}
-      {/*    ); */}
-      {/*  })} */}
-      {/* </ul> */}
       <ul>
         {opposingAttorneys.map((attorney, i) => {
           return (
