@@ -16,7 +16,6 @@ const App = (props) => {
       <If condition={!props.id}>
         <LandingPage />
       </If>
-
     </>
   );
 };
