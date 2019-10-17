@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import cookie from 'react-cookies';
 import userActions from '../../store/actions/user-actions';
 import logo from '../../assets/logo.png';
-import './landing-page.scss'
+import './landing-page.scss';
 
 const LandingPage = (props) => {
   useEffect(() => {

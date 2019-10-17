@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
-import './contact.scss'
+import './contact.scss';
 
 import { connect } from 'react-redux';
 
@@ -231,7 +231,6 @@ const Contacts = (props) => {
                     placeholder='Additional Comments'
                 />
                 <button type="submit">Add Contact</button>
-
 
             </form>
       </div>
