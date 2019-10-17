@@ -20,13 +20,12 @@ const Note = (props) => {
     <>
     {noteStatus
       ? <ul>
-              {props.displayNote.caseId}
-              {props.displayNote.title}
-              {props.displayNote.author}
-              {props.displayNote.dateCreated}
-              {props.displayNote.content}
-              hi
-            </ul>
+              <li>{props.displayNote.caseId}</li>
+              <li>{props.displayNote.title}</li>
+              <li>{props.displayNote.author}</li>
+              <li>{props.displayNote.dateCreated}</li>
+              <li>{props.displayNote.content}</li>
+        </ul>
       : null
     } 
     </>
