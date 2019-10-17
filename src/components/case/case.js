@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './case.scss'
+import './case.scss';
 
 import CaseForm from './case-form/case-form';
 import ClientContact from '../contact/contact-render';

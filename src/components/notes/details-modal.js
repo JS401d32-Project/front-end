@@ -16,7 +16,6 @@ class ModalExample extends React.Component {
 
   handleOpenModal() {
     this.setState({ showModal: true });
-
   }
 
   handleCloseModal() {
