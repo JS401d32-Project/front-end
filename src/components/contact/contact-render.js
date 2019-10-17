@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './contact.scss';
-import CaseIntake from '../case-intake/case-intake';
 
 import contactActions from '../../store/actions/contacts-action';
 
@@ -18,7 +17,7 @@ const Contact = (props) => {
   return (
     <>
       <div className='container'>
-        <CaseIntake />
+
       { contactReady
         ? <>
           <p>{props.contacts[0].firstName} {props.contacts[0].lastName}</p>
