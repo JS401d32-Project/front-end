@@ -48,4 +48,6 @@ const addNewCase = (data) => (dispatch) => {
 };
 
 
-export { updateCaseAction, updateInitialCaseAction, addNewCase };
+export {
+  update, updateCaseAction, updateInitialCaseAction, addNewCase, 
+};
