@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import './case.scss';
 
 import CaseForm from './case-form/case-form';
 import ClientContact from '../contact/contact-render';
@@ -29,6 +30,7 @@ function Case(props) {
 
   return (
     <>
+      <div className='caseContainer'>
       {ready  
         ? <>
           <CaseForm /> 
@@ -50,6 +52,7 @@ function Case(props) {
           <CaseContact type='associated-contacts'/>
         </>
         : null}
+      </div>
     </>
   );
 }

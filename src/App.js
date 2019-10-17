@@ -6,7 +6,6 @@ import CaseHawk from './components/case-hawk/case-hawk';
 import LandingPage from './components/landing-page/landing-page';
 import If from './If/if/If';
 
-
 const App = (props) => {
   return (
     <>
@@ -16,7 +15,6 @@ const App = (props) => {
       <If condition={!props.id}>
         <LandingPage />
       </If>
-
     </>
   );
 };

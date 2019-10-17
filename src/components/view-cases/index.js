@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import Notes from '../notes/homeNotes';
 import './index.scss';
 
 const API_URL = 'http://localhost:4000';
@@ -70,6 +71,8 @@ export default function HomePage() {
       defaultPageSize={5}
       showPagination={true}
     /></div>
+    <Notes />
     </>
   );
+
 }
