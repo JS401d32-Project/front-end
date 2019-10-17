@@ -14,7 +14,7 @@ const add = (payload) => {
 };
 const updateCaseAction = (data, id) => (dispatch) => {
   const options = {
-    method: 'PUT',
+    method: 'PATCH',
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
@@ -26,7 +26,6 @@ const updateCaseAction = (data, id) => (dispatch) => {
     .then((result) => result.json())
     .then((updateData) => dispatch(update(updateData)));
 };
-
 
 const updateInitialCaseAction = (data) => ({
   type: 'CASE_UPDATE_INITIAL',

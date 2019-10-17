@@ -6,20 +6,20 @@ import PropTypes from 'prop-types';
 
 const API = 'http://localhost:4000';
 
-function OpposingAttorneys(props) {
-  const [opposingAttorneys, setOpposingAttorneys] = useState([]);
+function ReferringParties(props) {
+  const [referringParties, setReferringParties] = useState([]);
 
   useEffect(() => {
-    setOpposingAttorneys(props.currentCase.opposingAttorneys);
-  }, [props.currentCase.opposingAttorneys]);
+    setReferringParties(props.currentCase.referringParties);
+  }, [props.currentCase.referringParties]);
 
   return (
     <>
       <ul>
-        {opposingAttorneys.map((attorney, i) => {
+        {referringParties.map((party, i) => {
           return (
             <li key={i}>
-              <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{`${attorney.firstName} ${attorney.lastName}`}</a>
+              <a href={`${API}/contact/${party.id}`} key={party.id}>{`${party.firstName} ${party.lastName}`}</a>
             </li>
           );
         })}
@@ -31,13 +31,13 @@ function OpposingAttorneys(props) {
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
 });
-  
-  
-OpposingAttorneys.propTypes = {
+
+
+ReferringParties.propTypes = {
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
   updateCase: PropTypes.func,
 };
   
-export default connect(mapStateToProps, null)(OpposingAttorneys);
+export default connect(mapStateToProps, null)(ReferringParties);

@@ -5,7 +5,7 @@ export default (state = {}, { type, payload }) => {
     case 'CASE_UPDATE':
       return {
         ...state,
-        status: payload.caseStatus,
+        status: payload.status,
         referralType: payload.referralType,
         legalPlan: payload.legalPlan,
       };

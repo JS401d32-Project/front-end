@@ -11,13 +11,17 @@ function AssociatedContact(props) {
 
   useEffect(() => {
     setAssociatedContacts(props.currentCase.associatedContacts);
-  });
+  }, [props.currentCase.associatedContacts]);
 
   return (
     <>
       <ul>
-        {associatedContacts.map((attorney) => {
-          return <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{attorney.firstName + attorney.lastName}</a>;  
+        {associatedContacts.map((attorney, i) => {
+          return (
+            <li key={i}>
+              <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{`${attorney.firstName} ${attorney.lastName}`}</a>
+            </li>
+          );
         })}
       </ul>
     </>

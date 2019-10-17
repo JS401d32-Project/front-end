@@ -14,20 +14,28 @@ function Staff(props) {
     //   setCaseId(props.currentCase.caseId);
     setAttorneys(props.currentCase.staffAttorneys);
     setAssistants(props.currentCase.staffAssistants);
-  });
+  }, [props.currentCase.staffAttorneys, props.currentCase.staffAssistants]);
 
   return (
     <>
       <h5>Attorneys</h5>
       <ul>
-        {attorneys.map((attorney) => {
-          return <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{attorney.firstName + attorney.lastName}</a>;  
+        {attorneys.map((attorney, i) => {
+          return (
+            <li key={i}>
+              <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{`${attorney.firstName} ${attorney.lastName}`}</a>
+            </li>
+          );
         })}
       </ul>
-      <h5>Asistants</h5> 
+      <h5>Assistants</h5> 
       <ul>
-        {assistants.map((assistant) => {
-          return <a href={`${API}/contact/${assistant.id}`} key={assistant.id}>{assistant.firstName + assistant.lastName}</a>;  
+        {assistants.map((assistant, i) => {
+          return (
+            <li key={i}>
+              <a href={`${API}/contact/${assistant.id}`} key={assistant.id}>{`${assistant.firstName} ${assistant.lastName}`}</a>
+            </li>
+          );
         })}
       </ul> 
     </>
@@ -36,13 +44,7 @@ function Staff(props) {
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
-  // selectedCase: state.selectedCase,
 });
-  
-// const mapDispatchToProps = (dispatch) => ({
-//   getCase: (id) => dispatch(getCaseAction(id)),
-//   updateCase: (data) => dispatch(updateCaseAction(data)),
-// });
   
 Staff.propTypes = {
   props: PropTypes.object,
