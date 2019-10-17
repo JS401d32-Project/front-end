@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './notes.css';
 import noteActions from '../../store/actions/notes-action';
 
@@ -20,13 +21,15 @@ const Note = (props) => {
                 <li>{props.notes[0].content} </li>
 
 
-
-
-
             </ul>
     </>
 
   );
+};
+
+Note.propTypes = {
+  fetchOneNote: PropTypes.func,
+  notes: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({

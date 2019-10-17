@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './notes.css';
+import PropTypes from 'prop-types';
 import noteActions from '../../store/actions/notes-action';
 import Modal from './details-modal';
+
 
 const Notes = (props) => {
   useEffect(() => {
@@ -18,7 +20,7 @@ const Notes = (props) => {
                 {props.notes.map((notes, _id) => (
 
                     <li key={_id}>
-                      <Modal  />
+                      <Modal />
                         <p>{notes.title} </p>
                         <p>{notes.date}</p>
                         <p> {notes.type}</p>
@@ -31,6 +33,11 @@ const Notes = (props) => {
     </>
 
   );
+};
+
+Notes.propTypes = {
+  fetchNotes: PropTypes.func,
+  notes: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({

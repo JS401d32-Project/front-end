@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
-import Notes from "../notes/homeNotes";
 
 const Contacts = (props) => {
   const [contactLastName, setLastName] = useState('');
