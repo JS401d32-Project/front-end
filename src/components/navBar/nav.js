@@ -1,9 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
 import './nav.css';
+import cookie from 'react-cookies';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import userActions from '../../store/actions/user-actions';
+import logo from '../../assets/logo.png';
 
-export default function NavBar() {
+const NavBar = (props) => {
+  const onLogout = () => {
+    cookie.remove('X-401d19-OAuth-token');
+    cookie.remove('userID');
+    cookie.remove('userName');
+    props.removeProfile();
+  };
+
   return (
     <>
             <div className="nav">
@@ -25,10 +36,20 @@ export default function NavBar() {
           <Link to="/">Home</Link>
           <Link to="/casePage">Cases</Link>
           <Link to="/contacts">Intake</Link>
-          <Link to="/oauth">Logout</Link>
+          <Link to="/" onClick={onLogout}>Logout</Link>
         </div>
       </div>
     </>
   
   );
-}
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  removeProfile: () => dispatch(userActions.removeProfile()),
+});
+
+export default connect(null, mapDispatchToProps)(NavBar);
+
+NavBar.propTypes = {
+  removeProfile: PropTypes.func,
+};
