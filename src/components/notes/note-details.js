@@ -24,11 +24,11 @@ const Note = (props) => {
     <React.Fragment>
     {noteStatus
       ? <ul>
-              <li>{props.displayNote.caseId}</li>
-              <li>{props.displayNote.title}</li>
-              <li>{props.displayNote.author}</li>
-              <li>{props.displayNote.dateCreated}</li>
-              <li>{props.displayNote.content}</li>
+              <li>Case Id: {props.displayNote.caseId}</li>
+              <li>Title: {props.displayNote.title}</li>
+              <li>Author: {props.displayNote.author}</li>
+              <li>Date: {props.displayNote.dateCreated}</li>
+              <li>Content: {props.displayNote.content}</li>
         </ul>
       : null
     } 
