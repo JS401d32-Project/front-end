@@ -5,11 +5,6 @@ import './case.scss';
 
 import CaseForm from './case-form/case-form';
 import ClientContact from '../contact/contact-render';
-// import Staff from './case-staff/case-staff';
-// import OpposingAttorney from './case-opposing-attorney/case-opposing-attorney';
-// import OpposingParties from './case-opposing-parties/case-opposing-parties';
-// import ReferringParties from './case-referring-parties/case-referring-parties.js';
-// import AssociatedContacts from './case-associated-contacts/case-associated-contacts';
 
 import CaseContact from './case-contact/case-contact';
 
@@ -24,6 +19,9 @@ function Case(props) {
 
     const options = {
       method: 'GET',
+      headers: new Headers({
+        Authorization: `Bearer ${props.user.token}`,
+      }),
     };
 
     fetch(`${API}/case/${currentId}`, options)
@@ -37,39 +35,32 @@ function Case(props) {
       <div className='caseContainer'>
       {ready  
         ? <>
-          <CaseForm /> 
-          <h3>Client Information</h3>
-          <ClientContact type='client'/>
-          <br />
-          {/* <h3>REUSABLE COMPONENT</h3> */}
-          <h3>Attorneys</h3>
-          <CaseContact type='staff-attorney'/>
-          <h3>Assistants</h3>
-          <CaseContact type='staff-assistants'/>
-          <h3>Opposing Parties</h3>
-          <CaseContact type='opposing-parties'/>
-          <h3>Opposing Attorney</h3>
-          <CaseContact type='opposing-attorney'/>
-          <h3>Referring Parties</h3>
-          <CaseContact type='referring-parties'/>
-          <h3>Associated Contacts</h3>
-          <CaseContact type='associated-contacts'/>
-
-          {/* <h3>ORIGINAL CODE</h3> */}
-          {/* <h3>Staff</h3> */}
-          {/* <Staff /> */}
-          {/* <br /> */}
-          {/* <h3>Opposing Parties</h3> */}
-          {/* <OpposingParties /> */}
-          {/* <br /> */}
-          {/* <h3>Opposing Attorney</h3> */}
-          {/* <OpposingAttorney /> */}
-          {/* <br /> */}
-          {/* <h3>Referring Parties</h3> */}
-          {/* <ReferringParties /> */}
-          {/* <br /> */}
-          {/* <h3>Associated Contacts</h3> */}
-          {/* <AssociatedContacts /> */}
+          <div className='caseHeader'>
+            <h2>{props.currentCase.title}: Case Map</h2>
+            <h3>{props.currentCase.caseId}</h3>
+          </div>
+          <div className='caseFormContainer'>
+            <CaseForm />
+          </div>
+          <div className='caseClientContainer'>
+            <h3>Client Information</h3>
+            <ClientContact type='client'/>
+          </div>
+          <div className='caseContactsContainer'>
+            <h3>Contacts</h3>
+            <h4>Attorneys</h4>
+            <CaseContact type='staff-attorney'/>
+            <h4>Assistants</h4>
+            <CaseContact type='staff-assistants'/>
+            <h4>Opposing Parties</h4>
+            <CaseContact type='opposing-parties'/>
+            <h4>Opposing Attorney</h4>
+            <CaseContact type='opposing-attorney'/>
+            <h4>Referring Parties</h4>
+            <CaseContact type='referring-parties'/>
+            <h4>Associated Contacts</h4>
+            <CaseContact type='associated-contacts'/>
+          </div>
         </>
         : null}
       </div>
@@ -79,6 +70,7 @@ function Case(props) {
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -93,6 +85,7 @@ Case.propTypes = {
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
   updateCase: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Case);

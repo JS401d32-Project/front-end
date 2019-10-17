@@ -48,7 +48,7 @@ function GenericContact(props) {
   ]);
 
   function openModal(event, id) {
-    props.fetchContact(id)
+    props.fetchContact(id, props.user.token)
       .then(() => {
         setModalState(true);
       });
@@ -100,10 +100,11 @@ function GenericContact(props) {
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
   contacts: state.contacts,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchContact: (id) => dispatch(contactActions.fetchContact(id)),
+  fetchContact: (id, token) => dispatch(contactActions.fetchContact(id, token)),
 });
 
 GenericContact.propTypes = {
@@ -114,6 +115,7 @@ GenericContact.propTypes = {
   fetchContact: PropTypes.func,
   contacts: PropTypes.array,
   type: PropTypes.string,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GenericContact);

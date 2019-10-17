@@ -10,7 +10,7 @@ const Contact = (props) => {
   const { id } = props.currentCase.client;
 
   useEffect(() => {
-    props.fetchContact(id)
+    props.fetchContact(id, props.user.token)
       .then(() => setContactReady(true));
   }, [contactReady]);
 
@@ -47,17 +47,18 @@ const Contact = (props) => {
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
   contacts: state.contacts,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchContact: (id) => dispatch(contactActions.fetchContact(id)),
+  fetchContact: (id, token) => dispatch(contactActions.fetchContact(id, token)),
 });
 
 Contact.propTypes = {
   currentCase: PropTypes.object,
   fetchContact: PropTypes.func,
   contacts: PropTypes.array,
-
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contact);

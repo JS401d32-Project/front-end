@@ -1,18 +1,25 @@
-const API = 'http://localhost:4000';
+const API = process.env.REACT_APP_API;
 
 const update = (data) => ({
   type: 'CASE_UPDATE',
   payload: data,
 });
 
-const updateCaseAction = (data, id) => (dispatch) => {
+const add = (payload) => {
+  return {
+    type: 'CASE_CREATE',
+    payload,
+  };
+};
+const updateCaseAction = (data, id, token) => (dispatch) => {
   const options = {
     method: 'PATCH',
     body: JSON.stringify(data),
-    headers: {
+    headers: new Headers({
       'Content-Type': 'application/json',
       Accept: 'application/json',
-    },
+      Authorization: `Bearer ${token}`,
+    }),
   };
 
   return fetch(`${API}/case/${id}`, options)
@@ -25,4 +32,22 @@ const updateInitialCaseAction = (data) => ({
   payload: data,
 });
 
-export { updateCaseAction, updateInitialCaseAction };
+const addNewCase = (data, token) => (dispatch) => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  return fetch(`${API}/case`, options)
+    .then((results) => results.json())
+    .then(() => dispatch(add(data)));
+};
+
+export {
+  update, updateCaseAction, updateInitialCaseAction, addNewCase, 
+};
