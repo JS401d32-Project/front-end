@@ -51,7 +51,7 @@ const addContact = (contact) => (dispatch) => {
     .then((data) => dispatch(add(data)));
 };
 
-export {
+export default {
   fetchContacts,
   fetchContact,
   addContact,
