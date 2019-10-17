@@ -1,4 +1,4 @@
-const API = 'http://localhost:4000';
+const API = process.env.REACT_APP_API;
 
 
 const get = (payload) => {
