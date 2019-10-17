@@ -4,20 +4,70 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import caseActions from '../../store/actions/case-action';
+import { addNewCase } from '../../store/actions/case-action';
 
 const CaseIntake = (props) => {
-  const [newCaseNotes, setNewCaseNotes] = useState({});
-  const [newCaseClient, setNewCaseClient] = useState('');
+  const [client, setClient] = useState({});
+  const [caseStatus, setCaseStatus] = useState('');
+  const [referralType, setReferralType] = useState('');
+  const [legalPlan, setLegalPlan] = useState('');
+  const [newCaseNotes, setNewCaseNotes] = useState('');
 
-  
+
   function handleSubmit(event) {
     event.preventDefault();
     props.addNewCase({
-      newCaseClient: { newCaseClient }, 
-      caseNotes: newCaseNotes,
+      client: {
+        create: {
+          lastName: client.lastName,
+          firstName: client.firstName,
+          SSN: client.SSN,
+          birthDate: client.birthDate,
+          homeAddress: client.homeAddress,
+          homeAddress2: client.homeAddress2,
+          homeCity: client.homeCity,
+          homeState: client.homeState,
+          homeZip: client.homeZip,
+          workCompany: client.workCompany,
+          workStreet: client.workStreet,
+          workAddress2: client.workAddress2,
+          workCity: client.workCity,
+          workState: client.workState,
+          workZip: client.workZip,
+          emailMain: client.emailMain,
+          emailBackup: client.emailBackup,
+          primaryPhone: client.primaryPhone,
+          secondaryPhone: client.secondaryPhone,
+          mobilePhone: client.mobilePhone,
+          fax: client.fax,
+
+        },
+      },
+      status: caseStatus,
+      referralType,
+      legalPlan,
+      caseNotes: {
+        create: {
+          title: 'Intake Notes',
+          content: newCaseNotes,
+        },
+      },
     });
   }
+
+  function handleLegalPlanChange(event) {
+    setLegalPlan(event.target.value);
+  }
+
+  
+  function handleReferralChange(event) {
+    setReferralType(event.target.value);
+  }
+  
+  function handleStatusChange(event) {
+    setCaseStatus(event.target.value);
+  }
+
 
   return (
     <>
@@ -26,116 +76,166 @@ const CaseIntake = (props) => {
         <h4> -- Potential New -- </h4>
 
       <form onSubmit={handleSubmit}>
-        <div id="contactName" onChange={(event) => setNewCaseClient(event.target.value)}>
+        <div id="contactName" onChange={(event) => setClient({ ...client, [event.target.name]: event.target.value })}>
 
         <input 
+                    name="lastName"
                     type='text'
-                    value={newCaseClient.lastName}
+                    value={client.lastName}
                     placeholder='Last Name'
                 />
                  <input 
+                    name="firstName"
                     type='text'
-                    value={newCaseClient.firstName}
+                    value={client.firstName}
                     placeholder='First Name'
                 />
                 <input 
+                    name="SSN"
                     type='text'
-                    value={newCaseClient.SSN}
+                    value={client.SSN}
                     placeholder='SSN'
                 />
                 <input 
+                    name='birthDate'
                     type='text'
-                    value={newCaseClient.birthDate}
+                    value={client.birthDate}
                     placeholder='Birthdate'
                 />
              <input 
+                    name='homeAddress'
                     type='text'
-                    value={newCaseClient.homeAddress}
+                    value={client.homeAddress}
                     placeholder='Home Street Address'
                 />
                  <input 
+                    name='homeAddress2'
                     type='text'
-                    value={newCaseClient.homeAddress2}
+                    value={client.homeAddress2}
                     placeholder='Home Street Address 2'
                 />
                 <input 
+                    name='homeCity'
                     type='text'
-                    value={newCaseClient.homeCity}
+                    value={client.homeCity}
                     placeholder='Home City'
                 />
                 <input 
+                    name='homeState'
                     type='text'
-                    value={newCaseClient.homeState}
+                    value={client.homeState}
                     placeholder='Home State'
                 />
                 <input 
+                    name='homeZip'
                     type='text'
-                    value={newCaseClient.homeZip}
+                    value={client.homeZip}
                     placeholder='Home Zip'
                 />
-                <input 
+                <input
+                    name='workCompany'
                     type='text'
-                    value={newCaseClient.workCompany}
+                    value={client.workCompany}
                     placeholder='Work Company Name'
                 />
                 <input 
+                    name='workStreet'
                     type='text'
-                    value={newCaseClient.workStreet}
+                    value={client.workStreet}
                     placeholder='Work Street Address'
                 />
                 <input 
+                    name='workAddress2'
                     type='text'
-                    value={newCaseClient.workStreet2}
+                    value={client.workStreet2}
                     placeholder='Work Street Address 2'
                 />
                 <input 
+                    name='workCity'
                     type='text'
-                    value={newCaseClient.workCity}
+                    value={client.workCity}
                     placeholder='Work City'
                 />
                 <input 
+                    name='workState'
                     type='text'
-                    value={newCaseClient.workState}
+                    value={client.workState}
                     placeholder='Work State'
                 />
-                <input 
+                <input
+                    name='workZip'
                     type='text'
-                    value={newCaseClient.workZip}
+                    value={client.workZip}
                     placeholder='Work Zip'
                 />
                  <input 
+                    name='emailMain'
                     type='text'
-                    value={newCaseClient.emailMain}
+                    value={client.emailMain}
                     placeholder='Main E-mail'
                 />
                 <input 
+                    name='emailBackup'
                     type='text'
-                    value={newCaseClient.emailBackup}
+                    value={client.emailBackup}
                     placeholder='Backup E-mail'
                 />
                 <input 
+                    name='primaryPhone'
                     type='text'
-                    value={newCaseClient.primaryPhone}
+                    value={client.primaryPhone}
                     placeholder='Primary Phone'
                 />
                 <input 
+                    name='secondaryPhone'
                     type='text'
-                    value={newCaseClient.secondaryPhone}
+                    value={client.secondaryPhone}
                     placeholder='Secondary Phone'
                 />
                 <input 
+                    name='mobilePhone'
                     type='text'
-                    value={newCaseClient.mobilePhone}
+                    value={client.mobilePhone}
                     placeholder='Mobile Phone'
                 />
                 <input 
+                    name='fax'
                     type='text'
-                    value={newCaseClient.fax}
+                    value={client.fax}
                     placeholder='Fax'
                 />
         </div>
 
-        
+        <div className='caseInformation'>
+
+        <label> Legal Plan
+          <select value={legalPlan} onChange={handleLegalPlanChange}>
+            <option value='default'>Default</option>
+            <option value='none'>None</option>
+            <option value='hyatt'>Hyatt</option>
+            <option value='arag'>ARAG</option>
+          </select>
+        </label>
+
+        <label> Referral
+          <select value={referralType} onChange={handleReferralChange}>
+            <option value='none'>No</option>
+            <option value='yes'>Yes</option>
+          </select>
+        </label>
+
+        <label> Current Status
+          <select value={caseStatus} onChange={handleStatusChange}>
+            <option value='unset'>Unset</option>
+            <option value='open'>Open</option>
+            <option value='interim'>Interim</option>
+            <option value='closed'>Closed</option>
+          </select>
+        </label>
+
+        </div>
+
+
         <div className="intakeNotes">
             <p>--intake Notes -- </p>
             
@@ -160,7 +260,7 @@ const mapStateToProps = (state) => ({
 });
     
 const mapDispatchToProps = (dispatch) => ({
-  addNewCase: (data) => dispatch(caseActions.addNewCase(data)),
+  addNewCase: (data) => dispatch(addNewCase(data)),
 });
     
 CaseIntake.propTypes = {
