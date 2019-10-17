@@ -11,13 +11,17 @@ function ReferringParties(props) {
 
   useEffect(() => {
     setReferringParties(props.currentCase.referringParties);
-  });
+  }, [props.currentCase.referringParties]);
 
   return (
     <>
       <ul>
-        {referringParties.map((party) => {
-          return <a href={`${API}/contact/${party.id}`} key={party.id}>{`${party.firstName} ${party.lastName}`}</a>;
+        {referringParties.map((party, i) => {
+          return (
+            <li key={i}>
+              <a href={`${API}/contact/${party.id}`} key={party.id}>{`${party.firstName} ${party.lastName}`}</a>
+            </li>
+          );
         })}
       </ul>
     </>
