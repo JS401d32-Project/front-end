@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Notes from '../notes/homeNotes';
+import './index.scss';
 
 const API_URL = 'http://localhost:4000';
 
 const columns = [
   {
     Header: 'View Details',
-    accessor: 'caseId',
+    accessor: 'id',
     headerStyle: { whiteSpace: 'unset' },
     style: { whiteSpace: 'unset' },
     Cell: (e) => <Link to={`casePage/${e.value}`}>View Case Details</Link>, // eslint-disable-line
@@ -58,7 +59,6 @@ export default function HomePage() {
     <>
     <div className="container">
       <h1>Welcome to CaseHawk!</h1>
-      <Link to="/casePage">CasePage</Link>
     </div>
     <div className="caseList" style={{ textAlign: 'center', padding: '50px' }}>
       <ReactTable

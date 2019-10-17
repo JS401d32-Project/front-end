@@ -1,15 +1,15 @@
-const saveToken = (token) => {
+const saveProfile = (profile) => {
   return {
-    type: 'TOKEN_SAVE',
-    payload: { token },
+    type: 'PROFILE_SAVE',
+    payload: profile,
   };
 };
 
-const removeToken = () => {
+const removeProfile = () => {
   return {
-    type: 'TOKEN_REMOVE',
+    type: 'PROFILE_REMOVE',
     payload: {},
   };
 };
 
-export default { saveToken, removeToken };
+export default { saveProfile, removeProfile };

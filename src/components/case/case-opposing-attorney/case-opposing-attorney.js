@@ -17,7 +17,7 @@ function OpposingAttorneys(props) {
     <>
       <ul>
         {opposingAttorneys.map((attorney) => {
-          return <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{attorney.firstName + attorney.lastName}</a>;  
+          return <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{`${attorney.firstName} ${attorney.lastName}`}</a>;
         })}
       </ul>
     </>
