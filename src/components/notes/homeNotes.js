@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import './notes.css';
 import PropTypes from 'prop-types';
+import noteActions from '../../store/actions/notes-action';
+// import Modal from './details-modal';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import noteActions from '../../store/actions/notes-action';
+
 
 
 const columns = [
@@ -29,10 +32,13 @@ const columns = [
 
 ];
 
+
 const Notes = (props) => {
   useEffect(() => {
     props.fetchNotes();
   }, []);
+
+  
   return (
     <>
     <div className="caseList" style={{ textAlign: 'center', padding: '50px' }}>
@@ -50,6 +56,7 @@ const Notes = (props) => {
   );
 };
 
+
 const mapStateToProps = (state) => ({
   notes: state.notes,
 });
@@ -58,9 +65,11 @@ const mapDispatchToProps = (dispatch) => ({
   fetchNotes: () => dispatch(noteActions.fetchNotes()),
 });
 
+
 Notes.propTypes = {
   fetchNotes: PropTypes.func,
   notes: PropTypes.array,
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notes);
