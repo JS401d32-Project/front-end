@@ -47,7 +47,6 @@ const fetchNotes = () => (dispatch) => {
     .then((results) => results.json())
     .then((data) => {
       const renderDataArray = data.map((note) => {
-        console.log(note.dateCreated);
         const alteredObj = {
           author: note.author.userName,
           dateCreated: alterDateTime(note.dateCreated),
