@@ -8,7 +8,7 @@ import createStore from '../../../store/create-store';
 
 const store = createStore();
 
-describe('Case Form Component', () => {
+describe('Case Intake Form Component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Provider store={store}><CaseIntakeForm /></Provider>, div);

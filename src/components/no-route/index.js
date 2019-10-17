@@ -4,10 +4,9 @@ import PageNotFound from '../../assets/404.jpg';
 export default function NoRoute() {
   return (
     <>
-
-    <div>
-      <img src={PageNotFound} alt={'broken robot'}/>
-    </div>;
+      <div>
+        <img src={PageNotFound} alt={'broken robot'}/>
+      </div>;
     </>
   );
 }

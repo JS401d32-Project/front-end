@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import CaseContact from './case-contact';
+import NoRoute from './index';
 
-import createStore from '../../../store/create-store';
+import createStore from '../../store/create-store';
 
 const store = createStore();
 
-describe('Case Contact Component', () => {
+describe('No Route Component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Provider store={store}><CaseContact /></Provider>, div);
+    ReactDOM.render(<Provider store={store}><NoRoute /></Provider>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
