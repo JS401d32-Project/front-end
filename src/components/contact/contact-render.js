@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './contact.scss'
 
 import contactActions from '../../store/actions/contacts-action';
 
@@ -15,6 +16,7 @@ const Contact = (props) => {
 
   return (
     <>
+      <div className='container'>
       { contactReady
         ? <>
           <p>{props.contacts[0].firstName} {props.contacts[0].lastName}</p>
@@ -37,6 +39,7 @@ const Contact = (props) => {
           </ul>
         </>
         : null}
+      </div>
     </>
   );
 };
