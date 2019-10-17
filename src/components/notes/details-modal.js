@@ -1,7 +1,18 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import PropTypes from 'prop-types';
 import Note from './note-details';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 class ModalExample extends React.Component {
   constructor() {
@@ -25,12 +36,13 @@ class ModalExample extends React.Component {
   render() {
     return (
             <div>
-                <button onClick={this.handleOpenModal}>View Details</button>
+                <p onClick={this.handleOpenModal}>View Case Details</p>
                 <ReactModal
+                    style={customStyles}
                     isOpen={this.state.showModal}
                     contentLabel="Minimal Modal Example"
                 >
-                            <Note/>
+                            <Note id={this.props.id}/>
 
 
                     <button onClick={this.handleCloseModal}>Close Modal</button>
@@ -39,5 +51,9 @@ class ModalExample extends React.Component {
     );
   }
 }
+
+ModalExample.propTypes = {
+  id: PropTypes.string,
+};
 
 export default ModalExample;

@@ -52,7 +52,7 @@ const CaseIntake = (props) => {
           content: newCaseNotes,
         },
       },
-    });
+    }, props.user.token);
   }
 
   function handleLegalPlanChange(event) {
@@ -71,6 +71,7 @@ const CaseIntake = (props) => {
 
   return (
     <>
+      <div className='container'>
         <h2> Case Intake </h2>
         <h3>Edit New Case </h3>
         <h4> -- Potential New -- </h4>
@@ -250,22 +251,24 @@ const CaseIntake = (props) => {
 
         </div>
         <button onClick={handleSubmit}> Save Data </button>
-      </form>  
+      </form>
+      </div>
     </>
   );
 };
 
 const mapStateToProps = (state) => ({
   caseIntake: state.caseIntake,
+  user: state.user,
 });
     
 const mapDispatchToProps = (dispatch) => ({
-  addNewCase: (data) => dispatch(addNewCase(data)),
+  addNewCase: (data, token) => dispatch(addNewCase(data, token)),
 });
     
 CaseIntake.propTypes = {
   addNewCase: PropTypes.func,
+  user: PropTypes.object,
 };
-  
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaseIntake);
