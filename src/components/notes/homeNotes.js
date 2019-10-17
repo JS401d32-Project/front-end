@@ -81,6 +81,7 @@ const mapDispatchToProps = (dispatch) => ({
 Notes.propTypes = {
   fetchNotes: PropTypes.func,
   notes: PropTypes.array,
+  user: PropTypes.object,
 };
 
 

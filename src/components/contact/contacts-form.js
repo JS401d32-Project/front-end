@@ -260,6 +260,7 @@ Contacts.propTypes = {
   fetchContacts: PropTypes.func,
   addContact: PropTypes.func,
   contacts: PropTypes.array,
+  user: PropTypes.object,
 };
 
 

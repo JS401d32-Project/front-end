@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import ReactTable from 'react-table';
+import PropTypes from 'prop-types';
+
 import 'react-table/react-table.css';
 import Notes from '../notes/homeNotes';
 import './index.scss';
-import { connect } from 'react-redux';
 
 const API_URL = process.env.REACT_APP_API;
 
@@ -83,5 +85,9 @@ function HomePage(props) {
 const mapStateToProps = (state) => ({
   user: state.user,
 });
+
+HomePage.propTypes = {
+  user: PropTypes.object,
+};
 
 export default connect(mapStateToProps, null)(HomePage);

@@ -115,6 +115,7 @@ GenericContact.propTypes = {
   fetchContact: PropTypes.func,
   contacts: PropTypes.array,
   type: PropTypes.string,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GenericContact);

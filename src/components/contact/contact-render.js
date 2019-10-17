@@ -58,6 +58,7 @@ Contact.propTypes = {
   currentCase: PropTypes.object,
   fetchContact: PropTypes.func,
   contacts: PropTypes.array,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contact);

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const API = process.env.REACT_APP_API;
 
@@ -33,5 +34,9 @@ function Note(props) {
 const mapStateToProps = (state) => ({
   user: state.user,
 });
+
+Note.propTypes = {
+  user: PropTypes.object,
+};
 
 export default connect(mapStateToProps, null)(Note);

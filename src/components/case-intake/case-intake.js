@@ -266,6 +266,7 @@ const mapDispatchToProps = (dispatch) => ({
     
 CaseIntake.propTypes = {
   addNewCase: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaseIntake);
