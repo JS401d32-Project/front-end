@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './nav.css';
+import './nav.scss';
 import cookie from 'react-cookies';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -34,7 +34,6 @@ const NavBar = (props) => {
 
         <div className="nav-links">
           <Link to="/">Home</Link>
-          <Link to="/casePage">Cases</Link>
           <Link to="/contacts">Intake</Link>
           <Link to="/" onClick={onLogout}>Logout</Link>
         </div>
