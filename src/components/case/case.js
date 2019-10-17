@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import ReactTable from 'react-table';
 
-// import CaseNote from './case-note/case-note';
-// import Search from './search/search';
-// import CaseIntakeForm from './case-intake-form/case-intake-form';
-// import { getCaseAction, updateCaseAction } from '../../store/actions/case-action';
 import CaseForm from './case-form/case-form';
 import Contact from '../contact/contact-render';
 import Staff from './case-staff/case-staff';
@@ -15,26 +10,7 @@ import OpposingParties from './case-opposing-parties/case-opposing-parties';
 import ReferringParties from './case-referring-parties/case-referring-parties.js';
 import AssociatedContacts from './case-associated-contacts/case-associated-contacts';
 
-// import { Route } from 'react-router-dom';
-
-// TODO: Need to be able to get this from .env somehow?? Shows as undefined
-// const API = process.env.REACT_APP_API;
-const API = 'http://localhost:4000';
-
-// const columns = [
-//   {
-//     Header: 'Date Created',
-//     accessor: 'dateCreated',
-//     headerStyle: { whiteSpace: 'unset' },
-//     style: { whiteSpace: 'unset' },
-//   },
-//   {
-//     Header: 'Title',
-//     accessor: 'title',
-//     headerStyle: { whiteSpace: 'unset' },
-//     style: { whiteSpace: 'unset' },
-//   },
-// ];
+const API = process.env.REACT_APP_API;
 
 function Case(props) {
   const [ready, setReady] = useState(false);
@@ -75,9 +51,6 @@ function Case(props) {
           <br />
           <h3>Associated Contacts</h3>
           <AssociatedContacts />
-        {/* <h3>Attorney Information</h3> */}
-        {/*  { props.currentCase.staffAttorneys.map((attorney, i) =>
-        <Contact type='attorney' key={i} name={attorney.id}/>)} */}
         </>
         : null}
     </>

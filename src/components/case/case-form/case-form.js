@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// import { getCaseAction, updateCaseAction } from '../../../store/actions/case-action';
-
+import { updateCaseAction } from '../../../store/actions/case-action';
 
 function CaseForm(props) {
   const [caseId, setCaseId] = useState('');
@@ -11,14 +10,6 @@ function CaseForm(props) {
   const [caseStatus, setCaseStatus] = useState('');
   const [referralType, setReferralType] = useState('');
   const [legalPlan, setLegalPlan] = useState('');
-  // const [dates, setDates] = useState([]);
-  //   const [caseNotes, setCaseNotes] = useState([]);
-  // const [client, setClient] = useState({});
-  // const [attorney, setAttorney] = useState({});
-  // const [paralegal, setParalegal] = useState({});
-  // const [assistant, setAssistant] = useState({});
-  // const [opposingParty, setOpposingParty] = useState({});
-  // const [associatedContact, setAssociatedContact] = useState({});
 
   useEffect(() => {
     setCaseId(props.currentCase.caseId);
@@ -26,9 +17,7 @@ function CaseForm(props) {
     setCaseStatus(props.currentCase.status);
     setReferralType(props.currentCase.referralType);
     setLegalPlan(props.currentCase.legalPlan);
-    // console.log(result.caseNotes);
-    // setCaseNotes(props.currentCase.caseNotes);
-  });
+  }, []);
 
 
   function handleStatusChange(event) {
@@ -46,9 +35,9 @@ function CaseForm(props) {
   function handleUpdate(event) {
     event.preventDefault();
     const data = {
-      caseId, caseStatus, referralType, legalPlan,
+      status: caseStatus, referralType, legalPlan,
     };
-    props.updateCase(data);
+    props.updateCase(data, props.currentCase.id);
   }
 
   return (
@@ -90,13 +79,11 @@ function CaseForm(props) {
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
-  // selectedCase: state.selectedCase,
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   getCase: (id) => dispatch(getCaseAction(id)),
-//   updateCase: (data) => dispatch(updateCaseAction(data)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  updateCase: (data, id) => dispatch(updateCaseAction(data, id)),
+});
 
 CaseForm.propTypes = {
   props: PropTypes.object,
@@ -105,4 +92,4 @@ CaseForm.propTypes = {
   updateCase: PropTypes.func,
 };
 
-export default connect(mapStateToProps, null)(CaseForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CaseForm);
