@@ -1,29 +1,31 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Contacts from './components/contact/contacts-form';
-import NavBar from './components/navBar/nav';
-import HomePage from './components/view-cases';
-import CasePage from './components/case/case';
-import OAuth from './components/oauth/OAuth';
-import NoRoute from './components/no-route';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import CaseHawk from './components/case-hawk/case-hawk';
+import LandingPage from './components/landing-page/landing-page';
+import If from './components/if/If';
 
-
-export default function App() {
+const App = (props) => {
   return (
     <>
-      <NavBar />
-      <OAuth />
-      <BrowserRouter>
-        <NavBar />
-        <Switch>
-          <Route exact path="/" component={HomePage}/>
-          <Route path="/casePage/:id" component={CasePage}/>
-          <Route exact path="/contacts" component={Contacts}/>
-          <Route component={NoRoute} />
-        </Switch>
+      <If condition={props.id}>
+        <CaseHawk />
+      </If>
+      <If condition={!props.id}>
+        <LandingPage />
+      </If>
 
-      </BrowserRouter>
     </>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  id: state.user.userID,
+});
+
+export default connect(mapStateToProps)(App);
+
+App.propTypes = {
+  id: PropTypes.string,
+};

@@ -8,6 +8,13 @@ const get = (payload) => {
   };
 };
 
+const getOne = (payload) => {
+  return {
+    type: 'FETCH_CONTACT',
+    payload,
+  };
+};
+
 const add = (payload) => {
   return {
     type: 'ADD_CONTACT',
@@ -15,10 +22,18 @@ const add = (payload) => {
   };
 };
 
+// Fetch all contacts
 const fetchContacts = () => (dispatch) => {
   return fetch(`${API}/contacts`)
     .then((results) => results.json())
     .then((data) => dispatch(get(data)));
+};
+
+// Fetch one contact by Id
+const fetchContact = (id) => (dispatch) => {
+  return fetch(`${API}/contact/${id}`)
+    .then((results) => results.json())
+    .then((data) => dispatch(getOne(data)));
 };
 
 const addContact = (contact) => (dispatch) => {
@@ -38,5 +53,6 @@ const addContact = (contact) => (dispatch) => {
 
 export default {
   fetchContacts,
+  fetchContact,
   addContact,
 };

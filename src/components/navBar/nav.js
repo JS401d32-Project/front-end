@@ -1,37 +1,55 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './nav.css';
+import cookie from 'react-cookies';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import userActions from '../../store/actions/user-actions';
+import logo from '../../assets/logo.png';
 
-class NavBar extends React.Component {
-  render() {
-    return (
-      <>
-            <div className="nav">
+const NavBar = (props) => {
+  const onLogout = () => {
+    cookie.remove('X-401d19-OAuth-token');
+    cookie.remove('userID');
+    cookie.remove('userName');
+    props.removeProfile();
+  };
+
+  return (
+    <>
+      <div className="nav">
         <input type="checkbox" id="nav-check"/>
         <div className="nav-header">
+          <img className='logo' src={logo} alt="Logo" />
           <div className="nav-title">
             Case Hawk
           </div>
+
+
         </div>
         <div className="nav-btn">
           <label htmlFor="nav-check">
-            <span></span>
-            <span></span>
-            <span></span>
           </label>
         </div>
-        
+
         <div className="nav-links">
-          <a href="#" target="_blank">home</a>
-          <a href="#" target="_blank">something</a>
-          <a href="#" target="_blank">something</a>
-          <a href="#" target="_blank">something</a>
-          <a href="#" target="_blank">something</a>
+          <Link to="/">Home</Link>
+          <Link to="/casePage">Cases</Link>
+          <Link to="/contacts">Intake</Link>
+          <Link to="/" onClick={onLogout}>Logout</Link>
         </div>
       </div>
-      </>
+    </>
   
-    );
-  }
-}
-  
-export default NavBar;
+  );
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  removeProfile: () => dispatch(userActions.removeProfile()),
+});
+
+export default connect(null, mapDispatchToProps)(NavBar);
+
+NavBar.propTypes = {
+  removeProfile: PropTypes.func,
+};
