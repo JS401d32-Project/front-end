@@ -25,4 +25,4 @@ const updateInitialCaseAction = (data) => ({
   payload: data,
 });
 
-export { updateCaseAction, updateInitialCaseAction };
+export { update, updateCaseAction, updateInitialCaseAction };

@@ -18,7 +18,7 @@ describe('Case intake form reducer', () => {
       type: 'CASE_UPDATE_INITIAL',
       payload: { caseType: 'family' },
     };
-    expect(caseIntakeFormReducer({ legalPlan: '', caseType: '', referralType: '' }, updateCaseIntakeAction)).toEqual({ legalPlan: 'hyatt', caseType: '', referralType: '' });
+    expect(caseIntakeFormReducer({ legalPlan: '', caseType: '', referralType: '' }, updateCaseIntakeAction)).toEqual({ legalPlan: '', caseType: 'family', referralType: '' });
   });
 
   it('should update a case referral type', () => {
@@ -26,6 +26,6 @@ describe('Case intake form reducer', () => {
       type: 'CASE_UPDATE_INITIAL',
       payload: { referralType: 'none' },
     };
-    expect(caseIntakeFormReducer({ legalPlan: '', caseType: '', referralType: '' }, updateCaseIntakeAction)).toEqual({ legalPlan: 'hyatt', caseType: '', referralType: '' });
+    expect(caseIntakeFormReducer({ legalPlan: '', caseType: '', referralType: '' }, updateCaseIntakeAction)).toEqual({ legalPlan: '', caseType: '', referralType: 'none' });
   });
 });
