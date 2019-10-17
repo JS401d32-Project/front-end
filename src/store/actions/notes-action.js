@@ -3,7 +3,8 @@ const API = 'http://localhost:4000';
 const toStandardTime = (militaryTime) => {
   const militaryTimeSplit = militaryTime.split(':');
   let updatedTime;
-  if (militaryTimeSplit[0].charAt(0) > 1) { 
+  const hour = `${militaryTimeSplit[0].charAt(0)}${militaryTimeSplit[0].charAt(1)}`;
+  if (Number(hour) > 12) { 
     updatedTime = `${militaryTimeSplit[0] - 12}:${militaryTimeSplit[1]} P.M.`;
   } else {
     updatedTime = `${militaryTimeSplit[0]}:${militaryTimeSplit[1]} A.M.`;
