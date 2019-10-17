@@ -11,7 +11,7 @@ const Contact = (props) => {
   useEffect(() => {
     props.fetchContact(id)
       .then(() => setContactReady(true));
-  }, []);
+  }, [contactReady]);
 
   return (
     <>

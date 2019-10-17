@@ -11,17 +11,16 @@ function OpposingParties(props) {
 
   useEffect(() => {
     setOpposingParties(props.currentCase.opposingParties);
-  });
+  }, [props.currentCase.opposingParties]);
 
   return (
     <>
       <ul>
-        {opposingParties.map((party) => {
+        {opposingParties.map((party, i) => {
           return (
-            <>
+            <li key={i}>
               <a href={`${API}/contact/${party.id}`} key={party.id}>{`${party.firstName} ${party.lastName}`}</a>
-              <br/>
-            </>
+            </li>
           );
         })}
       </ul>

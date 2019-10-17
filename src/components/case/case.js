@@ -10,7 +10,7 @@ import OpposingParties from './case-opposing-parties/case-opposing-parties';
 import ReferringParties from './case-referring-parties/case-referring-parties.js';
 import AssociatedContacts from './case-associated-contacts/case-associated-contacts';
 
-const API = 'http://localhost:4000';
+const API = process.env.REACT_APP_API;
 
 function Case(props) {
   const [ready, setReady] = useState(false);

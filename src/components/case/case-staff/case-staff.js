@@ -14,25 +14,28 @@ function Staff(props) {
     //   setCaseId(props.currentCase.caseId);
     setAttorneys(props.currentCase.staffAttorneys);
     setAssistants(props.currentCase.staffAssistants);
-  });
+  }, [props.currentCase.staffAttorneys, props.currentCase.staffAssistants]);
 
   return (
     <>
       <h5>Attorneys</h5>
       <ul>
-        {attorneys.map((attorney) => {
+        {attorneys.map((attorney, i) => {
           return (
-            <>
+            <li key={i}>
               <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{`${attorney.firstName} ${attorney.lastName}`}</a>
-              <br />
-            </>
+            </li>
           );
         })}
       </ul>
       <h5>Assistants</h5> 
       <ul>
-        {assistants.map((assistant) => {
-          return <a href={`${API}/contact/${assistant.id}`} key={assistant.id}>{`${assistant.firstName} ${assistant.lastName}`}</a>;
+        {assistants.map((assistant, i) => {
+          return (
+            <li key={i}>
+              <a href={`${API}/contact/${assistant.id}`} key={assistant.id}>{`${assistant.firstName} ${assistant.lastName}`}</a>
+            </li>
+          );
         })}
       </ul> 
     </>

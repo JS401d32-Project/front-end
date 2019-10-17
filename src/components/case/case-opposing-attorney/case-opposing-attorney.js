@@ -11,17 +11,16 @@ function OpposingAttorneys(props) {
 
   useEffect(() => {
     setOpposingAttorneys(props.currentCase.opposingAttorneys);
-  });
+  }, [props.currentCase.opposingAttorneys]);
 
   return (
     <>
       <ul>
-        {opposingAttorneys.map((attorney) => {
+        {opposingAttorneys.map((attorney, i) => {
           return (
-            <>
+            <li key={i}>
               <a href={`${API}/contact/${attorney.id}`} key={attorney.id}>{`${attorney.firstName} ${attorney.lastName}`}</a>
-              <br/>
-            </>
+            </li>
           );
         })}
       </ul>
