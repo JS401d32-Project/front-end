@@ -1,23 +1,45 @@
 .caseContainer {
   max-width: 90%;
   margin: auto;
-  margin-top: 10%;
   text-align: center;
 }
 
-.caseFormContainer {
-  float: left;
-  width: 33%;
+hr.style2 {
+  border-top: 3px double #a3a7a6;
 }
 
-.caseClientContainer {
-  float: left;
-  width: 33%;
+li {
+  list-style-type: none;
+
+}
+li:nth-child(even) {
+  background-color: #bebebe;
+}
+
+.caseContainer {
+  border-style: double;
+  background-color: #ddd8df;
+  h4:nth-child(even) {
+    background-color: #bebebe;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+  }
+}
+
+.contact {
+  color: blue;
+}
+
+ul {
+  padding-inline-start: 0px;
+
 }
 
 .caseContactsContainer {
-  float: right;
-  width: 33%;
+  background-color: #ddd8df;
 }
 
+.clientLI{
+margin-top: 5px;
+}
 
