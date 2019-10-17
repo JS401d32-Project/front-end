@@ -11,8 +11,8 @@ import CaseForm from './case-form/case-form';
 import Contact from '../contact/contact-render';
 import Staff from './case-staff/case-staff';
 import OpposingAttorney from './case-opposing-attorney/case-opposing-attorney';
-import OpposingParty from './case-opposing-party/case-opposing-party';
-import RefferingPartys from './case-reffering-party/case-reffering-party.js';
+import OpposingParties from './case-opposing-parties/case-opposing-parties';
+import ReferringParties from './case-referring-parties/case-referring-parties.js';
 import AssociatedContacts from './case-associated-contacts/case-associated-contacts';
 
 // import { Route } from 'react-router-dom';
@@ -41,13 +41,13 @@ function Case(props) {
   
   useEffect(() => {
     const routeAddress = window.location.pathname.split('/');
-    const currentCaseId = routeAddress[2];
+    const currentId = routeAddress[2];
 
     const options = {
       method: 'GET',
     };
 
-    fetch(`${API}/case/${currentCaseId}`, options)
+    fetch(`${API}/case/${currentId}`, options)
       .then((result) => result.json())
       .then((data) => props.getCase(data[0]))
       .then(() => setReady(true));
@@ -64,14 +64,14 @@ function Case(props) {
           <h3>Staff</h3>
           <Staff />
           <br />
-          <h3>Opposing Party</h3>
-          <OpposingParty />
+          <h3>Opposing Parties</h3>
+          <OpposingParties />
           <br />
-          <h3>Oposing Attorney</h3>
+          <h3>Opposing Attorney</h3>
           <OpposingAttorney />
           <br />
-          <h3>Reffering Party</h3>
-          <RefferingPartys />
+          <h3>Referring Parties</h3>
+          <ReferringParties />
           <br />
           <h3>Associated Contacts</h3>
           <AssociatedContacts />

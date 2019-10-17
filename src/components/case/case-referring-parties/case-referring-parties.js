@@ -6,18 +6,18 @@ import PropTypes from 'prop-types';
 
 const API = 'http://localhost:4000';
 
-function RefferingPartys(props) {
-  const [refferingPartys, setRefferingPartys] = useState([]);
+function ReferringParties(props) {
+  const [referringParties, setReferringParties] = useState([]);
 
   useEffect(() => {
-    setRefferingPartys(props.currentCase.referringPartys);
+    setReferringParties(props.currentCase.referringParties);
   });
 
   return (
     <>
       <ul>
-        {refferingPartys.map((party) => {
-          return <a href={`${API}/contact/${party.id}`} key={party.id}>{party.firstName + party.lastName}</a>;  
+        {referringParties.map((party) => {
+          return <a href={`${API}/contact/${party.id}`} key={party.id}>{`${party.firstName} ${party.lastName}`}</a>;
         })}
       </ul>
     </>
@@ -27,13 +27,13 @@ function RefferingPartys(props) {
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
 });
-  
-  
-RefferingPartys.propTypes = {
+
+
+ReferringParties.propTypes = {
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
   updateCase: PropTypes.func,
 };
   
-export default connect(mapStateToProps, null)(RefferingPartys);
+export default connect(mapStateToProps, null)(ReferringParties);
