@@ -38,10 +38,8 @@ function CaseForm(props) {
 
   return (
     <>
-      <h3>Case Details</h3>
       <form>
-        <p>Title: {props.currentCase.title}</p>
-        <p>Id: {props.currentCase.caseId}</p>
+        <h3>Title: {props.currentCase.title}</h3>
         <label> Current Status
           <select value={caseStatus} onChange={handleStatusChange}>
             <option value='unset'>Unset</option>
