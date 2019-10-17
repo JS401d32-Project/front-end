@@ -17,7 +17,7 @@ const NavBar = (props) => {
 
   return (
     <>
-            <div className="nav">
+      <div className="nav">
         <input type="checkbox" id="nav-check"/>
         <div className="nav-header">
           <img className='logo' src={logo} alt="Logo" />
