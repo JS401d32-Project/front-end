@@ -10,6 +10,6 @@ export default combineReducers({
   currentCase,
   users,
   contacts,
-  notes
+  notes,
   initialCase,
 });

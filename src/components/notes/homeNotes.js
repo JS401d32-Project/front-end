@@ -2,11 +2,14 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './notes.css';
 import noteActions from '../../store/actions/notes-action';
+import Modal from './details-modal';
 
 const Notes = (props) => {
   useEffect(() => {
     props.fetchNotes();
   }, []);
+  
+
   return (
 
 
@@ -15,11 +18,14 @@ const Notes = (props) => {
                 {props.notes.map((notes, _id) => (
 
                     <li key={_id}>
-                        <p>{notes.dateCreated}</p>
+                      <Modal  />
+                        <p>{notes.title} </p>
+                        <p>{notes.date}</p>
+                        <p> {notes.type}</p>
                         <p>{notes.content}</p>
-                        <p> {notes.title}</p>
-                        <p>{notes.type}</p>
+
                     </li>
+
                 ))}
             </ul>
     </>

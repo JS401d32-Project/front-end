@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import Popup from 'react-popup';
+import Notes from '../notes/homeNotes';
 
 const API_URL = 'http://localhost:4000';
 
@@ -40,6 +42,7 @@ const columns = [
 ];
 
 export default function HomePage() {
+  Popup.alert('hello');
   const [caseList, setCaseList] = useState([]);
 
   useEffect(() => {
@@ -60,6 +63,8 @@ export default function HomePage() {
       <Link to="/casePage">CasePage</Link>
     </div>
     <div className="caseList" style={{ textAlign: 'center', padding: '50px' }}>
+      <Popup />
+      <footer id={'notes'}><Notes/></footer>
       <ReactTable
       manual
       minRows={0}
@@ -72,4 +77,5 @@ export default function HomePage() {
     /></div>
     </>
   );
+
 }

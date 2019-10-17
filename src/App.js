@@ -8,6 +8,7 @@ import CasePage from './components/case/case';
 import OAuth from './components/oauth/OAuth';
 import NoRoute from './components/no-route';
 
+
 export default function App() {
   return (
     <>
@@ -21,6 +22,7 @@ export default function App() {
           <Route exact path="/contacts" component={Contacts}/>
           <Route component={NoRoute} />
         </Switch>
+
       </BrowserRouter>
     </>
   );

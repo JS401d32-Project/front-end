@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
 import Notes from "../notes/homeNotes";
+import Popup from 'react-popup';
 
 const Contacts = (props) => {
   const [contactLastName, setLastName] = useState('');
@@ -71,7 +72,8 @@ const Contacts = (props) => {
                     placeholder='E-Mail'
                 />
                 <button type="submit">Add Contact</button>
-                <footer id={'notes'}><Notes/></footer>
+
+
             </form>
     </>
             
