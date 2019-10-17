@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import ReactTable from 'react-table';
+import PropTypes from 'prop-types';
+
 import 'react-table/react-table.css';
 import Notes from '../notes/homeNotes';
 import './index.scss';
 
-const API_URL = 'http://localhost:4000';
+const API_URL = process.env.REACT_APP_API;
 
 const columns = [
   {
@@ -41,12 +44,19 @@ const columns = [
   },
 ];
 
-export default function HomePage() {
+/**
+ * HomePage component gets cases from database and displays all the cases
+ * @visibleName HomePage
+ */
+function HomePage(props) {
   const [caseList, setCaseList] = useState([]);
 
   useEffect(() => {
     const options = {
       method: 'GET',
+      headers: new Headers({
+        Authorization: `Bearer ${props.user.token}`,
+      }),
     };
     fetch(`${API_URL}/cases`, options)
       .then((result) => result.json())
@@ -74,5 +84,14 @@ export default function HomePage() {
     <Notes />
     </React.Fragment>
   );
-
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+HomePage.propTypes = {
+  user: PropTypes.object,
+};
+
+export default connect(mapStateToProps, null)(HomePage);

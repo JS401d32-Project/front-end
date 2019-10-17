@@ -27,9 +27,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --verbose --watchAll --coverage --forceExit",
+    "test": "react-scripts test --verbose --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "eslint '**/*.js' --fix",
+    "lint": "eslint '**/*.js'",
+    "lintFix": "eslint '**/*.js' --fix",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
@@ -73,7 +74,6 @@
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
-    "url-loader": "^2.1.0",
-    "webpack": "^4.41.2"
+    "url-loader": "^2.1.0"
   }
 }

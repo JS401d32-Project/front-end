@@ -1,13 +1,26 @@
 import React, { useEffect } from 'react';
+import ReactTable from 'react-table';
 import { connect } from 'react-redux';
 import './notes.scss';
 import PropTypes from 'prop-types';
 import noteActions from '../../store/actions/notes-action';
-// import Modal from './details-modal';
-import ReactTable from 'react-table';
+import Modal from './details-modal';
 import 'react-table/react-table.css';
 
 const columns = [
+  {
+    Header: 'View Details',
+    accessor: 'id',
+    headerStyle: { whiteSpace: 'unset' },
+    style: { whiteSpace: 'unset' },
+    Cell: (e) => <Modal id={e.value} />, // eslint-disable-line
+  },
+  {
+    Header: 'Case ID',
+    accessor: 'caseId',
+    headerStyle: { whiteSpace: 'unset' },
+    style: { whiteSpace: 'unset' },
+  },
   {
     Header: 'Date',
     accessor: 'dateCreated',
@@ -18,8 +31,7 @@ const columns = [
     Header: 'Title',
     accessor: 'title',
     headerStyle: { whiteSpace: 'unset' },
-    style: { whiteSpace: 'unset' },
-    // TODO put in the link to note details
+    style: { whiteSpace: 'unset' }, 
   },
   {
     Header: 'Author',
@@ -31,9 +43,13 @@ const columns = [
 ];
 
 
+/**
+ * Notes component displays all the notes
+ * @visibleName Notes
+ */
 const Notes = (props) => {
   useEffect(() => {
-    props.fetchNotes();
+    props.fetchNotes(props.user.token);
   }, []);
 
   
@@ -50,6 +66,7 @@ const Notes = (props) => {
       defaultPageSize={5}
       showPagination={true}
     /></div>
+    <Modal />
     </React.Fragment>
   );
 };
@@ -57,16 +74,21 @@ const Notes = (props) => {
 
 const mapStateToProps = (state) => ({
   notes: state.notes,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchNotes: () => dispatch(noteActions.fetchNotes()),
+  fetchNotes: (token) => dispatch(noteActions.fetchNotes(token)),
 });
 
 
 Notes.propTypes = {
+  /**
+   * Notes label.
+   */
   fetchNotes: PropTypes.func,
   notes: PropTypes.array,
+  user: PropTypes.object,
 };
 
 

@@ -6,6 +6,11 @@ import userActions from '../../store/actions/user-actions';
 import logo from '../../assets/logo.png';
 import './landing-page.scss';
 
+
+/**
+ * LandingPage component displays logo of the company
+ * @visibleName LandingPage
+ */
 const LandingPage = (props) => {
   useEffect(() => {
     const token = cookie.load('X-401d19-OAuth-token');
@@ -40,6 +45,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 LandingPage.propTypes = {
+  /**
+   * LandingPage label.
+   */
   removeProfile: PropTypes.func,
   saveProfile: PropTypes.func,
   id: PropTypes.string,

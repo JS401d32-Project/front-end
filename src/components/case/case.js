@@ -11,18 +11,24 @@ import CaseContact from '../case-contact/case-contact';
 const API = process.env.REACT_APP_API;
 
 /**
- * asdfasdfasdfasdfasdfasfd
+ * This gets data from back-end database and display them wtih CaseForm and CaseContact components
  * @visibleName Case
  */
 function Case(props) {
   const [ready, setReady] = useState(false);
   
+  /**
+   * this will fetch data from back-end database and then sent it back to front-end
+   */
   useEffect(() => {
     const routeAddress = window.location.pathname.split('/');
     const currentId = routeAddress[2];
 
     const options = {
       method: 'GET',
+      headers: new Headers({
+        Authorization: `Bearer ${props.user.token}`,
+      }),
     };
 
     fetch(`${API}/case/${currentId}`, options)
@@ -37,23 +43,32 @@ function Case(props) {
       <div className='caseContainer'>
       {ready  
         ? <React.Fragment>
-          <CaseForm /> 
-          <h3>Client Information</h3>
-          <ClientContact type='client'/>
-          <br />
-          {/* <h3>REUSABLE COMPONENT</h3> */}
-          <h3>Attorneys</h3>
-          <CaseContact type='staff-attorney'/>
-          <h3>Assistants</h3>
-          <CaseContact type='staff-assistants'/>
-          <h3>Opposing Parties</h3>
-          <CaseContact type='opposing-parties'/>
-          <h3>Opposing Attorney</h3>
-          <CaseContact type='opposing-attorney'/>
-          <h3>Referring Parties</h3>
-          <CaseContact type='referring-parties'/>
-          <h3>Associated Contacts</h3>
-          <CaseContact type='associated-contacts'/>
+          <div className='caseHeader'>
+            <h2>{props.currentCase.title}: Case Map</h2>
+            <h3>{props.currentCase.caseId}</h3>
+          </div>
+          <div className='caseFormContainer'>
+            <CaseForm />
+          </div>
+          <div className='caseClientContainer'>
+            <h3>Client Information</h3>
+            <ClientContact type='client'/>
+          </div>
+          <div className='caseContactsContainer'>
+            <h3>Contacts</h3>
+            <h4>Attorneys</h4>
+            <CaseContact type='staff-attorney'/>
+            <h4>Assistants</h4>
+            <CaseContact type='staff-assistants'/>
+            <h4>Opposing Parties</h4>
+            <CaseContact type='opposing-parties'/>
+            <h4>Opposing Attorney</h4>
+            <CaseContact type='opposing-attorney'/>
+            <h4>Referring Parties</h4>
+            <CaseContact type='referring-parties'/>
+            <h4>Associated Contacts</h4>
+            <CaseContact type='associated-contacts'/>
+          </div>
         </React.Fragment>
         : null}
       </div>
@@ -63,6 +78,7 @@ function Case(props) {
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -80,6 +96,7 @@ Case.propTypes = {
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
   updateCase: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Case);

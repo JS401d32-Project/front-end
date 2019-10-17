@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 
 import { updateInitialCaseAction } from '../../store/actions/case-action';
 
+/**
+ * CaseIntakeForm allows users to update cases (legalPlan, caseType, referralType)
+ * @visibleName CaseIntakeForm
+ */
 function CaseIntakeForm(props) {
   const [legalPlan, setLegalPlan] = useState('none');
   const [caseType, setCaseType] = useState('none');
@@ -64,8 +68,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 CaseIntakeForm.propTypes = {
+  /**
+   * CaseIntakeForm label.
+   */
   props: PropTypes.object,
   updateInitialCase: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaseIntakeForm);

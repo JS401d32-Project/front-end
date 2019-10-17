@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -8,6 +8,10 @@ import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
 
+/**
+ * Contactas component allows users to add new contact informations to database
+ * @visibleName Contacts
+ */
 const Contacts = (props) => {
   const [contactLastName, setLastName] = useState('');
   const [contactFirstName, setFirstName] = useState('');
@@ -31,6 +35,12 @@ const Contacts = (props) => {
   const [contactMobilePhone, setMobilePhone] = useState('');
   const [contactFax, setFax] = useState('');
   const [contactComments, setComments] = useState('');
+
+
+  useEffect(() => {
+    props.fetchContacts(props.user.token)
+      .then((result) => (result));
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -57,7 +67,7 @@ const Contacts = (props) => {
       mobilePhone: contactMobilePhone,
       fax: contactFax,
       comments: contactComments,
-    });
+    }, props.user.token);
   }
 
   return (
@@ -242,17 +252,22 @@ const Contacts = (props) => {
 
 const mapStateToProps = (state) => ({
   contacts: state.contacts,
+  user: state.user,
 });
   
 const mapDispatchToProps = (dispatch) => ({
-  fetchContacts: () => dispatch(contactActions.fetchContacts()),
-  addContact: (data) => dispatch(contactActions.addContact(data)),
+  fetchContacts: (token) => dispatch(contactActions.fetchContacts(token)),
+  addContact: (data, token) => dispatch(contactActions.addContact(data, token)),
 });
   
 Contacts.propTypes = {
+  /**
+   * Contacts label.
+   */
   fetchContacts: PropTypes.func,
   addContact: PropTypes.func,
   contacts: PropTypes.array,
+  user: PropTypes.object,
 };
 
 

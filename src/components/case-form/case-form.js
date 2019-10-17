@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 
 import { updateCaseAction } from '../../store/actions/case-action';
 
+/**
+ * CaseForm is rendered in case component and it displays case details
+ * @visibleName CaseForm
+ */
 function CaseForm(props) {
-  const [caseId, setCaseId] = useState('');
-  const [caseTitle, setCaseTitle] = useState('');
   const [caseStatus, setCaseStatus] = useState('');
   const [referralType, setReferralType] = useState('');
   const [legalPlan, setLegalPlan] = useState('');
 
   useEffect(() => {
-    setCaseId(props.currentCase.caseId);
-    setCaseTitle(props.currentCase.title);
     setCaseStatus(props.currentCase.status);
     setReferralType(props.currentCase.referralType);
     setLegalPlan(props.currentCase.legalPlan);
@@ -37,16 +37,15 @@ function CaseForm(props) {
     const data = {
       status: caseStatus, referralType, legalPlan,
     };
-    props.updateCase(data, props.currentCase.id);
+    props.updateCase(data, props.currentCase.id, props.user.token);
   }
 
   return (
     <React.Fragment>
-      <h2>{caseTitle}: Case Map</h2>
-      <p>Case Id: {caseId}</p>
-
+      <h3>Case Details</h3>
       <form>
-        <p>Case Title: {caseTitle}</p>
+        <p>Title: {props.currentCase.title}</p>
+        <p>Id: {props.currentCase.caseId}</p>
         <label> Current Status
           <select value={caseStatus} onChange={handleStatusChange}>
             <option value='unset'>Unset</option>
@@ -79,17 +78,22 @@ function CaseForm(props) {
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateCase: (data, id) => dispatch(updateCaseAction(data, id)),
+  updateCase: (data, id, token) => dispatch(updateCaseAction(data, id, token)),
 });
 
+/**
+   * CaseForm label.
+   */
 CaseForm.propTypes = {
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
   updateCase: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaseForm);

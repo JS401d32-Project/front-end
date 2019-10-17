@@ -6,6 +6,11 @@ import CaseHawk from './components/case-hawk/case-hawk';
 import LandingPage from './components/landing-page/landing-page';
 import If from './If/if/If';
 
+
+/**
+ * App component render CaseHawk and LandingPage components if condition is true
+ * @visibleName App
+ */
 const App = (props) => {
   return (
     <React.Fragment>
@@ -26,5 +31,8 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(App);
 
 App.propTypes = {
+  /**
+   * App label.
+   */
   id: PropTypes.string,
 };
