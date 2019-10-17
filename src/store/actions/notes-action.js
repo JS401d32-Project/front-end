@@ -1,4 +1,4 @@
-const API = 'http://localhost:4000';
+const API = process.env.REACT_APP_API;
 
 
 const get = (payload) => {
@@ -47,7 +47,6 @@ const fetchNotes = () => (dispatch) => {
     .then((results) => results.json())
     .then((data) => {
       const renderDataArray = data.map((note) => {
-        console.log(note.dateCreated);
         const alteredObj = {
           author: note.author.userName,
           dateCreated: alterDateTime(note.dateCreated),
