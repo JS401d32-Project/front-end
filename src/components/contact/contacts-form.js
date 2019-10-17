@@ -34,7 +34,7 @@ const Contacts = (props) => {
 
 
   useEffect(() => {
-    props.fetchContacts()
+    props.fetchContacts(props.user.token)
       .then((result) => (result));
   }, []);
 
@@ -63,7 +63,7 @@ const Contacts = (props) => {
       mobilePhone: contactMobilePhone,
       fax: contactFax,
       comments: contactComments,
-    });
+    }, props.user.token);
   }
 
   return (
@@ -226,17 +226,19 @@ const Contacts = (props) => {
 
 const mapStateToProps = (state) => ({
   contacts: state.contacts,
+  user: state.user,
 });
   
 const mapDispatchToProps = (dispatch) => ({
-  fetchContacts: () => dispatch(contactActions.fetchContacts()),
-  addContact: (data) => dispatch(contactActions.addContact(data)),
+  fetchContacts: (token) => dispatch(contactActions.fetchContacts(token)),
+  addContact: (data, token) => dispatch(contactActions.addContact(data, token)),
 });
   
 Contacts.propTypes = {
   fetchContacts: PropTypes.func,
   addContact: PropTypes.func,
   contacts: PropTypes.array,
+  user: PropTypes.object,
 };
 
 

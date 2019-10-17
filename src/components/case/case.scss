@@ -3,8 +3,21 @@
   margin: auto;
   margin-top: 10%;
   text-align: center;
+}
 
+.caseFormContainer {
+  float: left;
+  width: 33%;
 }
-li {
-  list-style: none;
+
+.caseClientContainer {
+  float: left;
+  width: 33%;
 }
+
+.caseContactsContainer {
+  float: right;
+  width: 33%;
+}
+
+
