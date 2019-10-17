@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
+import './contact.scss'
+
 import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
@@ -92,7 +94,7 @@ const Contacts = (props) => {
             ))}
 
         </ul> */}
-
+      <div className='container'>
         <h1> Add Contacts</h1>
 
             <form onSubmit={handleSubmit}>
@@ -232,6 +234,7 @@ const Contacts = (props) => {
 
 
             </form>
+      </div>
     </>
             
   );
