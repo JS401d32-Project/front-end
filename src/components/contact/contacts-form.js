@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
-import './contact.scss'
+import './contact.scss';
 
 import { connect } from 'react-redux';
 
