@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { updateInitialCaseAction } from '../../../store/actions/case-action';
+import { updateInitialCaseAction } from '../../store/actions/case-action';
 
+/**
+ * CaseIntakeForm allows users to update cases (legalPlan, caseType, referralType)
+ * @visibleName CaseIntakeForm
+ */
 function CaseIntakeForm(props) {
   const [legalPlan, setLegalPlan] = useState('none');
   const [caseType, setCaseType] = useState('none');
@@ -26,7 +30,7 @@ function CaseIntakeForm(props) {
   }
 
   return (
-    <>
+    <React.Fragment>
       <form>
         <label> Legal Plan
           <select value={legalPlan} onChange={handleLegalPlanChange}>
@@ -50,7 +54,7 @@ function CaseIntakeForm(props) {
           </select>
         </label>
       </form>
-    </>
+    </React.Fragment>
   );
 }
 
@@ -64,6 +68,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 CaseIntakeForm.propTypes = {
+  /**
+   * CaseIntakeForm label.
+   */
   props: PropTypes.object,
   updateInitialCase: PropTypes.func,
   user: PropTypes.object,

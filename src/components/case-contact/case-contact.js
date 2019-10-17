@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import contactActions from '../../../store/actions/contacts-action';
+import contactActions from '../../store/actions/contacts-action';
+
 
 const customStyles = {
   content: {
@@ -15,9 +16,18 @@ const customStyles = {
   },
 };
 
+/**
+ * GenericContact is a reusable component to display all the related contacts to the case
+ * @visibleName GenericContact
+ */
+
 function GenericContact(props) {
   const [currentContact, setCurrentContact] = useState([]);
   const [modalState, setModalState] = useState(false);
+
+  /**
+   * It checks the type of the contact and then gets the contact data from the store
+   */
 
   useEffect(() => {
     if (props.type === 'staff-attorney') {
@@ -47,6 +57,10 @@ function GenericContact(props) {
     props.currentCase.associatedContacts,
   ]);
 
+  /**
+   * It creates a pop-up screen displaying details of specific contact
+   */
+
   function openModal(event, id) {
     props.fetchContact(id, props.user.token)
       .then(() => {
@@ -54,13 +68,17 @@ function GenericContact(props) {
       });
   }
 
+  /**
+   * It closes the pop-up screen with details of specific contact
+   */
+
   function closeModal() {
     setModalState(false);
   }
 
   return (
-    <>
-      <ul className='caseDetails'>
+    <React.Fragment>
+      <ul>
           { currentContact.length < 1
             ? <li> </li>
             : currentContact.map((party, i) => {
@@ -93,7 +111,7 @@ function GenericContact(props) {
           </Modal>
           : null
       }
-    </>
+    </React.Fragment>
   );
 }
 
@@ -108,6 +126,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 GenericContact.propTypes = {
+  /**
+   * GenericContact label.
+   */
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,

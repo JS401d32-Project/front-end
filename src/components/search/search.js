@@ -29,10 +29,10 @@ function Search() {
 
 
   return (
-    <>
+    <React.Fragment>
       <input type='text' value={text} onChange={onTextChange} />
       {renderSuggestions()}
-    </>
+    </React.Fragment>
   );
 }
 

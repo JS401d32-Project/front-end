@@ -3,17 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './case.scss';
 
+import CaseForm from '../case-form/case-form';
 
-import CaseForm from './case-form/case-form';
 import ClientContact from '../contact/contact-render';
 
-import CaseContact from './case-contact/case-contact';
+import CaseContact from '../case-contact/case-contact';
 
 const API = process.env.REACT_APP_API;
 
+/**
+ * This gets data from back-end database and display them wtih CaseForm and CaseContact components
+ * @visibleName Case
+ */
 function Case(props) {
   const [ready, setReady] = useState(false);
   
+  /**
+   * this will fetch data from back-end database and then sent it back to front-end
+   */
   useEffect(() => {
     const routeAddress = window.location.pathname.split('/');
     const currentId = routeAddress[2];
@@ -26,16 +33,17 @@ function Case(props) {
     };
 
     fetch(`${API}/case/${currentId}`, options)
+      // .then((result) => console.log(result))
       .then((result) => result.json())
       .then((data) => props.getCase(data[0]))
       .then(() => setReady(true));
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       <div className='caseContainer'>
       {ready  
-        ? <>
+        ? <React.Fragment>
           <div className='caseHeader'>
             <h1>Case Details</h1>
             <h3>Case ID: {props.currentCase.caseId}</h3>
@@ -64,10 +72,10 @@ function Case(props) {
             <h4>Associated Contacts</h4>
             <CaseContact type='associated-contacts'/>
           </div>
-        </>
+        </React.Fragment>
         : null}
       </div>
-    </>
+    </React.Fragment>
   );
 }
 
@@ -84,6 +92,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Case.propTypes = {
+  /**
+   * Case label.
+   */
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,

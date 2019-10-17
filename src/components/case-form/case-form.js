@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { updateCaseAction } from '../../../store/actions/case-action.js';
+import { updateCaseAction } from '../../store/actions/case-action';
 
+/**
+ * CaseForm is rendered in case component and it displays case details
+ * @visibleName CaseForm
+ */
 function CaseForm(props) {
   const [caseStatus, setCaseStatus] = useState('');
   const [referralType, setReferralType] = useState('');
@@ -37,7 +41,8 @@ function CaseForm(props) {
   }
 
   return (
-    <>
+    <React.Fragment>
+      <h3>Case Details</h3>
       <form>
         <h3>Title: {props.currentCase.title}</h3>
         <label> Current Status
@@ -66,7 +71,7 @@ function CaseForm(props) {
       <button onClick={(event) => handleUpdate(event)}>
         Save Case Details
       </button>
-    </>
+    </React.Fragment>
   );
 }
 
@@ -79,6 +84,9 @@ const mapDispatchToProps = (dispatch) => ({
   updateCase: (data, id, token) => dispatch(updateCaseAction(data, id, token)),
 });
 
+/**
+   * CaseForm label.
+   */
 CaseForm.propTypes = {
   props: PropTypes.object,
   getCase: PropTypes.func,

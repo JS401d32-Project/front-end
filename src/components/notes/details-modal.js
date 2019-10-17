@@ -36,18 +36,16 @@ class ModalExample extends React.Component {
   render() {
     return (
             <div>
-                <p onClick={this.handleOpenModal}>View Case Details</p>
-                <ReactModal
-                    style={customStyles}
-                    isOpen={this.state.showModal}
-                    contentLabel="Minimal Modal Example"
-                >
-                            <Note id={this.props.id}/>
-
-
-                    <button onClick={this.handleCloseModal}>Close Modal</button>
-                </ReactModal>
-            </div>
+                  <p onClick={this.handleOpenModal}>View Note Details</p>
+                  <ReactModal
+                      style={customStyles}
+                      isOpen={this.state.showModal}
+                      contentLabel="Minimal Modal Example"
+                  >
+                        <Note id={this.props.id}/>
+                      <button onClick={this.handleCloseModal}>Close Modal</button>
+                  </ReactModal>
+              </div>
     );
   }
 }
