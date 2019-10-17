@@ -32,7 +32,7 @@ const columns = [
   },
   {
     Header: 'Case Attorney',
-    accessor: 'caseAttorney',
+    accessor: 'staffAttorneys[0].lastName',
     headerStyle: { whiteSpace: 'unset' },
     style: { whiteSpace: 'unset' },
   },
