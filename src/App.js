@@ -7,6 +7,7 @@ import HomePage from './components/view-cases';
 import CasePage from './components/case/case';
 import OAuth from './components/oauth/OAuth';
 import NoRoute from './components/no-route';
+import CaseIntake from './components/case-intake/case-intake';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route exact path="/" component={HomePage}/>
           <Route path="/casePage/:id" component={CasePage}/>
           <Route exact path="/contacts" component={Contacts}/>
+          <Route path="/caseIntake" component={CaseIntake}/>
           <Route component={NoRoute} />
         </Switch>
       </BrowserRouter>

@@ -9,6 +9,10 @@ export default (state = {}, { type, payload }) => {
         referralType: payload.referralType,
         legalPlan: payload.legalPlan,
       };
+    case 'CASE_CREATE':
+      return {
+        state, payload,
+      };
     default:
       return state;
   }

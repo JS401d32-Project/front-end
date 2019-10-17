@@ -33,7 +33,7 @@ const Contacts = (props) => {
 
   useEffect(() => {
     props.fetchContacts()
-      .then((result) => console.log(result));
+      .then((result) => (result));
   }, []);
 
   function handleSubmit(event) {
