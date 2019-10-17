@@ -17,7 +17,12 @@ function OpposingParties(props) {
     <>
       <ul>
         {opposingParties.map((party) => {
-          return <a href={`${API}/contact/${party.id}`} key={party.id}>{`${party.firstName} ${party.lastName}`}</a>;
+          return (
+            <>
+              <a href={`${API}/contact/${party.id}`} key={party.id}>{`${party.firstName} ${party.lastName}`}</a>
+              <br/>
+            </>
+          );
         })}
       </ul>
     </>

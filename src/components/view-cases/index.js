@@ -57,7 +57,6 @@ export default function HomePage() {
     <>
     <div className="container">
       <h1>Welcome to CaseHawk!</h1>
-      <Link to="/casePage">CasePage</Link>
     </div>
     <div className="caseList" style={{ textAlign: 'center', padding: '50px' }}>
       <ReactTable

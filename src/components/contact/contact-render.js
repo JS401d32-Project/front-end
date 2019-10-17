@@ -6,21 +6,12 @@ import contactActions from '../../store/actions/contacts-action';
 
 const Contact = (props) => {
   const [contactReady, setContactReady] = useState(false);
-  // let contactId = null;
-  // if (props.type === 'client'){
-  //   contactId = props.currentCase.client.id;
-  // }
-  // if (props.type === 'attorney'){
-  //   console.log('SUB ID', props.name);
-  //   contactId = props.name;
-  // }
   const { id } = props.currentCase.client;
 
   useEffect(() => {
     props.fetchContact(id)
       .then(() => setContactReady(true));
   }, []);
-
 
   return (
     <>
