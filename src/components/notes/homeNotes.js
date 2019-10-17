@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import ReactTable from 'react-table';
 import { connect } from 'react-redux';
 import './notes.css';
 import PropTypes from 'prop-types';
