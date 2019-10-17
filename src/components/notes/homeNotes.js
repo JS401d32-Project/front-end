@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import ReactTable from 'react-table';
 import { connect } from 'react-redux';
 import './notes.scss';
 import PropTypes from 'prop-types';
+import ReactTable from 'react-table';
 import noteActions from '../../store/actions/notes-action';
 import Modal from './details-modal';
 import 'react-table/react-table.css';
@@ -13,7 +13,7 @@ const columns = [
     accessor: 'id',
     headerStyle: { whiteSpace: 'unset' },
     style: { whiteSpace: 'unset' },
-    Cell: (e) => <Modal id={e.value} />, // eslint-disable-line
+    Cell: (e) => <Modal id={e.value}/>, // eslint-disable-line
   },
   {
     Header: 'Case ID',
@@ -66,7 +66,6 @@ const Notes = (props) => {
       defaultPageSize={5}
       showPagination={true}
     /></div>
-    <Modal />
     </React.Fragment>
   );
 };

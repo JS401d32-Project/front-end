@@ -75,6 +75,7 @@ const CaseIntake = (props) => {
 
   return (
     <>
+      <div className='container'>
         <h2> Case Intake </h2>
         <h3>Edit New Case </h3>
         <h4> -- Potential New -- </h4>
@@ -254,7 +255,8 @@ const CaseIntake = (props) => {
 
         </div>
         <button onClick={handleSubmit}> Save Data </button>
-      </form>  
+      </form>
+      </div>
     </>
   );
 };

@@ -34,7 +34,8 @@ const NavBar = (props) => {
 
         <div className="nav-links">
           <Link to="/">Home</Link>
-          <Link to="/contacts">Intake</Link>
+          <Link to="/contacts">Contacts Intake</Link>
+          <Link to="/caseIntake">Case Intake</Link>
           <Link to="/" onClick={onLogout}>Logout</Link>
         </div>
       </div>

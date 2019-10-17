@@ -17,6 +17,7 @@ const Contact = (props) => {
   return (
     <React.Fragment>
       <div className='container'>
+
       { contactReady
         ? <React.Fragment>
           <p>{props.contacts[0].firstName} {props.contacts[0].lastName}</p>
@@ -39,6 +40,7 @@ const Contact = (props) => {
           </ul>
         </React.Fragment>
         : null}
+
       </div>
     </React.Fragment>
   );
