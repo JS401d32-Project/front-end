@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import './notes.css';
+import './notes.scss';
 import PropTypes from 'prop-types';
 import noteActions from '../../store/actions/notes-action';
 // import Modal from './details-modal';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-
-
 
 const columns = [
   {
@@ -40,7 +38,7 @@ const Notes = (props) => {
 
   
   return (
-    <>
+    <React.Fragment>
     <div className="caseList" style={{ textAlign: 'center', padding: '50px' }}>
       <ReactTable
       manual
@@ -52,7 +50,7 @@ const Notes = (props) => {
       defaultPageSize={5}
       showPagination={true}
     /></div>
-    </>
+    </React.Fragment>
   );
 };
 

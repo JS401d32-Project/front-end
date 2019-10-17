@@ -26,7 +26,7 @@ function CaseIntakeForm(props) {
   }
 
   return (
-    <>
+    <React.Fragment>
       <form>
         <label> Legal Plan
           <select value={legalPlan} onChange={handleLegalPlanChange}>
@@ -50,7 +50,7 @@ function CaseIntakeForm(props) {
           </select>
         </label>
       </form>
-    </>
+    </React.Fragment>
   );
 }
 

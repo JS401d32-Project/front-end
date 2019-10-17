@@ -77,7 +77,7 @@ function GenericContact(props) {
   }
 
   return (
-    <>
+    <React.Fragment>
       <ul>
           { currentContact.length < 1
             ? <li> </li>
@@ -111,7 +111,7 @@ function GenericContact(props) {
           </Modal>
           : null
       }
-    </>
+    </React.Fragment>
   );
 }
 

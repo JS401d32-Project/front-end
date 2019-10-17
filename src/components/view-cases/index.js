@@ -56,7 +56,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
     <div className="container">
       <h1>Welcome to CaseHawk!</h1>
     </div>
@@ -72,7 +72,7 @@ export default function HomePage() {
       showPagination={true}
     /></div>
     <Notes />
-    </>
+    </React.Fragment>
   );
 
 }

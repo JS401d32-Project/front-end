@@ -61,7 +61,7 @@ const Contacts = (props) => {
   }
 
   return (
-    <>
+    <React.Fragment>
         {/* <ul>
             {props.contacts.map((contact, _id) => (
 
@@ -234,7 +234,7 @@ const Contacts = (props) => {
 
             </form>
       </div>
-    </>
+    </React.Fragment>
             
   );
 };

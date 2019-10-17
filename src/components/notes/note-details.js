@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './notes.css';
+import './notes.scss';
 import noteActions from '../../store/actions/notes-action';
 
 const Note = (props) => {
@@ -13,7 +13,7 @@ const Note = (props) => {
   return (
 
 
-    <>
+    <React.Fragment>
             <ul>
                 <li>{props.notes[0].title} </li>
                 <li>{props.notes[0].date} </li>
@@ -22,7 +22,7 @@ const Note = (props) => {
 
 
             </ul>
-    </>
+    </React.Fragment>
 
   );
 };

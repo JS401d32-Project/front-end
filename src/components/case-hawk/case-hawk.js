@@ -9,7 +9,7 @@ import NoRoute from '../no-route';
 
 export default function CaseHawk() {
   return (
-    <>
+    <React.Fragment>
       <BrowserRouter>
         <NavBar />
         <Switch>
@@ -19,6 +19,6 @@ export default function CaseHawk() {
           <Route component={NoRoute} />
         </Switch>
       </BrowserRouter>
-    </>
+    </React.Fragment>
   );
 }

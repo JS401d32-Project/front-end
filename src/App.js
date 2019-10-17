@@ -8,14 +8,14 @@ import If from './If/if/If';
 
 const App = (props) => {
   return (
-    <>
+    <React.Fragment>
       <If condition={props.id}>
         <CaseHawk />
       </If>
       <If condition={!props.id}>
         <LandingPage />
       </If>
-    </>
+    </React.Fragment>
   );
 };
 

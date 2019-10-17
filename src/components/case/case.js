@@ -10,6 +10,10 @@ import CaseContact from '../case-contact/case-contact';
 
 const API = process.env.REACT_APP_API;
 
+/**
+ * asdfasdfasdfasdfasdfasfd
+ * @visibleName Case
+ */
 function Case(props) {
   const [ready, setReady] = useState(false);
   
@@ -29,10 +33,10 @@ function Case(props) {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       <div className='caseContainer'>
       {ready  
-        ? <>
+        ? <React.Fragment>
           <CaseForm /> 
           <h3>Client Information</h3>
           <ClientContact type='client'/>
@@ -50,10 +54,10 @@ function Case(props) {
           <CaseContact type='referring-parties'/>
           <h3>Associated Contacts</h3>
           <CaseContact type='associated-contacts'/>
-        </>
+        </React.Fragment>
         : null}
       </div>
-    </>
+    </React.Fragment>
   );
 }
 
@@ -69,6 +73,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Case.propTypes = {
+  /**
+   * Case label.
+   */
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,

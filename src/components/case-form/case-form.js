@@ -41,7 +41,7 @@ function CaseForm(props) {
   }
 
   return (
-    <>
+    <React.Fragment>
       <h2>{caseTitle}: Case Map</h2>
       <p>Case Id: {caseId}</p>
 
@@ -73,7 +73,7 @@ function CaseForm(props) {
       <button onClick={(event) => handleUpdate(event)}>
         Save Case Details
       </button>
-    </>
+    </React.Fragment>
   );
 }
 
