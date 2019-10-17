@@ -13,7 +13,7 @@ const columns = [
     accessor: 'id',
     headerStyle: { whiteSpace: 'unset' },
     style: { whiteSpace: 'unset' },
-    Cell: (e) => <Modal id={e.value} />, // eslint-disable-line
+    Cell: (e) => <Modal id={e.value}/>, // eslint-disable-line
   },
   {
     Header: 'Case ID',
@@ -45,7 +45,7 @@ const columns = [
 
 const Notes = (props) => {
   useEffect(() => {
-    props.fetchNotes();
+    props.fetchNotes(props.user.token);
   }, []);
 
   
@@ -62,7 +62,6 @@ const Notes = (props) => {
       defaultPageSize={5}
       showPagination={true}
     /></div>
-    <Modal />
     </>
   );
 };
@@ -70,16 +69,18 @@ const Notes = (props) => {
 
 const mapStateToProps = (state) => ({
   notes: state.notes,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchNotes: () => dispatch(noteActions.fetchNotes()),
+  fetchNotes: (token) => dispatch(noteActions.fetchNotes(token)),
 });
 
 
 Notes.propTypes = {
   fetchNotes: PropTypes.func,
   notes: PropTypes.array,
+  user: PropTypes.object,
 };
 
 

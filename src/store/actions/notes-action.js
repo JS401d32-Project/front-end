@@ -3,7 +3,8 @@ const API = process.env.REACT_APP_API;
 const toStandardTime = (militaryTime) => {
   const militaryTimeSplit = militaryTime.split(':');
   let updatedTime;
-  if (militaryTimeSplit[0].charAt(0) > 1) { 
+  const hour = `${militaryTimeSplit[0].charAt(0)}${militaryTimeSplit[0].charAt(1)}`;
+  if (Number(hour) > 12) { 
     updatedTime = `${militaryTimeSplit[0] - 12}:${militaryTimeSplit[1]} P.M.`;
   } else {
     updatedTime = `${militaryTimeSplit[0]}:${militaryTimeSplit[1]} A.M.`;
@@ -34,8 +35,15 @@ const getOne = (payload) => {
   };
 };
 
-const fetchOneNote = (id) => (dispatch) => {
-  return fetch(`${API}/note/${id}`)
+const fetchOneNote = (id, token) => (dispatch) => {
+  const options = {
+    method: 'GET',
+    headers: new Headers({
+      Authorization: `Bearer ${token}`,
+    }),
+  };
+
+  return fetch(`${API}/note/${id}`, options)
     .then((results) => results.json())
     .then((data) => {
       const alteredObj = {
@@ -52,8 +60,15 @@ const fetchOneNote = (id) => (dispatch) => {
 };
 
 
-const fetchNotes = () => (dispatch) => {
-  return fetch(`${API}/notes`)
+const fetchNotes = (token) => (dispatch) => {
+  const options = {
+    method: 'GET',
+    headers: new Headers({
+      Authorization: `Bearer ${token}`,
+    }),
+  };
+
+  return fetch(`${API}/notes`, options)
     .then((results) => results.json())
     .then((data) => {
       const renderDataArray = data.map((note) => {
