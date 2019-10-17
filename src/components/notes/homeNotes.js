@@ -13,7 +13,7 @@ const columns = [
     accessor: 'id',
     headerStyle: { whiteSpace: 'unset' },
     style: { whiteSpace: 'unset' },
-    Cell: (e) => <Modal id={e.value} />, // eslint-disable-line
+    Cell: (e) => <Modal id={e.value}/>, // eslint-disable-line
   },
   {
     Header: 'Case ID',
@@ -62,7 +62,6 @@ const Notes = (props) => {
       defaultPageSize={5}
       showPagination={true}
     /></div>
-    <Modal />
     </>
   );
 };
