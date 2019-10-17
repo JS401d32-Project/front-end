@@ -11,7 +11,6 @@ import NoRoute from './components/no-route';
 export default function App() {
   return (
     <>
-      <NavBar />
       <OAuth />
       <BrowserRouter>
         <NavBar />
