@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './contact.scss';
-import CaseIntake from '../case-intake/case-intake'
+import CaseIntake from '../case-intake/case-intake';
 
 import contactActions from '../../store/actions/contacts-action';
 
