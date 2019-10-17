@@ -1,27 +1,5 @@
 const API = process.env.REACT_APP_API;
 
-
-const get = (payload) => {
-  return {
-    type: 'FETCH_NOTES',
-    payload,
-  };
-};
-
-
-const getOne = (payload) => {
-  return {
-    type: 'FETCH_ONE_NOTE',
-    payload,
-  };
-};
-
-const fetchOneNote = () => (dispatch) => {
-  return fetch(`${API}/testNotes`)
-    .then((results) => results.json())
-    .then((data) => dispatch(getOne(data)));
-};
-  
 const toStandardTime = (militaryTime) => {
   const militaryTimeSplit = militaryTime.split(':');
   let updatedTime;
@@ -41,6 +19,38 @@ const alterDateTime = (string) => {
   return `${date} ${time}`;
 };
 
+const get = (payload) => {
+  return {
+    type: 'FETCH_NOTES',
+    payload,
+  };
+};
+
+
+const getOne = (payload) => {
+  return {
+    type: 'FETCH_ONE_NOTE',
+    payload,
+  };
+};
+
+const fetchOneNote = (id) => (dispatch) => {
+  return fetch(`${API}/note/${id}`)
+    .then((results) => results.json())
+    .then((data) => {
+      const alteredObj = {
+        id: data.id,
+        caseId: data[0].case.caseId,
+        author: data[0].author.userName,
+        content: data[0].content,
+        dateCreated: alterDateTime(data[0].dateCreated),
+        title: data[0].title,
+      };
+      return alteredObj;
+    })
+    .then((alteredNote) => dispatch(getOne(alteredNote)));
+};
+
 
 const fetchNotes = () => (dispatch) => {
   return fetch(`${API}/notes`)
@@ -48,7 +58,10 @@ const fetchNotes = () => (dispatch) => {
     .then((data) => {
       const renderDataArray = data.map((note) => {
         const alteredObj = {
+          id: note.id,
+          caseId: note.case.caseId,
           author: note.author.userName,
+          content: note.content,
           dateCreated: alterDateTime(note.dateCreated),
           title: note.title,
         };

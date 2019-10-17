@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import notes from './notes-reducer';
+import displayNote from './display-note-reducer';
 import currentCase from './case-reducer';
 import contacts from './contacts-reducer';
 import user from './user-reducer';
@@ -10,5 +11,6 @@ export default combineReducers({
   user,
   contacts,
   notes,
+  displayNote,
   initialCase,
 });
