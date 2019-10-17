@@ -8,6 +8,7 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-jest": "^22.19.0",
+    "jsdoc": "^3.6.3",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-cookies": "^0.1.1",
@@ -16,6 +17,7 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "react-styleguidist": "^9.2.0",
     "react-table": "^6.10.3",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
@@ -28,7 +30,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint '**/*.js' --fix",
-    "docs": "styleguidist server"
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -57,5 +61,11 @@
   "bugs": {
     "url": "https://github.com/JS-401-Final/front-end/issues"
   },
-  "homepage": "https://github.com/JS-401-Final/front-end#readme"
+  "homepage": "https://github.com/JS-401-Final/front-end#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "babel-loader": "^8.0.6"
+  }
 }

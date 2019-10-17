@@ -1,10 +1,20 @@
 const API = 'http://localhost:4000';
 
+/**
+ * Model case-action
+ */
+
 const update = (data) => ({
   type: 'CASE_UPDATE',
   payload: data,
 });
 
+/**
+ * update case with new data and the case id and return updated case
+ * @param data {object}
+ * @param id {string}
+ * @returns case {object}
+ */
 const updateCaseAction = (data, id) => (dispatch) => {
   const options = {
     method: 'PATCH',
