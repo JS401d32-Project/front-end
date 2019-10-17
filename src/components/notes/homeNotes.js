@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import './notes.css';
+import './notes.scss';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import noteActions from '../../store/actions/notes-action';
@@ -43,6 +43,10 @@ const columns = [
 ];
 
 
+/**
+ * Notes component displays all the notes
+ * @visibleName Notes
+ */
 const Notes = (props) => {
   useEffect(() => {
     props.fetchNotes(props.user.token);
@@ -50,7 +54,7 @@ const Notes = (props) => {
 
   
   return (
-    <>
+    <React.Fragment>
     <div className="caseList" style={{ textAlign: 'center', padding: '50px' }}>
       <ReactTable
       manual
@@ -62,7 +66,7 @@ const Notes = (props) => {
       defaultPageSize={5}
       showPagination={true}
     /></div>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -78,6 +82,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 Notes.propTypes = {
+  /**
+   * Notes label.
+   */
   fetchNotes: PropTypes.func,
   notes: PropTypes.array,
   user: PropTypes.object,

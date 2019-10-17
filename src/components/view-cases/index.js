@@ -44,6 +44,10 @@ const columns = [
   },
 ];
 
+/**
+ * HomePage component gets cases from database and displays all the cases
+ * @visibleName HomePage
+ */
 function HomePage(props) {
   const [caseList, setCaseList] = useState([]);
 
@@ -62,7 +66,7 @@ function HomePage(props) {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
     <div className="container">
       <h1>Welcome to CaseHawk!</h1>
     </div>
@@ -78,7 +82,7 @@ function HomePage(props) {
       showPagination={true}
     /></div>
     <Notes />
-    </>
+    </React.Fragment>
   );
 }
 

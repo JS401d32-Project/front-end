@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import CaseIntakeForm from './case-intake-form';
 
-import createStore from '../../../store/create-store';
+import createStore from '../../store/create-store';
 
 const store = createStore();
 
