@@ -1,5 +1,9 @@
 const API = process.env.REACT_APP_API;
 
+/**
+ * Model case-action
+ */
+
 const update = (data) => ({
   type: 'CASE_UPDATE',
   payload: data,
@@ -11,6 +15,13 @@ const add = (payload) => {
     payload,
   };
 };
+
+/**
+ * update case with new data and the case id and return updated case
+ * @param data {object}
+ * @param id {string}
+ * @returns case {object}
+ */
 const updateCaseAction = (data, id, token) => (dispatch) => {
   const options = {
     method: 'PATCH',

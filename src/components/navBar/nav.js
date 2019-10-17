@@ -16,7 +16,7 @@ const NavBar = (props) => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <div className="nav">
         <input type="checkbox" id="nav-check"/>
         <div className="nav-header">
@@ -39,7 +39,7 @@ const NavBar = (props) => {
           <Link to="/" onClick={onLogout}>Logout</Link>
         </div>
       </div>
-    </>
+    </React.Fragment>
   
   );
 };

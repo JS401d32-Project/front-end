@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 
 import { addNewCase } from '../../store/actions/case-action';
 
+/**
+ * CaseIntake components collects new data from users and save it to database
+ * @visibleName CaseIntake
+ */
 const CaseIntake = (props) => {
   const [client, setClient] = useState({});
   const [caseStatus, setCaseStatus] = useState('');
@@ -267,6 +271,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
     
 CaseIntake.propTypes = {
+  /**
+   * CaseIntake label.
+   */
   addNewCase: PropTypes.func,
   user: PropTypes.object,
 };

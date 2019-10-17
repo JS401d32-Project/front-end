@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import CaseContact from './case-contact';
+import Search from './search';
 
-import createStore from '../../../store/create-store';
+import createStore from '../../store/create-store';
 
 const store = createStore();
 
-describe('Case Contact Component', () => {
+describe('Search Component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Provider store={store}><CaseContact /></Provider>, div);
+    ReactDOM.render(<Provider store={store}><Search /></Provider>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
