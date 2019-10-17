@@ -19,6 +19,9 @@ function Case(props) {
 
     const options = {
       method: 'GET',
+      headers: new Headers({
+        Authorization: `Bearer ${props.user.token}`,
+      }),
     };
 
     fetch(`${API}/case/${currentId}`, options)
@@ -67,6 +70,7 @@ function Case(props) {
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({

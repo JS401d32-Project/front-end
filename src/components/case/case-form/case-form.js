@@ -33,7 +33,7 @@ function CaseForm(props) {
     const data = {
       status: caseStatus, referralType, legalPlan,
     };
-    props.updateCase(data, props.currentCase.id);
+    props.updateCase(data, props.currentCase.id, props.user.token);
   }
 
   return (
@@ -74,10 +74,11 @@ function CaseForm(props) {
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateCase: (data, id) => dispatch(updateCaseAction(data, id)),
+  updateCase: (data, id, token) => dispatch(updateCaseAction(data, id, token)),
 });
 
 CaseForm.propTypes = {

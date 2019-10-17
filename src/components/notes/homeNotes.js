@@ -45,7 +45,7 @@ const columns = [
 
 const Notes = (props) => {
   useEffect(() => {
-    props.fetchNotes();
+    props.fetchNotes(props.user.token);
   }, []);
 
   
@@ -70,10 +70,11 @@ const Notes = (props) => {
 
 const mapStateToProps = (state) => ({
   notes: state.notes,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchNotes: () => dispatch(noteActions.fetchNotes()),
+  fetchNotes: (token) => dispatch(noteActions.fetchNotes(token)),
 });
 
 

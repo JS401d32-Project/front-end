@@ -6,8 +6,9 @@ import noteActions from '../../store/actions/notes-action';
 
 const Note = (props) => {
   const [noteStatus, setNoteStatus] = useState(false);
+
   useEffect(() => {
-    props.fetchOneNote(props.id)
+    props.fetchOneNote(props.id, props.user.token)
       .then(() => {
         setNoteStatus(true);
       });
@@ -43,10 +44,11 @@ Note.propTypes = {
 const mapStateToProps = (state) => ({
   notes: state.notes,
   displayNote: state.displayNote,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchOneNote: (id) => dispatch(noteActions.fetchOneNote(id)),
+  fetchOneNote: (id, token) => dispatch(noteActions.fetchOneNote(id, token)),
 });
 
 

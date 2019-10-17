@@ -4,6 +4,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Notes from '../notes/homeNotes';
 import './index.scss';
+import { connect } from 'react-redux';
 
 const API_URL = process.env.REACT_APP_API;
 
@@ -41,12 +42,15 @@ const columns = [
   },
 ];
 
-export default function HomePage() {
+function HomePage(props) {
   const [caseList, setCaseList] = useState([]);
 
   useEffect(() => {
     const options = {
       method: 'GET',
+      headers: new Headers({
+        Authorization: `Bearer ${props.user.token}`,
+      }),
     };
     fetch(`${API_URL}/cases`, options)
       .then((result) => result.json())
@@ -75,3 +79,9 @@ export default function HomePage() {
     </>
   );
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps, null)(HomePage);
