@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import contactActions from '../../../store/actions/contacts-action';
+import contactActions from '../../store/actions/contacts-action';
 
 
 const customStyles = {

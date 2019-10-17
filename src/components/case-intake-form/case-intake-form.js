@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { updateInitialCaseAction } from '../../../store/actions/case-action';
+import { updateInitialCaseAction } from '../../store/actions/case-action';
 
 function CaseIntakeForm(props) {
   const [legalPlan, setLegalPlan] = useState('none');

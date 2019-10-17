@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './case.scss';
 
-import CaseForm from './case-form/case-form';
+import CaseForm from '../case-form/case-form';
 import ClientContact from '../contact/contact-render';
 
-import CaseContact from './case-contact/case-contact';
+import CaseContact from '../case-contact/case-contact';
 
 const API = process.env.REACT_APP_API;
 
