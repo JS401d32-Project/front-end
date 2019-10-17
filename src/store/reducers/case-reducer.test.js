@@ -22,4 +22,23 @@ describe('Case reducer', () => {
       status: 'open', referralType: 'none', legalPlan: 'hyatt',
     });
   });
+
+  it('should create a new case from case intake component', () => {
+    const createAction = {
+      type: 'CASE_CREATE',
+      payload: { status: 'open', referralType: 'none', legalPlan: 'hyatt' },
+    };
+    expect(caseReducer({ status: 'potential', referralType: 'none', legalPlan: 'hyatt' }, createAction)).toEqual({
+      payload: {
+        legalPlan: 'hyatt',
+        referralType: 'none',
+        status: 'open',
+      },
+      state: {
+        legalPlan: 'hyatt',
+        referralType: 'none',
+        status: 'potential',
+      },
+    });
+  });
 });
