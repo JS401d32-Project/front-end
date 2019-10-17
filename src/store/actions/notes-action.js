@@ -1,4 +1,5 @@
-const API = 'http://localhost:4000';
+const API = process.env.REACT_APP_API;
+
 
 const get = (payload) => {
   return {
@@ -7,6 +8,20 @@ const get = (payload) => {
   };
 };
 
+
+const getOne = (payload) => {
+  return {
+    type: 'FETCH_ONE_NOTE',
+    payload,
+  };
+};
+
+const fetchOneNote = () => (dispatch) => {
+  return fetch(`${API}/testNotes`)
+    .then((results) => results.json())
+    .then((data) => dispatch(getOne(data)));
+};
+  
 const toStandardTime = (militaryTime) => {
   const militaryTimeSplit = militaryTime.split(':');
   let updatedTime;
@@ -45,4 +60,5 @@ const fetchNotes = () => (dispatch) => {
 
 export default {
   fetchNotes,
+  fetchOneNote,
 };

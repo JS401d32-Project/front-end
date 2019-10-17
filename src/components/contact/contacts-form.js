@@ -76,7 +76,6 @@ const Contacts = (props) => {
            <p>First Name: {contact.firstName}</p>
            <p> Phone Number: {contact.phoneNumber}</p>
            <p>E-Mail: {contact.eMail}</p>
-           </li>
            <p>SSN: {contact.socialSecurity}</p>
            <p>Birthdate: {contact.birthdate}</p>
            <p>Home Street Address: {contact.homeStreet}</p>
@@ -238,6 +237,7 @@ const Contacts = (props) => {
                     placeholder='Additional Comments'
                 />
                 <button type="submit">Add Contact</button>
+
             </form>
       </div>
     </>

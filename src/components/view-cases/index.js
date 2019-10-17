@@ -74,4 +74,5 @@ export default function HomePage() {
     <Notes />
     </>
   );
+
 }
