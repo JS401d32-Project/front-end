@@ -52,7 +52,7 @@ const CaseIntake = (props) => {
           content: newCaseNotes,
         },
       },
-    });
+    }, props.user.token);
   }
 
   function handleLegalPlanChange(event) {
@@ -257,15 +257,16 @@ const CaseIntake = (props) => {
 
 const mapStateToProps = (state) => ({
   caseIntake: state.caseIntake,
+  user: state.user,
 });
     
 const mapDispatchToProps = (dispatch) => ({
-  addNewCase: (data) => dispatch(addNewCase(data)),
+  addNewCase: (data, token) => dispatch(addNewCase(data, token)),
 });
     
 CaseIntake.propTypes = {
   addNewCase: PropTypes.func,
+  user: PropTypes.object,
 };
-  
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaseIntake);
