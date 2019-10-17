@@ -102,7 +102,7 @@ const Contacts = (props) => {
         </ul> */}
       <div className='container'>
         <h1> Add Contacts</h1>
-
+            <div className = "inputForm">
             <form onSubmit={handleSubmit}>
                 <input 
                     type='text'
@@ -117,12 +117,14 @@ const Contacts = (props) => {
                     placeholder='First Name'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactSocialSecurity}
                     onChange={(event) => setSocialSecurity(event.target.value)}
                     placeholder='SSN'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactBirthdate}
                     onChange={(event) => setBirthdate(event.target.value)}
@@ -141,12 +143,14 @@ const Contacts = (props) => {
                     placeholder='Home Street Address 2'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactHomeCity}
                     onChange={(event) => setHomeCity(event.target.value)}
                     placeholder='Home City'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactHomeState}
                     onChange={(event) => setHomeState(event.target.value)}
@@ -165,12 +169,14 @@ const Contacts = (props) => {
                     placeholder='Work Company Name'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactWorkStreet}
                     onChange={(event) => setWorkStreet(event.target.value)}
                     placeholder='Work Street Address'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactWorkStreet2}
                     onChange={(event) => setWorkStreet2(event.target.value)}
@@ -189,12 +195,14 @@ const Contacts = (props) => {
                     placeholder='Work State'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactWorkZip}
                     onChange={(event) => setWorkZip(event.target.value)}
                     placeholder='Work Zip'
                 />
                  <input 
+                    className="tableColor"
                     type='text'
                     value={contactEmailMain}
                     onChange={(event) => setEmailMain(event.target.value)}
@@ -213,12 +221,14 @@ const Contacts = (props) => {
                     placeholder='Primary Phone'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactSecondaryPhone}
                     onChange={(event) => setSecondaryPhone(event.target.value)}
                     placeholder='Secondary Phone'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactMobilePhone}
                     onChange={(event) => setMobilePhone(event.target.value)}
@@ -237,8 +247,8 @@ const Contacts = (props) => {
                     placeholder='Additional Comments'
                 />
                 <button type="submit">Add Contact</button>
-
             </form>
+            </div>
       </div>
     </>
             

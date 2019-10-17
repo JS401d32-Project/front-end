@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import ReactTable from 'react-table';
 import { connect } from 'react-redux';
 import './notes.css';
 import PropTypes from 'prop-types';
+import ReactTable from 'react-table';
 import noteActions from '../../store/actions/notes-action';
 import Modal from './details-modal';
 import 'react-table/react-table.css';
