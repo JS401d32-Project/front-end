@@ -5,11 +5,6 @@ import './case.scss';
 
 import CaseForm from './case-form/case-form';
 import ClientContact from '../contact/contact-render';
-// import Staff from './case-staff/case-staff';
-// import OpposingAttorney from './case-opposing-attorney/case-opposing-attorney';
-// import OpposingParties from './case-opposing-parties/case-opposing-parties';
-// import ReferringParties from './case-referring-parties/case-referring-parties.js';
-// import AssociatedContacts from './case-associated-contacts/case-associated-contacts';
 
 import CaseContact from './case-contact/case-contact';
 
@@ -54,22 +49,6 @@ function Case(props) {
           <CaseContact type='referring-parties'/>
           <h3>Associated Contacts</h3>
           <CaseContact type='associated-contacts'/>
-
-          {/* <h3>ORIGINAL CODE</h3> */}
-          {/* <h3>Staff</h3> */}
-          {/* <Staff /> */}
-          {/* <br /> */}
-          {/* <h3>Opposing Parties</h3> */}
-          {/* <OpposingParties /> */}
-          {/* <br /> */}
-          {/* <h3>Opposing Attorney</h3> */}
-          {/* <OpposingAttorney /> */}
-          {/* <br /> */}
-          {/* <h3>Referring Parties</h3> */}
-          {/* <ReferringParties /> */}
-          {/* <br /> */}
-          {/* <h3>Associated Contacts</h3> */}
-          {/* <AssociatedContacts /> */}
         </>
         : null}
       </div>
