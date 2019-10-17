@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import Note from './note-details';
+import Notes from './homeNotes';
 
 
 class ModalExample extends React.Component {
@@ -31,7 +32,7 @@ class ModalExample extends React.Component {
                     isOpen={this.state.showModal}
                     contentLabel="Minimal Modal Example"
                 >
-                            <Note/>
+                            <Note id={this.props.id}/>
 
 
                     <button onClick={this.handleCloseModal}>Close Modal</button>

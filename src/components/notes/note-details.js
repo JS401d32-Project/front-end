@@ -1,43 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './notes.css';
 import noteActions from '../../store/actions/notes-action';
 
 const Note = (props) => {
+  const [noteStatus, setNoteStatus] = useState(false);
   useEffect(() => {
-    props.fetchOneNote();
+    props.fetchOneNote(props.id)
+      .then(() => {
+        setNoteStatus(true);
+      });
   }, []);
 
 
   return (
 
-
     <>
-            <ul>
-                <li>{props.notes[0].title} </li>
-                <li>{props.notes[0].date} </li>
-                <li>{props.notes[0].type} </li>
-                <li>{props.notes[0].content} </li>
-
-
+    {noteStatus
+      ? 
+             <ul>
+              {props.displayNote.caseId}
+              {props.displayNote.title}
+              {props.displayNote.author}
+              {props.displayNote.dateCreated}
+              {props.displayNote.content}
+              hi
             </ul>
+      : null
+    } 
     </>
 
   );
 };
 
 Note.propTypes = {
+  id: PropTypes.string,
   fetchOneNote: PropTypes.func,
   notes: PropTypes.array,
+  displayNote: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
   notes: state.notes,
+  displayNote: state.displayNote,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchOneNote: () => dispatch(noteActions.fetchOneNote()),
+  fetchOneNote: (id) => dispatch(noteActions.fetchOneNote(id)),
 });
 
 
