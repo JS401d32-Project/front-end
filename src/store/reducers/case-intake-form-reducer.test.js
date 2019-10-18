@@ -1,6 +1,6 @@
 import caseIntakeFormReducer from './case-intake-form-reducer';
 
-describe('Case intake form reducer', () => {
+describe('Case Intake Form Reducer', () => {
   it('should return initial state', () => {
     expect(caseIntakeFormReducer(undefined, {})).toEqual({});
   });
