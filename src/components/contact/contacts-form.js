@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
+import {
+  transitions, positions, useAlert, Provider as AlertProvider,
+} from 'react-alert';
+
+import AlertTemplate from 'react-alert-template-basic';
+
 import PropTypes from 'prop-types';
 
 import './contact.scss';
@@ -7,6 +13,14 @@ import './contact.scss';
 import { connect } from 'react-redux';
 
 import contactActions from '../../store/actions/contacts-action';
+
+
+const options = {
+  position: positions.BOTTOM_CENTER,
+  timeout: 5000,
+  offset: '30px',
+  transition: transitions.SCALE,
+};
 
 const Contacts = (props) => {
   const [contactLastName, setLastName] = useState('');
@@ -31,12 +45,38 @@ const Contacts = (props) => {
   const [contactMobilePhone, setMobilePhone] = useState('');
   const [contactFax, setFax] = useState('');
   const [contactComments, setComments] = useState('');
-
+  
+  const alert = useAlert();
 
   useEffect(() => {
     props.fetchContacts()
       .then((result) => (result));
   }, []);
+
+  function clearState() {
+    setLastName('');
+    setFirstName(''); 
+    setSocialSecurity('');
+    setBirthdate('');
+    setHomeStreet('');
+    setHomeStreet2('');
+    setHomeCity('');
+    setHomeState('');
+    setHomeZip('');
+    setWorkCompanyName('');
+    setWorkStreet('');
+    setWorkStreet2('');
+    setWorkCity('');
+    setWorkState('');
+    setWorkZip('');
+    setEmailMain('');
+    setEMailBackup('');
+    setPrimaryPhone(''); 
+    setSecondaryPhone('');
+    setMobilePhone('');
+    setFax('');
+    setComments('');
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -63,47 +103,20 @@ const Contacts = (props) => {
       mobilePhone: contactMobilePhone,
       fax: contactFax,
       comments: contactComments,
-    });
+
+    })
+      .then(() => alert.show('Success!'))
+      .then(() => clearState());
   }
 
   return (
     <>
-        {/* <ul>
-            {props.contacts.map((contact, _id) => (
+     <AlertProvider template={AlertTemplate} {...options}>
 
-         <li key={_id}>
-           <p>Last Name: {contact.lastName}</p>
-           <p>First Name: {contact.firstName}</p>
-           <p> Phone Number: {contact.phoneNumber}</p>
-           <p>E-Mail: {contact.eMail}</p>
-           <p>SSN: {contact.socialSecurity}</p>
-           <p>Birthdate: {contact.birthdate}</p>
-           <p>Home Street Address: {contact.homeStreet}</p>
-           <p>Home Street Address 2: {contact.homeStreet2}</p>
-           <p>Home City: {contact.homeCity}</p>
-           <p>Home State: {contact.homeState}</p>
-           <p>Home Zip: {contact.homeZip}</p>
-           <p>Company Name: {contact.workCompanyName}</p>
-           <p>Work Street Address: {contact.workStreet}</p>
-           <p>Work Street Address 2: {contact.workStreet2}</p>
-           <p>Work City: {contact.workCity}</p>
-           <p>Work State: {contact.workState}</p>
-           <p>Work Zip: {contact.workZip}</p>
-           <p>Main E-mail: {contact.emailMain}</p>  
-           <p>Backup E-mail: {contact.emailBackup}</p>         
-           <p>Primary Phone: {contact.primaryPhone}</p>
-           <p>Secondary Phone: {contact.secondaryPhone}</p>
-           <p>Mobile Phone: {contact.mobilePhone}</p>
-           <p>Fax: {contact.fax}</p>
-           <p>Contact Notes: {contact.comments}</p>
-          </li>
-            ))}
-
-        </ul> */}
       <div className='container'>
         <h1> Add Contacts</h1>
 
-            <form onSubmit={handleSubmit}>
+            <form id="contactForm" onSubmit={handleSubmit}>
                 <input 
                     type='text'
                     value={contactLastName}
@@ -240,6 +253,9 @@ const Contacts = (props) => {
 
             </form>
       </div>
+
+      </AlertProvider>
+
     </>
             
   );

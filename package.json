@@ -10,6 +10,8 @@
     "eslint-plugin-jest": "^22.19.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
+    "react-alert": "^6.0.0",
+    "react-alert-template-basic": "^1.0.0",
     "react-cookies": "^0.1.1",
     "react-dom": "^16.10.2",
     "react-modal": "^3.10.1",
@@ -19,6 +21,7 @@
     "react-table": "^6.10.3",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
+    "redux-form": "^8.2.6",
     "sass": "^1.23.0",
     "superagent": "^5.1.0"
   },
