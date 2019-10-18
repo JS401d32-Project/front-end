@@ -3,14 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dotenv": "^8.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-jest": "^22.19.0",
+    "jsdoc": "^3.6.3",
+    "prop-types": "^15.7.2",
     "react": "^16.10.2",
+    "react-cookies": "^0.1.1",
     "react-dom": "^16.10.2",
+    "react-modal": "^3.10.1",
     "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "react-styleguidist": "9.0.4",
+    "react-table": "^6.10.3",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "sass": "^1.23.0",
@@ -19,10 +27,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js",
-    "docs": "styleguidist server"
+    "lint": "eslint '**/*.js'",
+    "lintFix": "eslint '**/*.js' --fix",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,5 +49,31 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "## Authors - Austin Hedeen - Benjamin Clark - Bradley G. Elliott - Corey Chang - Evan BC - Hanna Alemu - Jessica Walters - Leyla Li - Lillian Gales - Joanna Arroyo - Trae Bennett",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JS-401-Final/front-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JS-401-Final/front-end/issues"
+  },
+  "homepage": "https://github.com/JS-401-Final/front-end#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.1.0"
   }
 }
