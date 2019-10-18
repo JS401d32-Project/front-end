@@ -87,6 +87,8 @@ const fetchNotes = (token) => (dispatch) => {
 };
 
 export default {
+  get,
+  getOne,
   fetchNotes,
   fetchOneNote,
 };

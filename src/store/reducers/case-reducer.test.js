@@ -1,6 +1,6 @@
 import caseReducer from './case-reducer';
 
-describe('Case reducer', () => {
+describe('Case Reducer', () => {
   it('should return initial state', () => {
     expect(caseReducer(undefined, {})).toEqual({});
   });
