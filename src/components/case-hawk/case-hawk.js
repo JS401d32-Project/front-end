@@ -19,9 +19,9 @@ export default function CaseHawk() {
         <NavBar />
         <Switch>
           <Route exact path="/" component={HomePage}/>
-          <Route path="/casePage/:id" component={CasePage}/>
+          <Route exact path="/casePage/:id" component={CasePage}/>
           <Route exact path="/contacts" component={Contacts}/>
-          <Route patch="/caseIntake" component={CaseIntake} />
+          <Route exact path="/caseIntake" component={CaseIntake} />
           <Route component={NoRoute} />
         </Switch>
       </BrowserRouter>
