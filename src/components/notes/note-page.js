@@ -21,8 +21,7 @@ function Note(props) {
     };
 
     fetch(`${API}/note/${currentId}`, options)
-      .then((result) => result.json())
-      .then(() => setReady(true));
+      .then((result) => result.json());
   }, []);
 
   return (
