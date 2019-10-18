@@ -68,7 +68,7 @@ function CaseForm(props) {
           </select>
         </label>
       </form>
-      <button onClick={(event) => handleUpdate(event)}>
+      <button className='submitButton' onClick={(event) => handleUpdate(event)}>
         Save Case Details
       </button>
     </React.Fragment>
