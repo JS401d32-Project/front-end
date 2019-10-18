@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
-
 import { useAlert } from 'react-alert';
-
 import PropTypes from 'prop-types';
-import './contact.scss';
 import { connect } from 'react-redux';
+
 import contactActions from '../../store/actions/contacts-action';
+
+import './contact.scss';
 
 
 /**

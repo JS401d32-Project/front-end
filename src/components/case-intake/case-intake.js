@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
 
-import {
-  transitions, positions, useAlert, Provider as AlertProvider, 
-} from 'react-alert';
-
-import AlertTemplate from 'react-alert-template-basic';
+import { useAlert } from 'react-alert';
 
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
 import { addNewCase } from '../../store/actions/case-action';
-
-const options = {
-  position: positions.BOTTOM_CENTER,
-  timeout: 5000,
-  offset: '30px',
-  transition: transitions.SCALE,
-};
 
 /**
  * CaseIntake components collects new data from users and save it to database
@@ -32,7 +21,7 @@ const CaseIntake = (props) => {
 
   const alert = useAlert();
 
-  
+
   const clearState = () => {
     setClient({ });
     setCaseStatus('');
@@ -50,8 +39,8 @@ const CaseIntake = (props) => {
           firstName: client.firstName,
           SSN: client.SSN,
           birthDate: client.birthDate,
-          homeAddress: client.homeAddress,
-          homeAddress2: client.homeAddress2,
+          // homeAddress: client.homeAddress,
+          // homeAddress2: client.homeAddress2,
           homeCity: client.homeCity,
           homeState: client.homeState,
           homeZip: client.homeZip,
@@ -89,11 +78,11 @@ const CaseIntake = (props) => {
     setLegalPlan(event.target.value);
   }
 
-  
+
   function handleReferralChange(event) {
     setReferralType(event.target.value);
   }
-  
+
   function handleStatusChange(event) {
     setCaseStatus(event.target.value);
   }
@@ -101,65 +90,63 @@ const CaseIntake = (props) => {
 
   return (
     <>
-    <AlertProvider template={AlertTemplate} {...options}>
-
       <div className='container'>
         <h1> Case Intake </h1>
         <h3>Edit New Case </h3>
-        <h4> -- Potential New -- </h4>
+        <h4>-- Potential New --</h4>
 
-      <form onSubmit={handleSubmit}>
-        <div id="contactName" onChange={(event) => setClient({ ...client, [event.target.name]: event.target.value })}>
+        <form onSubmit={handleSubmit}>
+          <div id="contactName" onChange={(event) => setClient({ ...client, [event.target.name]: event.target.value })}>
 
-        <input 
-                    name="lastName"
-                    type='text'
-                    value={client.lastName}
-                    placeholder='Last Name'
-                />
-                 <input 
-                    name="firstName"
-                    type='text'
-                    value={client.firstName}
-                    placeholder='First Name'
-                />
-                <input 
+            <input
+              name="lastName"
+              type='text'
+              value={client.lastName}
+              placeholder='Last Name'
+            />
+            <input
+              name="firstName"
+              type='text'
+              value={client.firstName}
+              placeholder='First Name'
+            />
+                <input
                     name="SSN"
                     type='text'
                     value={client.SSN}
                     placeholder='SSN'
                 />
-                <input 
+                <input
                     name='birthDate'
                     type='text'
                     value={client.birthDate}
                     placeholder='Birthdate'
                 />
-             <input 
+             <input
                     name='homeAddress'
                     type='text'
                     value={client.homeAddress}
                     placeholder='Home Street Address'
                 />
-                 <input 
+                 <input
                     name='homeAddress2'
                     type='text'
                     value={client.homeAddress2}
                     placeholder='Home Street Address 2'
                 />
-                <input 
+                <input
                     name='homeCity'
                     type='text'
                     value={client.homeCity}
                     placeholder='Home City'
                 />
-                <input 
+                <input
                     name='homeState'
                     type='text'
                     value={client.homeState}
                     placeholder='Home State'
                 />
-                <input 
+                <input
                     name='homeZip'
                     type='text'
                     value={client.homeZip}
@@ -171,25 +158,25 @@ const CaseIntake = (props) => {
                     value={client.workCompany}
                     placeholder='Work Company Name'
                 />
-                <input 
+                <input
                     name='workStreet'
                     type='text'
                     value={client.workStreet}
                     placeholder='Work Street Address'
                 />
-                <input 
+                <input
                     name='workAddress2'
                     type='text'
                     value={client.workStreet2}
                     placeholder='Work Street Address 2'
                 />
-                <input 
+                <input
                     name='workCity'
                     type='text'
                     value={client.workCity}
                     placeholder='Work City'
                 />
-                <input 
+                <input
                     name='workState'
                     type='text'
                     value={client.workState}
@@ -201,37 +188,37 @@ const CaseIntake = (props) => {
                     value={client.workZip}
                     placeholder='Work Zip'
                 />
-                 <input 
+                 <input
                     name='emailMain'
                     type='text'
                     value={client.emailMain}
                     placeholder='Main E-mail'
                 />
-                <input 
+                <input
                     name='emailBackup'
                     type='text'
                     value={client.emailBackup}
                     placeholder='Backup E-mail'
                 />
-                <input 
+                <input
                     name='primaryPhone'
                     type='text'
                     value={client.primaryPhone}
                     placeholder='Primary Phone'
                 />
-                <input 
+                <input
                     name='secondaryPhone'
                     type='text'
                     value={client.secondaryPhone}
                     placeholder='Secondary Phone'
                 />
-                <input 
+                <input
                     name='mobilePhone'
                     type='text'
                     value={client.mobilePhone}
                     placeholder='Mobile Phone'
                 />
-                <input 
+                <input
                     name='fax'
                     type='text'
                     value={client.fax}
@@ -271,8 +258,8 @@ const CaseIntake = (props) => {
 
         <div className="intakeNotes">
             <p>--intake Notes -- </p>
-            
-            <input 
+
+            <input
             type = 'text'
             value={newCaseNotes}
             onChange={(event) => setNewCaseNotes(event.target.value)}
@@ -283,10 +270,8 @@ const CaseIntake = (props) => {
 
         </div>
         <button onClick={handleSubmit}> Save Data </button>
-      </form>  
-    </div>
-
-    </AlertProvider>
+      </form>
+      </div>
     </>
   );
 };
@@ -295,11 +280,11 @@ const mapStateToProps = (state) => ({
   caseIntake: state.caseIntake,
   user: state.user,
 });
-    
+
 const mapDispatchToProps = (dispatch) => ({
   addNewCase: (data, token) => dispatch(addNewCase(data, token)),
 });
-    
+
 CaseIntake.propTypes = {
   /**
    * CaseIntake label.
