@@ -14,12 +14,12 @@ import If from './If/if/If';
 const App = (props) => {
   return (
     <React.Fragment>
-      <If condition={props.id}>
+      {/* <If condition={props.id}> */}
         <CaseHawk />
-      </If>
-      <If condition={!props.id}>
+      {/* </If> */}
+      {/* <If condition={!props.id}> */}
         <LandingPage />
-      </If>
+      {/* </If> */}
     </React.Fragment>
   );
 };
