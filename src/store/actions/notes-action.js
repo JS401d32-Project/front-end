@@ -49,7 +49,7 @@ const fetchOneNote = (id, token) => (dispatch) => {
       const alteredObj = {
         id: data.id,
         caseId: data[0].case.caseId,
-        author: data[0].author.userName,
+        author: data[0].author && data[0].author.userName ? data[0].author.userName : 'No Author',
         content: data[0].content,
         dateCreated: alterDateTime(data[0].dateCreated),
         title: data[0].title,
@@ -75,7 +75,7 @@ const fetchNotes = (token) => (dispatch) => {
         const alteredObj = {
           id: note.id,
           caseId: note.case.caseId,
-          author: note.author.userName,
+          author: (note.author && note.author.userName) ? note.author.userName : 'No Author',
           content: note.content,
           dateCreated: alterDateTime(note.dateCreated),
           title: note.title,
@@ -87,6 +87,8 @@ const fetchNotes = (token) => (dispatch) => {
 };
 
 export default {
+  get,
+  getOne,
   fetchNotes,
   fetchOneNote,
 };

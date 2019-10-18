@@ -1,6 +1,5 @@
 const API = process.env.REACT_APP_API;
 
-
 const get = (payload) => {
   return {
     type: 'FETCH_CONTACTS',
@@ -67,6 +66,9 @@ const addContact = (contact, token) => (dispatch) => {
 };
 
 export default {
+  get,
+  getOne,
+  add,
   fetchContacts,
   fetchContact,
   addContact,

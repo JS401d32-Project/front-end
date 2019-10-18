@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './case.scss';
 
 import CaseForm from '../case-form/case-form';
+
 import ClientContact from '../contact/contact-render';
 
 import CaseContact from '../case-contact/case-contact';
@@ -44,11 +45,13 @@ function Case(props) {
       {ready  
         ? <React.Fragment>
           <div className='caseHeader'>
-            <h2>{props.currentCase.title}: Case Map</h2>
-            <h3>{props.currentCase.caseId}</h3>
+            <h1>Case Details</h1>
+            <h3>Case ID: {props.currentCase.caseId}</h3>
           </div>
           <div className='caseFormContainer'>
+
             <CaseForm />
+            <hr className="style2" />
           </div>
           <div className='caseClientContainer'>
             <h3>Client Information</h3>
@@ -57,7 +60,7 @@ function Case(props) {
           <div className='caseContactsContainer'>
             <h3>Contacts</h3>
             <h4>Attorneys</h4>
-            <CaseContact type='staff-attorney'/>
+            <CaseContact className='contact' type='staff-attorney'/>
             <h4>Assistants</h4>
             <CaseContact type='staff-assistants'/>
             <h4>Opposing Parties</h4>
