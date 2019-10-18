@@ -22,7 +22,7 @@ const NavBar = (props) => {
         <div className="nav-header">
           <img className='logo' src={logo} alt="Logo" />
           <div className="nav-title">
-            Case Hawk
+            CaseHawk
           </div>
 
 
