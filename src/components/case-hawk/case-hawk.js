@@ -8,9 +8,13 @@ import CasePage from '../case/case';
 import NoRoute from '../no-route';
 import CaseIntake from '../case-intake/case-intake';
 
+/**
+ * CaseHawk component renders all the components showing on the home page
+ * @visibleName CaseHawk
+ */
 export default function CaseHawk() {
   return (
-    <>
+    <React.Fragment>
       <BrowserRouter>
         <NavBar />
         <Switch>
@@ -21,6 +25,6 @@ export default function CaseHawk() {
           <Route component={NoRoute} />
         </Switch>
       </BrowserRouter>
-    </>
+    </React.Fragment>
   );
 }

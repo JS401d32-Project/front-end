@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './notes.css';
+import './notes.scss';
 import noteActions from '../../store/actions/notes-action';
 
+/**
+ * Note component get case details from back-end database and display them
+ * @visibleName Note
+ */
 const Note = (props) => {
   const [noteStatus, setNoteStatus] = useState(false);
 
@@ -17,18 +21,18 @@ const Note = (props) => {
 
   return (
 
-    <>
+    <React.Fragment>
     {noteStatus
       ? <ul>
-              <li>{props.displayNote.caseId}</li>
-              <li>{props.displayNote.title}</li>
-              <li>{props.displayNote.author}</li>
-              <li>{props.displayNote.dateCreated}</li>
-              <li>{props.displayNote.content}</li>
+              <li>Case Id: {props.displayNote.caseId}</li>
+              <li>Title: {props.displayNote.title}</li>
+              <li>Author: {props.displayNote.author}</li>
+              <li>Date: {props.displayNote.dateCreated}</li>
+              <li>Content: {props.displayNote.content}</li>
         </ul>
       : null
     } 
-    </>
+    </React.Fragment>
 
   );
 };
@@ -44,6 +48,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Note.propTypes = {
+  /**
+   * Note label.
+   */
   id: PropTypes.string,
   fetchOneNote: PropTypes.func,
   notes: PropTypes.array,
