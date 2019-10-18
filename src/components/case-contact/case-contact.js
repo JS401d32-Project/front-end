@@ -82,7 +82,7 @@ function GenericContact(props) {
           { currentContact.length < 1
             ? <li> </li>
             : currentContact.map((party, i) => {
-              return <li onClick={(event) => openModal(event, party.id)} key={i}>
+              return <li className='contact' onClick={(event) => openModal(event, party.id)} key={i}>
                   {`${party.firstName} ${party.lastName}`}
                 </li>;
             })

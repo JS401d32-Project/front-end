@@ -76,7 +76,7 @@ const CaseIntake = (props) => {
   return (
     <>
       <div className='container'>
-        <h2> Case Intake </h2>
+        <h1> Case Intake </h1>
         <h3>Edit New Case </h3>
         <h4> -- Potential New -- </h4>
 
