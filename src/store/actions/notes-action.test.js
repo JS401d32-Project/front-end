@@ -18,5 +18,4 @@ describe('Notes Actions', () => {
     };
     expect(noteActions.getOne(data)).toEqual(expectedAction);
   });
-
 });
