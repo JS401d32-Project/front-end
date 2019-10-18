@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/JS-401-Final/front-end/static/css/main.1e21d69a.chunk.css",
+    "main.js": "/JS-401-Final/front-end/build/main.3895d20c.js",
+    "runtime-main.js": "/JS-401-Final/front-end/build/bundle.f5be1170.js",
+    "static/css/2.11f871ab.chunk.css": "/JS-401-Final/front-end/static/css/2.11f871ab.chunk.css",
+    "build/2.abe17b89.js": "/JS-401-Final/front-end/build/2.abe17b89.js",
+    "index.html": "/JS-401-Final/front-end/index.html",
+    "precache-manifest.dc2ba20d42234742f9434b332e59b779.js": "/JS-401-Final/front-end/precache-manifest.dc2ba20d42234742f9434b332e59b779.js",
+    "service-worker.js": "/JS-401-Final/front-end/service-worker.js",
+    "static/css/2.11f871ab.chunk.css.map": "/JS-401-Final/front-end/static/css/2.11f871ab.chunk.css.map",
+    "static/css/main.1e21d69a.chunk.css.map": "/JS-401-Final/front-end/static/css/main.1e21d69a.chunk.css.map",
+    "static/media/404.jpg": "/JS-401-Final/front-end/static/media/404.68eb7a1f.jpg",
+    "static/media/logo.png": "/JS-401-Final/front-end/static/media/logo.f1a875f8.png"
+  },
+  "entrypoints": [
+    "build/bundle.f5be1170.js",
+    "static/css/2.11f871ab.chunk.css",
+    "build/2.abe17b89.js",
+    "static/css/main.1e21d69a.chunk.css",
+    "build/main.3895d20c.js"
+  ]
+}

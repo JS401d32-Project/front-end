@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
+
 import {
   transitions, positions, useAlert, Provider as AlertProvider,
 } from 'react-alert';
-
+  
 import AlertTemplate from 'react-alert-template-basic';
 
 import PropTypes from 'prop-types';
-
 import './contact.scss';
-
 import { connect } from 'react-redux';
-
 import contactActions from '../../store/actions/contacts-action';
 
 
@@ -22,6 +20,10 @@ const options = {
   transition: transitions.SCALE,
 };
 
+/**
+ * Contactas component allows users to add new contact informations to database
+ * @visibleName Contacts
+ */
 const Contacts = (props) => {
   const [contactLastName, setLastName] = useState('');
   const [contactFirstName, setFirstName] = useState('');
@@ -45,11 +47,8 @@ const Contacts = (props) => {
   const [contactMobilePhone, setMobilePhone] = useState('');
   const [contactFax, setFax] = useState('');
   const [contactComments, setComments] = useState('');
-  
-  const alert = useAlert();
-
   useEffect(() => {
-    props.fetchContacts()
+    props.fetchContacts(props.user.token)
       .then((result) => (result));
   }, []);
 
@@ -77,7 +76,6 @@ const Contacts = (props) => {
     setFax('');
     setComments('');
   }
-
   function handleSubmit(event) {
     event.preventDefault();
     props.addContact({
@@ -103,20 +101,48 @@ const Contacts = (props) => {
       mobilePhone: contactMobilePhone,
       fax: contactFax,
       comments: contactComments,
-
-    })
+    }, props.user.token)
       .then(() => alert.show('Success!'))
       .then(() => clearState());
   }
-
   return (
-    <>
-     <AlertProvider template={AlertTemplate} {...options}>
+    <React.Fragment>
+            <AlertProvider template={AlertTemplate} {...options}>
 
+        {/* <ul>
+            {props.contacts.map((contact, _id) => (
+         <li key={_id}>
+           <p>Last Name: {contact.lastName}</p>
+           <p>First Name: {contact.firstName}</p>
+           <p> Phone Number: {contact.phoneNumber}</p>
+           <p>E-Mail: {contact.eMail}</p>
+           <p>SSN: {contact.socialSecurity}</p>
+           <p>Birthdate: {contact.birthdate}</p>
+           <p>Home Street Address: {contact.homeStreet}</p>
+           <p>Home Street Address 2: {contact.homeStreet2}</p>
+           <p>Home City: {contact.homeCity}</p>
+           <p>Home State: {contact.homeState}</p>
+           <p>Home Zip: {contact.homeZip}</p>
+           <p>Company Name: {contact.workCompanyName}</p>
+           <p>Work Street Address: {contact.workStreet}</p>
+           <p>Work Street Address 2: {contact.workStreet2}</p>
+           <p>Work City: {contact.workCity}</p>
+           <p>Work State: {contact.workState}</p>
+           <p>Work Zip: {contact.workZip}</p>
+           <p>Main E-mail: {contact.emailMain}</p>  
+           <p>Backup E-mail: {contact.emailBackup}</p>         
+           <p>Primary Phone: {contact.primaryPhone}</p>
+           <p>Secondary Phone: {contact.secondaryPhone}</p>
+           <p>Mobile Phone: {contact.mobilePhone}</p>
+           <p>Fax: {contact.fax}</p>
+           <p>Contact Notes: {contact.comments}</p>
+          </li>
+            ))}
+        </ul> */}
       <div className='container'>
         <h1> Add Contacts</h1>
-
-            <form id="contactForm" onSubmit={handleSubmit}>
+            <div className = "inputForm">
+            <form onSubmit={handleSubmit}>
                 <input 
                     type='text'
                     value={contactLastName}
@@ -130,12 +156,14 @@ const Contacts = (props) => {
                     placeholder='First Name'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactSocialSecurity}
                     onChange={(event) => setSocialSecurity(event.target.value)}
                     placeholder='SSN'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactBirthdate}
                     onChange={(event) => setBirthdate(event.target.value)}
@@ -154,12 +182,14 @@ const Contacts = (props) => {
                     placeholder='Home Street Address 2'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactHomeCity}
                     onChange={(event) => setHomeCity(event.target.value)}
                     placeholder='Home City'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactHomeState}
                     onChange={(event) => setHomeState(event.target.value)}
@@ -178,12 +208,14 @@ const Contacts = (props) => {
                     placeholder='Work Company Name'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactWorkStreet}
                     onChange={(event) => setWorkStreet(event.target.value)}
                     placeholder='Work Street Address'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactWorkStreet2}
                     onChange={(event) => setWorkStreet2(event.target.value)}
@@ -202,12 +234,14 @@ const Contacts = (props) => {
                     placeholder='Work State'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactWorkZip}
                     onChange={(event) => setWorkZip(event.target.value)}
                     placeholder='Work Zip'
                 />
                  <input 
+                    className="tableColor"
                     type='text'
                     value={contactEmailMain}
                     onChange={(event) => setEmailMain(event.target.value)}
@@ -226,12 +260,14 @@ const Contacts = (props) => {
                     placeholder='Primary Phone'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactSecondaryPhone}
                     onChange={(event) => setSecondaryPhone(event.target.value)}
                     placeholder='Secondary Phone'
                 />
                 <input 
+                    className="tableColor"
                     type='text'
                     value={contactMobilePhone}
                     onChange={(event) => setMobilePhone(event.target.value)}
@@ -250,32 +286,32 @@ const Contacts = (props) => {
                     placeholder='Additional Comments'
                 />
                 <button type="submit">Add Contact</button>
-
             </form>
+            </div>
       </div>
-
       </AlertProvider>
 
-    </>
+    </React.Fragment>
             
   );
 };
-
-
 const mapStateToProps = (state) => ({
   contacts: state.contacts,
+  user: state.user,
 });
   
 const mapDispatchToProps = (dispatch) => ({
-  fetchContacts: () => dispatch(contactActions.fetchContacts()),
-  addContact: (data) => dispatch(contactActions.addContact(data)),
+  fetchContacts: (token) => dispatch(contactActions.fetchContacts(token)),
+  addContact: (data, token) => dispatch(contactActions.addContact(data, token)),
 });
   
 Contacts.propTypes = {
+  /**
+   * Contacts label.
+   */
   fetchContacts: PropTypes.func,
   addContact: PropTypes.func,
   contacts: PropTypes.array,
+  user: PropTypes.object,
 };
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts);

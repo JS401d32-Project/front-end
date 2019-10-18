@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import contactActions from '../../../store/actions/contacts-action';
+import contactActions from '../../store/actions/contacts-action';
+
 
 const customStyles = {
   content: {
@@ -15,9 +16,18 @@ const customStyles = {
   },
 };
 
+/**
+ * GenericContact is a reusable component to display all the related contacts to the case
+ * @visibleName GenericContact
+ */
+
 function GenericContact(props) {
   const [currentContact, setCurrentContact] = useState([]);
   const [modalState, setModalState] = useState(false);
+
+  /**
+   * It checks the type of the contact and then gets the contact data from the store
+   */
 
   useEffect(() => {
     if (props.type === 'staff-attorney') {
@@ -47,24 +57,32 @@ function GenericContact(props) {
     props.currentCase.associatedContacts,
   ]);
 
+  /**
+   * It creates a pop-up screen displaying details of specific contact
+   */
+
   function openModal(event, id) {
-    props.fetchContact(id)
+    props.fetchContact(id, props.user.token)
       .then(() => {
         setModalState(true);
       });
   }
+
+  /**
+   * It closes the pop-up screen with details of specific contact
+   */
 
   function closeModal() {
     setModalState(false);
   }
 
   return (
-    <>
+    <React.Fragment>
       <ul>
           { currentContact.length < 1
             ? <li> </li>
             : currentContact.map((party, i) => {
-              return <li onClick={(event) => openModal(event, party.id)} key={i}>
+              return <li className='contact' onClick={(event) => openModal(event, party.id)} key={i}>
                   {`${party.firstName} ${party.lastName}`}
                 </li>;
             })
@@ -93,20 +111,24 @@ function GenericContact(props) {
           </Modal>
           : null
       }
-    </>
+    </React.Fragment>
   );
 }
 
 const mapStateToProps = (state) => ({
   currentCase: state.currentCase,
   contacts: state.contacts,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchContact: (id) => dispatch(contactActions.fetchContact(id)),
+  fetchContact: (id, token) => dispatch(contactActions.fetchContact(id, token)),
 });
 
 GenericContact.propTypes = {
+  /**
+   * GenericContact label.
+   */
   props: PropTypes.object,
   getCase: PropTypes.func,
   currentCase: PropTypes.object,
@@ -114,6 +136,7 @@ GenericContact.propTypes = {
   fetchContact: PropTypes.func,
   contacts: PropTypes.array,
   type: PropTypes.string,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GenericContact);

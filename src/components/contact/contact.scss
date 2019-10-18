@@ -3,3 +3,28 @@
   margin: auto;
   text-align: center;
 }
+
+input {
+  padding:10px;
+  border: 1px solid rgba(0, 0, 0, 0.733);
+  width:50%;
+}
+
+::placeholder{
+  color:rgb(148, 148, 148);
+}
+
+.inputForm{
+  border: 1px solid rgba(0, 0, 0, 0.671);
+}
+
+button {
+  width:100%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.555);
+  color:rgb(77, 77, 77);
+}
+
+.tableColor{
+  background-color: rgba(192, 192, 192, 0.52);
+}

@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 
 import { addNewCase } from '../../store/actions/case-action';
 
-
 const options = {
   position: positions.BOTTOM_CENTER,
   timeout: 5000,
@@ -20,6 +19,10 @@ const options = {
   transition: transitions.SCALE,
 };
 
+/**
+ * CaseIntake components collects new data from users and save it to database
+ * @visibleName CaseIntake
+ */
 const CaseIntake = (props) => {
   const [client, setClient] = useState({});
   const [caseStatus, setCaseStatus] = useState('');
@@ -76,7 +79,8 @@ const CaseIntake = (props) => {
           content: newCaseNotes,
         },
       },
-    })
+
+    }, props.user.token)
       .then(() => alert.show('Success!'))
       .then(() => clearState());
   }
@@ -97,9 +101,10 @@ const CaseIntake = (props) => {
 
   return (
     <>
-     <AlertProvider template={AlertTemplate} {...options}>
+    <AlertProvider template={AlertTemplate} {...options}>
 
-        <h2> Case Intake </h2>
+      <div className='container'>
+        <h1> Case Intake </h1>
         <h3>Edit New Case </h3>
         <h4> -- Potential New -- </h4>
 
@@ -279,24 +284,28 @@ const CaseIntake = (props) => {
         </div>
         <button onClick={handleSubmit}> Save Data </button>
       </form>  
+    </div>
 
-      </AlertProvider>
-
+    </AlertProvider>
     </>
   );
 };
 
 const mapStateToProps = (state) => ({
   caseIntake: state.caseIntake,
+  user: state.user,
 });
     
 const mapDispatchToProps = (dispatch) => ({
-  addNewCase: (data) => dispatch(addNewCase(data)),
+  addNewCase: (data, token) => dispatch(addNewCase(data, token)),
 });
     
 CaseIntake.propTypes = {
+  /**
+   * CaseIntake label.
+   */
   addNewCase: PropTypes.func,
+  user: PropTypes.object,
 };
-  
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaseIntake);
